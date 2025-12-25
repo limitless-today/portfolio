@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Cloud Solution Architect | Enterprise Architecture</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+        
+        :root {
+            --aws-orange: #FF9900;
+            --azure-blue: #0078D4;
+            --gcp-red: #EA4335;
+            --gcp-yellow: #FBBC04;
+            --gcp-green: #34A853;
+            --gcp-blue: #4285F4;
+            --enterprise-navy: #0A1628;
+            --slate-gray: #1E293B;
+            --cloud-white: #F8FAFC;
+            --accent-cyan: #06B6D4;
+            --text-primary: #E2E8F0;
+            --text-secondary: #94A3B8;
+            --border-color: #334155;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: var(--enterprise-navy);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* 3D Canvas Background */
+        #cloud-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 0;
+            opacity: 0.4;
+        }
+        
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            animation: slideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--azure-blue), var(--accent-cyan));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        
+        .brand-text h1 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .brand-text p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-label {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 50px;
+            color: var(--accent-cyan);
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--cloud-white), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        
+        .cloud-badges {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+        
+        .cloud-badge {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .cloud-badge:hover {
+            transform: translateY(-3px);
+            border-color: currentColor;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cloud-badge.aws { color: var(--aws-orange); }
+        .cloud-badge.azure { color: var(--azure-blue); }
+        .cloud-badge.gcp { color: var(--gcp-blue); }
+        
+        .badge-icon {
+            font-size: 1.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background: var(--accent-cyan);
+            color: var(--enterprise-navy);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Statistics Section */
+        .stats-section {
+            padding: 6rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-card {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.05);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+        
+        /* Architecture Section */
+        .architecture-section {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .section-label {
+            color: var(--accent-cyan);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+        
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .architecture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .arch-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .arch-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--aws-orange), var(--azure-blue), var(--gcp-blue));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .arch-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .arch-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .arch-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--azure-blue));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .arch-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .arch-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            padding: 0.4rem 0.9rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-cyan);
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: 8rem 3rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .services-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        
+        .service-card {
+            padding: 3rem;
+            background: var(--slate-gray);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s ease;
+        }
+        
+        .service-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5);
+        }
+        
+        .service-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .service-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .service-card p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        
+        /* Timeline Section */
+        .timeline-section {
+            padding: 8rem 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .timeline-container {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, 
+                transparent 0%, 
+                var(--accent-cyan) 10%, 
+                var(--accent-cyan) 90%, 
+                transparent 100%);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-progress {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(180deg, var(--aws-orange), var(--azure-blue), var(--gcp-blue));
+            transition: height 0.3s ease;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .timeline-item.left {
+            flex-direction: row-reverse;
+            text-align: right;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin: 0 3rem;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 30px;
+            height: 3px;
+            background: var(--accent-cyan);
+            transform: translateY(-50%);
+        }
+        
+        .timeline-item.left .timeline-content::before {
+            right: -30px;
+        }
+        
+        .timeline-item:not(.left) .timeline-content::before {
+            left: -30px;
+        }
+        
+        .timeline-content:hover {
+            transform: scale(1.03);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.2);
+        }
+        
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--enterprise-navy);
+            border: 4px solid var(--accent-cyan);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(6, 182, 212, 0);
+            }
+        }
+        
+        .timeline-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-company {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        
+        .timeline-achievements {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .timeline-achievements li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            color: var(--text-secondary);
+        }
+        
+        .timeline-achievements li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+        
+        /* 3D Skill Sphere Section */
+        .skill-sphere-section {
+            padding: 8rem 3rem;
+            background: var(--enterprise-navy);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-sphere-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .sphere-wrapper {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            perspective: 1000px;
+            margin-top: 4rem;
+        }
+        
+        .skill-sphere {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            transform-style: preserve-3d;
+            animation: rotateSphere 30s linear infinite;
+        }
+        
+        @keyframes rotateSphere {
+            from {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+        
+        .sphere-tag {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .sphere-tag span {
+            display: block;
+            padding: 0.8rem 1.5rem;
+            background: rgba(30, 41, 59, 0.95);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            font-weight: 600;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .sphere-tag span:hover {
+            background: var(--accent-cyan);
+            color: var(--enterprise-navy);
+            transform: scale(1.2);
+            border-color: var(--cloud-white);
+            box-shadow: 0 8px 40px rgba(6, 182, 212, 0.6);
+            z-index: 100;
+        }
+        
+        .sphere-tag.aws span {
+            border-color: var(--aws-orange);
+        }
+        
+        .sphere-tag.azure span {
+            border-color: var(--azure-blue);
+        }
+        
+        .sphere-tag.gcp span {
+            border-color: var(--gcp-blue);
+        }
+        
+        .sphere-tag.devops span {
+            border-color: var(--gcp-green);
+        }
+        
+        .sphere-controls {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 10;
+        }
+        
+        .sphere-control-btn {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .sphere-control-btn:hover,
+        .sphere-control-btn.active {
+            background: var(--accent-cyan);
+            color: var(--enterprise-navy);
+            border-color: var(--accent-cyan);
+        }
+        
+        .sphere-info {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            min-height: 120px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .sphere-info.visible {
+            opacity: 1;
+        }
+        
+        .sphere-info h4 {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 0.5rem;
+        }
+        
+        .sphere-info p {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        
+        /* Skill Tree Section */
+        .skill-tree-section {
+            padding: 8rem 3rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+        
+        .skill-tree-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        #skill-tree-canvas {
+            width: 100%;
+            height: 800px;
+            margin-top: 3rem;
+        }
+        
+        .tree-node {
+            position: absolute;
+            padding: 1rem 1.5rem;
+            background: var(--slate-gray);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            white-space: nowrap;
+            opacity: 0;
+            transform: scale(0);
+        }
+        
+        .tree-node.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .tree-node:hover {
+            transform: scale(1.15);
+            border-color: var(--accent-cyan);
+            background: var(--accent-cyan);
+            color: var(--enterprise-navy);
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.4);
+            z-index: 100;
+        }
+        
+        .tree-node.level-0 {
+            background: linear-gradient(135deg, var(--azure-blue), var(--accent-cyan));
+            color: white;
+            font-size: 1.2rem;
+            padding: 1.5rem 2rem;
+            border: none;
+        }
+        
+        .tree-node.level-1 {
+            border-color: var(--aws-orange);
+        }
+        
+        .tree-node.level-2 {
+            border-color: var(--azure-blue);
+        }
+        
+        .tree-node.level-3 {
+            border-color: var(--gcp-blue);
+        }
+        
+        .tree-node.active {
+            border-color: var(--accent-cyan);
+            background: rgba(6, 182, 212, 0.1);
+        }
+        
+        .skill-details {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--slate-gray);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            min-height: 150px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .skill-details.visible {
+            opacity: 1;
+        }
+        
+        .skill-details h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+        }
+        
+        .skill-details p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .skill-tag-detail {
+            padding: 0.5rem 1rem;
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        /* Certifications Section */
+        .certifications-section {
+            padding: 8rem 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .cert-card {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .cert-card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+        }
+        
+        .cert-badge {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--aws-orange), var(--azure-blue), var(--gcp-blue));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .cert-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .cert-provider {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 8rem 3rem;
+            background: var(--slate-gray);
+            text-align: center;
+        }
+        
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .contact-container h2 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+        
+        .contact-container p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            color: var(--accent-cyan);
+        }
+        
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        
+        footer p {
+            font-size: 0.95rem;
+        }
+        
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .hero {
+                padding: 0 1.5rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cloud-badges {
+                justify-content: center;
+            }
+            
+            .cta-buttons {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cloud-canvas"></canvas>
+    
+    <div class="content-wrapper">
+        <nav>
+            <div class="nav-container">
+                <div class="brand">
+                    <div class="brand-icon">CA</div>
+                    <div class="brand-text">
+                        <h1>Cloud Architect</h1>
+                        <p>Multi-Cloud Expert</p>
+                    </div>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#architecture">Architecture</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <span class="hero-label">Enterprise Cloud Solutions</span>
+                <h1>
+                    Building <span class="gradient-text">Scalable</span><br>
+                    Multi-Cloud<br>
+                    Infrastructure
+                </h1>
+                <p class="hero-subtitle">
+                    Architecting enterprise-grade solutions across AWS, Azure, and GCP with proven expertise in cloud migration, infrastructure automation, and cost optimization.
+                </p>
+                
+                <div class="cloud-badges">
+                    <div class="cloud-badge aws">
+                        <span class="badge-icon">☁</span>
+                        <span>AWS Certified</span>
+                    </div>
+                    <div class="cloud-badge azure">
+                        <span class="badge-icon">⚡</span>
+                        <span>Azure Expert</span>
+                    </div>
+                    <div class="cloud-badge gcp">
+                        <span class="badge-icon">🔷</span>
+                        <span>GCP Professional</span>
+                    </div>
+                </div>
+                
+                <div class="cta-buttons">
+                    <a href="#architecture" class="btn btn-primary">
+                        View Architecture
+                        <span>→</span>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Cloud Migrations</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">$50M+</div>
+                    <div class="stat-label">Cost Optimized</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">99.99%</div>
+                    <div class="stat-label">Uptime SLA</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="architecture" class="architecture-section">
+            <div class="section-header fade-in">
+                <div class="section-label">Enterprise Solutions</div>
+                <h2 class="section-title">Cloud Architecture Expertise</h2>
+                <p class="section-description">
+                    Designing and implementing robust, scalable, and secure cloud infrastructure across multiple cloud platforms
+                </p>
+            </div>
+            
+            <div class="architecture-grid">
+                <div class="arch-card fade-in">
+                    <div class="arch-icon">🏗️</div>
+                    <h3>Hybrid Cloud Architecture</h3>
+                    <p>Design and implement seamless hybrid cloud solutions connecting on-premises infrastructure with AWS, Azure, and GCP environments.</p>
+                    <div class="tech-list">
+                        <span class="tech-tag">VPN</span>
+                        <span class="tech-tag">Direct Connect</span>
+                        <span class="tech-tag">ExpressRoute</span>
+                        <span class="tech-tag">Cloud Interconnect</span>
+                    </div>
+                </div>
+                
+                <div class="arch-card fade-in">
+                    <div class="arch-icon">🔒</div>
+                    <h3>Security & Compliance</h3>
+                    <p>Implement zero-trust architecture, identity management, and compliance frameworks across multi-cloud environments.</p>
+                    <div class="tech-list">
+                        <span class="tech-tag">IAM</span>
+                        <span class="tech-tag">KMS</span>
+                        <span class="tech-tag">SOC 2</span>
+                        <span class="tech-tag">HIPAA</span>
+                    </div>
+                </div>
+                
+                <div class="arch-card fade-in">
+                    <div class="arch-icon">⚙️</div>
+                    <h3>Infrastructure as Code</h3>
+                    <p>Automate infrastructure provisioning and management using modern IaC tools and GitOps practices.</p>
+                    <div class="tech-list">
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">CloudFormation</span>
+                        <span class="tech-tag">Ansible</span>
+                        <span class="tech-tag">Pulumi</span>
+                    </div>
+                </div>
+                
+                <div class="arch-card fade-in">
+                    <div class="arch-icon">🚀</div>
+                    <h3>Microservices & Containers</h3>
+                    <p>Architect containerized applications with orchestration, service mesh, and CI/CD pipelines.</p>
+                    <div class="tech-list">
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">EKS</span>
+                        <span class="tech-tag">AKS</span>
+                        <span class="tech-tag">GKE</span>
+                    </div>
+                </div>
+                
+                <div class="arch-card fade-in">
+                    <div class="arch-icon">📊</div>
+                    <h3>Data Engineering</h3>
+                    <p>Design scalable data lakes, warehouses, and streaming pipelines for analytics and machine learning.</p>
+                    <div class="tech-list">
+                        <span class="tech-tag">S3</span>
+                        <span class="tech-tag">Redshift</span>
+                        <span class="tech-tag">BigQuery</span>
+                        <span class="tech-tag">Kafka</span>
+                    </div>
+                </div>
+                
+                <div class="arch-card fade-in">
+                    <div class="arch-icon">💰</div>
+                    <h3>Cost Optimization</h3>
+                    <p>Implement FinOps practices, right-sizing strategies, and automated cost management solutions.</p>
+                    <div class="tech-list">
+                        <span class="tech-tag">Reserved Instances</span>
+                        <span class="tech-tag">Spot Instances</span>
+                        <span class="tech-tag">Auto Scaling</span>
+                        <span class="tech-tag">CloudHealth</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="services" class="services-section">
+            <div class="services-container">
+                <div class="section-header fade-in">
+                    <div class="section-label">What I Offer</div>
+                    <h2 class="section-title">Professional Services</h2>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card fade-in">
+                        <div class="service-number">01</div>
+                        <h3>Cloud Strategy & Consulting</h3>
+                        <p>Develop comprehensive cloud adoption strategies, roadmaps, and business cases. Assess current infrastructure and recommend optimal cloud platforms and migration paths.</p>
+                    </div>
+                    
+                    <div class="service-card fade-in">
+                        <div class="service-number">02</div>
+                        <h3>Migration & Modernization</h3>
+                        <p>Execute large-scale cloud migrations using proven methodologies. Modernize legacy applications with cloud-native patterns and containerization.</p>
+                    </div>
+                    
+                    <div class="service-card fade-in">
+                        <div class="service-number">03</div>
+                        <h3>DevOps & Automation</h3>
+                        <p>Implement CI/CD pipelines, infrastructure automation, and observability solutions. Enable rapid, reliable software delivery with GitOps workflows.</p>
+                    </div>
+                    
+                    <div class="service-card fade-in">
+                        <div class="service-number">04</div>
+                        <h3>Training & Enablement</h3>
+                        <p>Upskill teams through hands-on workshops, technical training, and knowledge transfer programs. Build internal cloud expertise and best practices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="skill-sphere-section">
+            <div class="skill-sphere-container">
+                <div class="section-header fade-in">
+                    <div class="section-label">Interactive Experience</div>
+                    <h2 class="section-title">Technology Mastery</h2>
+                    <p class="section-description">
+                        Explore the comprehensive technology stack in 3D space
+                    </p>
+                </div>
+                
+                <div class="sphere-wrapper">
+                    <div class="skill-sphere" id="skillSphere"></div>
+                    
+                    <div class="sphere-controls">
+                        <button class="sphere-control-btn active" data-speed="slow">Slow</button>
+                        <button class="sphere-control-btn" data-speed="normal">Normal</button>
+                        <button class="sphere-control-btn" data-speed="fast">Fast</button>
+                        <button class="sphere-control-btn" id="pauseBtn">Pause</button>
+                    </div>
+                </div>
+                
+                <div class="sphere-info" id="sphereInfo">
+                    <h4>Hover over any skill</h4>
+                    <p>Interact with the 3D skill sphere to explore technologies and cloud platforms</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="timeline-section">
+            <div class="section-header fade-in">
+                <div class="section-label">Career Journey</div>
+                <h2 class="section-title">Experience Timeline</h2>
+                <p class="section-description">
+                    A decade of architecting enterprise cloud solutions across industries
+                </p>
+            </div>
+            
+            <div class="timeline-container">
+                <div class="timeline-line">
+                    <div class="timeline-progress"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - Present</div>
+                        <h3 class="timeline-title">Principal Cloud Architect</h3>
+                        <div class="timeline-company">Global Tech Solutions Inc.</div>
+                        <p class="timeline-description">
+                            Leading enterprise cloud transformation initiatives across multi-cloud environments.
+                        </p>
+                        <ul class="timeline-achievements">
+                            <li>Architected hybrid cloud infrastructure serving 50M+ users globally</li>
+                            <li>Reduced infrastructure costs by $12M annually through optimization</li>
+                            <li>Led team of 15 cloud engineers across AWS, Azure, and GCP</li>
+                            <li>Implemented zero-trust security framework across all environments</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019 - 2022</div>
+                        <h3 class="timeline-title">Senior Cloud Solutions Architect</h3>
+                        <div class="timeline-company">Enterprise Cloud Consultancy</div>
+                        <p class="timeline-description">
+                            Designed and implemented cloud solutions for Fortune 500 clients.
+                        </p>
+                        <ul class="timeline-achievements">
+                            <li>Migrated 200+ applications to multi-cloud architecture</li>
+                            <li>Achieved 99.99% uptime SLA for mission-critical workloads</li>
+                            <li>Automated infrastructure provisioning with Terraform and Ansible</li>
+                            <li>Implemented comprehensive disaster recovery strategies</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2016 - 2019</div>
+                        <h3 class="timeline-title">Cloud Infrastructure Engineer</h3>
+                        <div class="timeline-company">Digital Innovation Labs</div>
+                        <p class="timeline-description">
+                            Built scalable cloud infrastructure and containerized microservices.
+                        </p>
+                        <ul class="timeline-achievements">
+                            <li>Designed Kubernetes clusters handling 10K+ containers</li>
+                            <li>Implemented CI/CD pipelines reducing deployment time by 80%</li>
+                            <li>Created Infrastructure as Code templates used across organization</li>
+                            <li>Established cloud governance and compliance frameworks</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2013 - 2016</div>
+                        <h3 class="timeline-title">DevOps Engineer</h3>
+                        <div class="timeline-company">Tech Startup Accelerator</div>
+                        <p class="timeline-description">
+                            Managed cloud operations and automated deployment workflows.
+                        </p>
+                        <ul class="timeline-achievements">
+                            <li>Transitioned legacy infrastructure to AWS cloud</li>
+                            <li>Implemented monitoring and observability solutions</li>
+                            <li>Reduced incident response time by 70%</li>
+                            <li>Mentored junior engineers in cloud best practices</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-dot"></div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="skill-tree-section">
+            <div class="skill-tree-container">
+                <div class="section-header fade-in">
+                    <div class="section-label">Technical Expertise</div>
+                    <h2 class="section-title">Skills Hierarchy</h2>
+                    <p class="section-description">
+                        Interactive visualization of technical skills and expertise areas
+                    </p>
+                </div>
+                
+                <div id="skill-tree-canvas"></div>
+                
+                <div class="skill-details" id="skill-details">
+                    <h3>Select a skill to view details</h3>
+                    <p>Click on any node in the skill tree to explore specific technologies and tools.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="certifications" class="certifications-section">
+            <div class="section-header fade-in">
+                <div class="section-label">Professional Credentials</div>
+                <h2 class="section-title">Certifications</h2>
+            </div>
+            
+            <div class="cert-grid">
+                <div class="cert-card fade-in">
+                    <div class="cert-badge">☁</div>
+                    <h4>Solutions Architect Professional</h4>
+                    <p class="cert-provider">Amazon Web Services</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-badge">⚡</div>
+                    <h4>Azure Solutions Architect Expert</h4>
+                    <p class="cert-provider">Microsoft Azure</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-badge">🔷</div>
+                    <h4>Professional Cloud Architect</h4>
+                    <p class="cert-provider">Google Cloud Platform</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-badge">🔒</div>
+                    <h4>Security Specialty</h4>
+                    <p class="cert-provider">AWS</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-badge">☸</div>
+                    <h4>Certified Kubernetes Administrator</h4>
+                    <p class="cert-provider">Cloud Native Computing Foundation</p>
+                </div>
+                
+                <div class="cert-card fade-in">
+                    <div class="cert-badge">🏗️</div>
+                    <h4>HashiCorp Certified Terraform</h4>
+                    <p class="cert-provider">HashiCorp</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact" class="contact-section">
+            <div class="contact-container fade-in">
+                <h2>Let's Build Something Great</h2>
+                <p>Ready to transform your cloud infrastructure? Let's discuss your next project.</p>
+                
+                <div class="cta-buttons">
+                    <a href="mailto:architect@cloudexpert.com" class="btn btn-primary">
+                        Schedule Consultation
+                        <span>→</span>
+                    </a>
+                    <a href="#" class="btn btn-secondary">
+                        Download Resume
+                    </a>
+                </div>
+                
+                <div class="contact-info">
+                    <a href="mailto:architect@cloudexpert.com" class="contact-item">
+                        <span class="contact-icon">✉</span>
+                        <span>architect@cloudexpert.com</span>
+                    </a>
+                    <a href="https://linkedin.com" class="contact-item" target="_blank">
+                        <span class="contact-icon">💼</span>
+                        <span>LinkedIn Profile</span>
+                    </a>
+                    <a href="https://github.com" class="contact-item" target="_blank">
+                        <span class="contact-icon">💻</span>
+                        <span>GitHub Portfolio</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2024 Multi-Cloud Solution Architect. All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js Cloud Network Visualization
+        const canvas = document.getElementById('cloud-canvas');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        
+        // Create cloud nodes
+        const nodeGeometry = new THREE.SphereGeometry(0.3, 16, 16);
+        const nodes = [];
+        const nodeCount = 30;
+        
+        const colors = [0xFF9900, 0x0078D4, 0x4285F4]; // AWS, Azure, GCP colors
+        
+        for (let i = 0; i < nodeCount; i++) {
+            const material = new THREE.MeshBasicMaterial({
+                color: colors[i % colors.length],
+                transparent: true,
+                opacity: 0.6
+            });
+            
+            const node = new THREE.Mesh(nodeGeometry, material);
+            
+            node.position.x = (Math.random() - 0.5) * 40;
+            node.position.y = (Math.random() - 0.5) * 40;
+            node.position.z = (Math.random() - 0.5) * 40;
+            
+            node.velocity = new THREE.Vector3(
+                (Math.random() - 0.5) * 0.02,
+                (Math.random() - 0.5) * 0.02,
+                (Math.random() - 0.5) * 0.02
+            );
+            
+            nodes.push(node);
+            scene.add(node);
+        }
+        
+        // Create connections
+        const lineMaterial = new THREE.LineBasicMaterial({
+            color: 0x06B6D4,
+            transparent: true,
+            opacity: 0.2
+        });
+        
+        const connections = [];
+        
+        function createConnections() {
+            // Clear old connections
+            connections.forEach(line => scene.remove(line));
+            connections.length = 0;
+            
+            // Create new connections between nearby nodes
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const distance = nodes[i].position.distanceTo(nodes[j].position);
+                    
+                    if (distance < 12) {
+                        const geometry = new THREE.BufferGeometry().setFromPoints([
+                            nodes[i].position,
+                            nodes[j].position
+                        ]);
+                        
+                        const line = new THREE.Line(geometry, lineMaterial);
+                        connections.push(line);
+                        scene.add(line);
+                    }
+                }
+            }
+        }
+        
+        camera.position.z = 30;
+        
+        // Mouse interaction
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+        
+        // Animation
+        let frame = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            frame++;
+            
+            // Move nodes
+            nodes.forEach((node, i) => {
+                node.position.add(node.velocity);
+                
+                // Boundary check
+                ['x', 'y', 'z'].forEach(axis => {
+                    if (Math.abs(node.position[axis]) > 20) {
+                        node.velocity[axis] *= -1;
+                    }
+                });
+                
+                // Pulse effect
+                const scale = 1 + Math.sin(frame * 0.02 + i) * 0.2;
+                node.scale.set(scale, scale, scale);
+            });
+            
+            // Update connections periodically
+            if (frame % 60 === 0) {
+                createConnections();
+            }
+            
+            // Camera movement
+            camera.position.x += (mouseX * 3 - camera.position.x) * 0.02;
+            camera.position.y += (-mouseY * 3 - camera.position.y) * 0.02;
+            camera.lookAt(scene.position);
+            
+            renderer.render(scene, camera);
+        }
+        
+        createConnections();
+        animate();
+        
+        // Handle resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Timeline scroll progress
+        const timelineProgress = document.querySelector('.timeline-progress');
+        const timelineSection = document.querySelector('.timeline-section');
+        
+        window.addEventListener('scroll', () => {
+            if (timelineSection) {
+                const rect = timelineSection.getBoundingClientRect();
+                const sectionTop = rect.top;
+                const sectionHeight = rect.height;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight && sectionTop + sectionHeight > 0) {
+                    const progress = Math.min(Math.max((windowHeight - sectionTop) / (sectionHeight + windowHeight), 0), 1);
+                    timelineProgress.style.height = (progress * 100) + '%';
+                }
+            }
+        });
+        
+        // Timeline items animation
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+        }, { threshold: 0.2 });
+        
+        document.querySelectorAll('.timeline-item').forEach(el => {
+            timelineObserver.observe(el);
+        });
+        
+        // 3D Skill Sphere Implementation
+        const skillsData = [
+            // Cloud Platforms
+            { name: 'AWS', category: 'aws', description: 'Amazon Web Services - Comprehensive cloud infrastructure and services' },
+            { name: 'EC2', category: 'aws', description: 'Elastic Compute Cloud - Scalable virtual servers' },
+            { name: 'S3', category: 'aws', description: 'Simple Storage Service - Object storage built to store and retrieve data' },
+            { name: 'Lambda', category: 'aws', description: 'Serverless compute service for running code without provisioning servers' },
+            { name: 'RDS', category: 'aws', description: 'Relational Database Service - Managed database service' },
+            { name: 'VPC', category: 'aws', description: 'Virtual Private Cloud - Isolated cloud resources' },
+            { name: 'CloudFormation', category: 'aws', description: 'AWS Infrastructure as Code service' },
+            { name: 'EKS', category: 'aws', description: 'Amazon Elastic Kubernetes Service' },
+            
+            { name: 'Azure', category: 'azure', description: 'Microsoft Azure - Enterprise cloud computing platform' },
+            { name: 'Azure VMs', category: 'azure', description: 'Virtual Machines - Windows and Linux VMs in the cloud' },
+            { name: 'Blob Storage', category: 'azure', description: 'Massively scalable object storage for unstructured data' },
+            { name: 'Azure Functions', category: 'azure', description: 'Event-driven serverless compute platform' },
+            { name: 'AKS', category: 'azure', description: 'Azure Kubernetes Service - Managed Kubernetes container orchestration' },
+            { name: 'Azure AD', category: 'azure', description: 'Cloud-based identity and access management service' },
+            
+            { name: 'GCP', category: 'gcp', description: 'Google Cloud Platform - Infrastructure and services for innovation' },
+            { name: 'Compute Engine', category: 'gcp', description: 'Virtual machines running in Google\'s data centers' },
+            { name: 'Cloud Storage', category: 'gcp', description: 'Object storage with global edge caching' },
+            { name: 'BigQuery', category: 'gcp', description: 'Serverless, highly scalable data warehouse' },
+            { name: 'GKE', category: 'gcp', description: 'Google Kubernetes Engine - Managed Kubernetes service' },
+            { name: 'Cloud Functions', category: 'gcp', description: 'Event-driven serverless compute platform' },
+            
+            // DevOps & Tools
+            { name: 'Kubernetes', category: 'devops', description: 'Container orchestration platform for automating deployment' },
+            { name: 'Docker', category: 'devops', description: 'Platform for developing, shipping, and running applications in containers' },
+            { name: 'Terraform', category: 'devops', description: 'Infrastructure as Code tool for building and managing infrastructure' },
+            { name: 'Ansible', category: 'devops', description: 'Automation tool for configuration management and application deployment' },
+            { name: 'Jenkins', category: 'devops', description: 'Open-source automation server for continuous integration and delivery' },
+            { name: 'GitLab CI', category: 'devops', description: 'Built-in continuous integration and deployment pipeline' },
+            { name: 'Prometheus', category: 'devops', description: 'Monitoring system and time series database' },
+            { name: 'Grafana', category: 'devops', description: 'Analytics and interactive visualization web application' },
+            { name: 'Helm', category: 'devops', description: 'Package manager for Kubernetes applications' },
+            { name: 'ArgoCD', category: 'devops', description: 'Declarative GitOps continuous delivery tool for Kubernetes' },
+            { name: 'Istio', category: 'devops', description: 'Service mesh for microservices architecture' },
+            { name: 'Python', category: 'devops', description: 'High-level programming language for automation and scripting' },
+            { name: 'Go', category: 'devops', description: 'Programming language for building efficient, scalable systems' },
+            { name: 'Bash', category: 'devops', description: 'Unix shell and command language for scripting' }
+        ];
+        
+        function createSkillSphere() {
+            const sphere = document.getElementById('skillSphere');
+            if (!sphere) return;
+            
+            const radius = 280;
+            const numberOfTags = skillsData.length;
+            
+            skillsData.forEach((skill, i) => {
+                const phi = Math.acos(-1 + (2 * i) / numberOfTags);
+                const theta = Math.sqrt(numberOfTags * Math.PI) * phi;
+                
+                const x = radius * Math.cos(theta) * Math.sin(phi);
+                const y = radius * Math.sin(theta) * Math.sin(phi);
+                const z = radius * Math.cos(phi);
+                
+                const tag = document.createElement('div');
+                tag.className = `sphere-tag ${skill.category}`;
+                tag.innerHTML = `<span>${skill.name}</span>`;
+                
+                tag.style.transform = `translate3d(${x}px, ${y}px, ${z}px)`;
+                
+                // Add hover interaction
+                const span = tag.querySelector('span');
+                span.addEventListener('mouseenter', () => {
+                    showSkillInfo(skill);
+                });
+                
+                sphere.appendChild(tag);
+            });
+        }
+        
+        function showSkillInfo(skill) {
+            const infoEl = document.getElementById('sphereInfo');
+            if (!infoEl) return;
+            
+            infoEl.innerHTML = `
+                <h4>${skill.name}</h4>
+                <p>${skill.description}</p>
+            `;
+            infoEl.classList.add('visible');
+        }
+        
+        // Sphere controls
+        let isPaused = false;
+        let currentSpeed = 30;
+        
+        function setSphereSpeed(speed) {
+            const sphere = document.getElementById('skillSphere');
+            if (!sphere) return;
+            
+            sphere.style.animation = 'none';
+            void sphere.offsetWidth;
+            sphere.style.animation = `rotateSphere ${speed}s linear infinite`;
+            currentSpeed = speed;
+        }
+        
+        document.querySelectorAll('.sphere-control-btn[data-speed]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.sphere-control-btn[data-speed]').forEach(b => 
+                    b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const speed = this.dataset.speed;
+                const speedMap = {
+                    'slow': 45,
+                    'normal': 30,
+                    'fast': 15
+                };
+                
+                setSphereSpeed(speedMap[speed]);
+                isPaused = false;
+                const pauseBtn = document.getElementById('pauseBtn');
+                if (pauseBtn) pauseBtn.textContent = 'Pause';
+            });
+        });
+        
+        const pauseBtn = document.getElementById('pauseBtn');
+        if (pauseBtn) {
+            pauseBtn.addEventListener('click', function() {
+                const sphere = document.getElementById('skillSphere');
+                if (!sphere) return;
+                
+                if (isPaused) {
+                    sphere.style.animationPlayState = 'running';
+                    this.textContent = 'Pause';
+                    isPaused = false;
+                } else {
+                    sphere.style.animationPlayState = 'paused';
+                    this.textContent = 'Resume';
+                    isPaused = true;
+                }
+            });
+        }
+        
+        // Initialize sphere when section is visible
+        const sphereObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.hasAttribute('data-sphere-initialized')) {
+                    createSkillSphere();
+                    entry.target.setAttribute('data-sphere-initialized', 'true');
+                    setTimeout(() => {
+                        const info = document.getElementById('sphereInfo');
+                        if (info) info.classList.add('visible');
+                    }, 500);
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        const sphereSection = document.querySelector('.skill-sphere-section');
+        if (sphereSection) {
+            sphereObserver.observe(sphereSection);
+        }
+        
+        // Skill Tree Hierarchy Structure
+        const skillTreeData = {
+            name: "Multi-Cloud Architecture",
+            level: 0,
+            children: [
+                {
+                    name: "Cloud Platforms",
+                    level: 1,
+                    description: "Deep expertise across major cloud providers with proven track record of enterprise implementations.",
+                    tools: ["AWS", "Azure", "Google Cloud", "Oracle Cloud", "IBM Cloud"],
+                    children: [
+                        { name: "AWS Services", level: 2, description: "Comprehensive AWS services including EC2, S3, Lambda, RDS, DynamoDB, and more.", tools: ["EC2", "S3", "Lambda", "RDS", "VPC", "CloudFront", "Route53"] },
+                        { name: "Azure Services", level: 2, description: "Enterprise Azure solutions including VMs, Storage, Functions, SQL Database, and Active Directory.", tools: ["VMs", "Blob Storage", "Functions", "SQL Database", "App Service", "AKS"] },
+                        { name: "GCP Services", level: 2, description: "Google Cloud Platform services including Compute Engine, Cloud Storage, BigQuery, and more.", tools: ["Compute Engine", "Cloud Storage", "BigQuery", "Cloud Functions", "GKE"] }
+                    ]
+                },
+                {
+                    name: "Infrastructure as Code",
+                    level: 1,
+                    description: "Automated infrastructure provisioning and management using modern IaC tools and GitOps practices.",
+                    tools: ["Terraform", "CloudFormation", "ARM Templates", "Pulumi", "Ansible"],
+                    children: [
+                        { name: "Terraform", level: 2, description: "Multi-cloud infrastructure provisioning with Terraform modules and state management.", tools: ["HCL", "Modules", "Workspaces", "Remote State", "Providers"] },
+                        { name: "Configuration Mgmt", level: 2, description: "Server configuration and application deployment automation.", tools: ["Ansible", "Chef", "Puppet", "SaltStack"] },
+                        { name: "GitOps", level: 2, description: "Infrastructure and application deployment using Git as single source of truth.", tools: ["ArgoCD", "Flux", "Jenkins X", "GitHub Actions"] }
+                    ]
+                },
+                {
+                    name: "Container Orchestration",
+                    level: 1,
+                    description: "Kubernetes and container technologies for scalable microservices architectures.",
+                    tools: ["Kubernetes", "Docker", "Helm", "Istio", "Linkerd"],
+                    children: [
+                        { name: "Kubernetes", level: 2, description: "Container orchestration across EKS, AKS, and GKE with advanced networking and security.", tools: ["EKS", "AKS", "GKE", "Deployments", "StatefulSets", "Services"] },
+                        { name: "Service Mesh", level: 2, description: "Advanced service-to-service communication and observability.", tools: ["Istio", "Linkerd", "Consul", "Envoy"] },
+                        { name: "Container Security", level: 2, description: "Container image scanning, runtime protection, and compliance.", tools: ["Falco", "Aqua", "Twistlock", "Harbor"] }
+                    ]
+                },
+                {
+                    name: "Security & Compliance",
+                    level: 1,
+                    description: "Zero-trust security architecture and compliance frameworks for enterprise environments.",
+                    tools: ["IAM", "KMS", "Security Groups", "WAF", "GuardDuty"],
+                    children: [
+                        { name: "Identity & Access", level: 2, description: "Centralized identity management and access control across cloud platforms.", tools: ["AWS IAM", "Azure AD", "GCP IAM", "Okta", "Auth0"] },
+                        { name: "Data Protection", level: 2, description: "Encryption, key management, and data loss prevention strategies.", tools: ["KMS", "HSM", "Certificate Manager", "Secrets Manager"] },
+                        { name: "Compliance", level: 2, description: "Regulatory compliance frameworks and audit readiness.", tools: ["SOC 2", "HIPAA", "PCI DSS", "GDPR", "ISO 27001"] }
+                    ]
+                },
+                {
+                    name: "DevOps & CI/CD",
+                    level: 1,
+                    description: "Continuous integration and deployment pipelines with automated testing and monitoring.",
+                    tools: ["Jenkins", "GitLab CI", "GitHub Actions", "CircleCI", "ArgoCD"],
+                    children: [
+                        { name: "CI/CD Pipelines", level: 2, description: "Automated build, test, and deployment workflows.", tools: ["Jenkins", "GitLab CI", "GitHub Actions", "Azure DevOps", "CircleCI"] },
+                        { name: "Monitoring", level: 2, description: "Comprehensive observability with metrics, logs, and traces.", tools: ["Prometheus", "Grafana", "ELK Stack", "Datadog", "New Relic"] },
+                        { name: "Testing", level: 2, description: "Automated testing strategies including unit, integration, and performance tests.", tools: ["Jest", "Selenium", "JMeter", "Chaos Engineering"] }
+                    ]
+                },
+                {
+                    name: "Networking & CDN",
+                    level: 1,
+                    description: "Advanced networking architectures including VPC design, load balancing, and content delivery.",
+                    tools: ["VPC", "Load Balancers", "CloudFront", "CloudFlare", "Route53"],
+                    children: [
+                        { name: "Network Design", level: 2, description: "Virtual private clouds with subnets, routing, and security groups.", tools: ["VPC", "Subnets", "Route Tables", "NAT Gateway", "VPN"] },
+                        { name: "Load Balancing", level: 2, description: "Traffic distribution and high availability configurations.", tools: ["ALB", "NLB", "Azure Load Balancer", "GCP Load Balancer"] },
+                        { name: "CDN & Edge", level: 2, description: "Content delivery networks and edge computing solutions.", tools: ["CloudFront", "Azure CDN", "Cloud CDN", "CloudFlare", "Fastly"] }
+                    ]
+                }
+            ]
+        };
+        
+        // Build Skill Tree with SVG connections
+        function buildSkillTree() {
+            const container = document.getElementById('skill-tree-canvas');
+            container.innerHTML = '';
+            
+            // Create SVG for connections
+            const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.style.position = 'absolute';
+            svg.style.top = '0';
+            svg.style.left = '0';
+            svg.style.width = '100%';
+            svg.style.height = '100%';
+            svg.style.pointerEvents = 'none';
+            svg.style.zIndex = '0';
+            container.appendChild(svg);
+            
+            const nodeElements = [];
+            const connections = [];
+            
+            // Layout configuration
+            const centerX = container.offsetWidth / 2;
+            const levelHeight = 180;
+            const nodeSpacing = 200;
+            
+            // Position nodes
+            function positionNode(node, level, index, totalAtLevel, parentX = null, parentY = null) {
+                const y = level * levelHeight + 50;
+                let x;
+                
+                if (level === 0) {
+                    x = centerX;
+                } else {
+                    const startX = centerX - ((totalAtLevel - 1) * nodeSpacing) / 2;
+                    x = startX + index * nodeSpacing;
+                }
+                
+                const nodeEl = document.createElement('div');
+                nodeEl.className = `tree-node level-${level}`;
+                nodeEl.textContent = node.name;
+                nodeEl.style.left = x + 'px';
+                nodeEl.style.top = y + 'px';
+                nodeEl.style.transform = 'translateX(-50%)';
+                
+                // Add animation delay
+                nodeEl.style.transitionDelay = `${level * 0.1 + index * 0.05}s`;
+                
+                // Store position for connections
+                node.x = x;
+                node.y = y;
+                
+                container.appendChild(nodeEl);
+                nodeElements.push({ element: nodeEl, data: node });
+                
+                // Create connection to parent
+                if (parentX !== null && parentY !== null) {
+                    connections.push({
+                        x1: parentX,
+                        y1: parentY + 20,
+                        x2: x,
+                        y2: y - 10
+                    });
+                }
+                
+                // Add click handler
+                nodeEl.addEventListener('click', () => {
+                    showSkillDetails(node);
+                    document.querySelectorAll('.tree-node').forEach(n => n.classList.remove('active'));
+                    nodeEl.classList.add('active');
+                });
+                
+                // Position children
+                if (node.children) {
+                    node.children.forEach((child, idx) => {
+                        positionNode(child, level + 1, idx, node.children.length, x, y);
+                    });
+                }
+            }
+            
+            // Start positioning from root
+            positionNode(skillTreeData, 0, 0, 1);
+            
+            // Draw connections
+            connections.forEach((conn, index) => {
+                const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                
+                // Create curved path
+                const midY = (conn.y1 + conn.y2) / 2;
+                const d = `M ${conn.x1} ${conn.y1} C ${conn.x1} ${midY}, ${conn.x2} ${midY}, ${conn.x2} ${conn.y2}`;
+                
+                path.setAttribute('d', d);
+                path.setAttribute('stroke', 'rgba(6, 182, 212, 0.3)');
+                path.setAttribute('stroke-width', '2');
+                path.setAttribute('fill', 'none');
+                path.style.strokeDasharray = '1000';
+                path.style.strokeDashoffset = '1000';
+                path.style.animation = `drawLine 1s ease-out ${index * 0.05}s forwards`;
+                
+                svg.appendChild(path);
+            });
+            
+            // Trigger animation
+            setTimeout(() => {
+                nodeElements.forEach(({ element }) => {
+                    element.classList.add('visible');
+                });
+            }, 100);
+        }
+        
+        // Add CSS animation for line drawing
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes drawLine {
+                to {
+                    stroke-dashoffset: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Show skill details
+        function showSkillDetails(node) {
+            const detailsEl = document.getElementById('skill-details');
+            
+            let toolsHTML = '';
+            if (node.tools) {
+                toolsHTML = `
+                    <div class="skill-tags">
+                        ${node.tools.map(tool => `<span class="skill-tag-detail">${tool}</span>`).join('')}
+                    </div>
+                `;
+            }
+            
+            detailsEl.innerHTML = `
+                <h3>${node.name}</h3>
+                <p>${node.description || 'Comprehensive expertise in ' + node.name.toLowerCase() + ' technologies and best practices.'}</p>
+                ${toolsHTML}
+            `;
+            
+            detailsEl.classList.add('visible');
+        }
+        
+        // Initialize skill tree when section is visible
+        const treeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.hasAttribute('data-initialized')) {
+                    buildSkillTree();
+                    entry.target.setAttribute('data-initialized', 'true');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        const treeSection = document.querySelector('.skill-tree-section');
+        if (treeSection) {
+            treeObserver.observe(treeSection);
+        }
+        
+        // Rebuild tree on resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                const treeSection = document.querySelector('.skill-tree-section');
+                if (treeSection && treeSection.hasAttribute('data-initialized')) {
+                    buildSkillTree();
+                }
+            }, 250);
+        });
+    </script>
+</body>
+</html>

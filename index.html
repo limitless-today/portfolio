@@ -1,5 +1,2084 @@
 <!DOCTYPE html>
+<html lang="en"><!DOCTYPE html>
 <html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pankaj Kumar Pandey - Cloud Native Architect & AI Expert</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f7;
+            --text-primary: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --accent-blue: #0071e3;
+            --accent-purple: #bf5af2;
+            --accent-orange: #ff9500;
+            --accent-green: #30d158;
+            --accent-cyan: #32d1e8;
+            --border-color: #e5e5e7;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 0 48px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: slideDown 0.6s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .logo-container {
+            position: relative;
+            width: 80px;
+            height: 40px;
+            cursor: pointer;
+        }
+        
+        .logo-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .logo-letter {
+            font-family: 'Syne', sans-serif;
+            font-size: 28px;
+            font-weight: 800;
+            fill: var(--accent-blue);
+            animation: letterPulse 3s ease-in-out infinite;
+        }
+        
+        .logo-letter:nth-child(2) {
+            animation-delay: 0.2s;
+            fill: var(--accent-purple);
+        }
+        
+        .logo-letter:nth-child(3) {
+            animation-delay: 0.4s;
+            fill: var(--accent-orange);
+        }
+        
+        @keyframes letterPulse {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-5px) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+        
+        .logo-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.3), transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: glowPulse 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.3;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* AI Chat Button */
+        .ai-chat-button {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 32px rgba(0, 113, 227, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: chatButtonBounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes chatButtonBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .ai-chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 40px rgba(0, 113, 227, 0.6);
+        }
+        
+        .ai-chat-button.active {
+            animation: none;
+        }
+        
+        /* AI Chat Panel */
+        .ai-chat-panel {
+            position: fixed;
+            bottom: 112px;
+            right: 32px;
+            width: 400px;
+            height: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            z-index: 998;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.4s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .ai-chat-panel.active {
+            display: flex;
+        }
+        
+        .chat-header {
+            padding: 24px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-header h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .chat-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 4px;
+            transition: transform 0.3s ease;
+        }
+        
+        .chat-close:hover {
+            transform: rotate(90deg);
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 24px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .chat-message {
+            display: flex;
+            gap: 12px;
+            animation: messageFadeIn 0.3s ease-out;
+        }
+        
+        @keyframes messageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .message-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .message-avatar.ai {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+        }
+        
+        .message-avatar.user {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+        
+        .message-content {
+            flex: 1;
+            background: var(--bg-secondary);
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        
+        .chat-message.ai .message-content {
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.1), rgba(191, 90, 242, 0.1));
+        }
+        
+        .typing-indicator {
+            display: none;
+            gap: 4px;
+            padding: 12px 16px;
+        }
+        
+        .typing-indicator.active {
+            display: flex;
+        }
+        
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            animation: typingDot 1.4s ease-in-out infinite;
+        }
+        
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        @keyframes typingDot {
+            0%, 60%, 100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .chat-input-container {
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 12px;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        
+        .chat-input:focus {
+            border-color: var(--accent-blue);
+        }
+        
+        .chat-send {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .chat-send:hover {
+            transform: scale(1.05);
+        }
+        
+        .chat-send:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .suggested-questions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .suggested-question {
+            background: white;
+            border: 1px solid var(--border-color);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        
+        .suggested-question:hover {
+            background: var(--accent-blue);
+            color: white;
+            border-color: var(--accent-blue);
+            transform: translateX(4px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 48px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 113, 227, 0.1) 0%, transparent 70%);
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -30px) rotate(5deg); }
+            66% { transform: translate(-20px, 20px) rotate(-5deg); }
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-left {
+            text-align: left;
+        }
+        
+        .hero-tag {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(40px, 5vw, 72px);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.4s forwards;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.6s forwards;
+        }
+        
+        .cncf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, rgba(0, 113, 227, 0.1), rgba(191, 90, 242, 0.1));
+            border: 2px solid var(--accent-blue);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 0.8s forwards;
+        }
+        
+        .cncf-badge svg {
+            animation: rotate 4s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1s forwards;
+        }
+        
+        .stat {
+            text-align: left;
+        }
+        
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        /* CNCF Architecture Diagram */
+        .cncf-architecture {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out 1.2s forwards;
+        }
+        
+        .arch-layer {
+            position: absolute;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            animation: layerSlide 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .arch-layer:nth-child(1) {
+            top: 0;
+            animation-delay: 1.4s;
+        }
+        
+        .arch-layer:nth-child(2) {
+            top: 120px;
+            animation-delay: 1.6s;
+        }
+        
+        .arch-layer:nth-child(3) {
+            top: 240px;
+            animation-delay: 1.8s;
+        }
+        
+        .arch-layer:nth-child(4) {
+            top: 360px;
+            animation-delay: 2s;
+        }
+        
+        .arch-layer:nth-child(5) {
+            top: 480px;
+            animation-delay: 2.2s;
+        }
+        
+        @keyframes layerSlide {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .arch-component {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px 24px;
+            min-width: 140px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .arch-component::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 113, 227, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .arch-component:hover::before {
+            left: 100%;
+        }
+        
+        .arch-component:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 20px 40px var(--shadow);
+            border-color: var(--accent-blue);
+        }
+        
+        .component-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: block;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes iconFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        .component-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .component-desc {
+            font-size: 11px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+        
+        .layer-label {
+            position: absolute;
+            left: -120px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .layer-label::after {
+            content: '';
+            position: absolute;
+            right: -20px;
+            top: 50%;
+            width: 12px;
+            height: 2px;
+            background: var(--accent-blue);
+        }
+        
+        .data-flow {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: linear-gradient(180deg, transparent, var(--accent-blue), transparent);
+            left: 50%;
+            animation: dataFlow 3s ease-in-out infinite;
+        }
+        
+        .data-flow:nth-child(1) {
+            top: 80px;
+            animation-delay: 0s;
+        }
+        
+        .data-flow:nth-child(2) {
+            top: 200px;
+            animation-delay: 0.5s;
+        }
+        
+        .data-flow:nth-child(3) {
+            top: 320px;
+            animation-delay: 1s;
+        }
+        
+        .data-flow:nth-child(4) {
+            top: 440px;
+            animation-delay: 1.5s;
+        }
+        
+        @keyframes dataFlow {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+        
+        .arch-layer:nth-child(1) .arch-component {
+            border-color: var(--accent-blue);
+        }
+        
+        .arch-layer:nth-child(2) .arch-component {
+            border-color: var(--accent-purple);
+        }
+        
+        .arch-layer:nth-child(3) .arch-component {
+            border-color: var(--accent-orange);
+        }
+        
+        .arch-layer:nth-child(4) .arch-component {
+            border-color: var(--accent-green);
+        }
+        
+        .arch-layer:nth-child(5) .arch-component {
+            border-color: var(--accent-cyan);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 120px 48px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+        
+        .section-tag {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-purple);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(40px, 5vw, 64px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+        
+        .section-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .skill-card {
+            background: var(--bg-secondary);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .skill-card.visible {
+            animation: skillFadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes skillFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .skill-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: white;
+        }
+        
+        .skill-card:nth-child(2) .skill-icon {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-orange));
+        }
+        
+        .skill-card:nth-child(3) .skill-icon {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-green));
+        }
+        
+        .skill-card:nth-child(4) .skill-icon {
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+        }
+        
+        .skill-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        
+        .skill-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .skill-tag {
+            font-size: 13px;
+            padding: 6px 14px;
+            background: white;
+            border-radius: 20px;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: var(--accent-blue);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* Timeline Section */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, transparent, var(--accent-blue), transparent);
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 80px 1fr;
+            gap: 40px;
+            margin-bottom: 80px;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        
+        .timeline-item.visible {
+            animation: timelineFadeIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes timelineFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .timeline-content {
+            background: var(--bg-secondary);
+            padding: 40px;
+            border-radius: 24px;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .timeline-content:hover {
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px var(--shadow);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 3;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            grid-column: 1;
+        }
+        
+        .timeline-dot {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            grid-column: 2;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3); }
+            50% { box-shadow: 0 10px 50px rgba(0, 113, 227, 0.6); }
+        }
+        
+        .timeline-date {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        
+        .timeline-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+        
+        .timeline-company {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+        
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .timeline-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        
+        .tech-badge {
+            font-size: 12px;
+            padding: 6px 12px;
+            background: white;
+            border-radius: 12px;
+            font-weight: 600;
+            color: var(--accent-purple);
+        }
+        
+        /* Certifications Section */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        
+        .cert-card {
+            background: var(--bg-secondary);
+            padding: 32px;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        
+        .cert-card.visible {
+            animation: certFadeIn 0.6s ease-out forwards;
+        }
+        
+        @keyframes certFadeIn {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .cert-card:hover {
+            border-color: var(--accent-blue);
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px var(--shadow);
+        }
+        
+        .cert-logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+        }
+        
+        .cert-name {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 1.4;
+            color: var(--text-primary);
+        }
+        
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 64px;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+            transform-origin: left;
+            z-index: 999;
+            transition: transform 0.1s ease;
+        }
+        
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .hero-left {
+                text-align: center;
+            }
+            
+            .cncf-architecture {
+                height: 500px;
+            }
+            
+            .layer-label {
+                left: -80px;
+                font-size: 10px;
+            }
+            
+            .timeline::before {
+                left: 40px;
+            }
+            
+            .timeline-item {
+                grid-template-columns: 80px 1fr;
+                gap: 24px;
+            }
+            
+            .timeline-content {
+                grid-column: 2 !important;
+            }
+            
+            .timeline-dot {
+                grid-column: 1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 24px;
+            }
+            
+            .nav-links {
+                gap: 20px;
+                font-size: 12px;
+            }
+            
+            section {
+                padding: 80px 24px;
+            }
+            
+            .hero {
+                padding: 100px 24px 60px;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .cncf-architecture {
+                height: 600px;
+                transform: scale(0.8);
+            }
+            
+            .layer-label {
+                display: none;
+            }
+            
+            .arch-component {
+                min-width: 100px;
+                padding: 12px 16px;
+            }
+            
+            .component-icon {
+                font-size: 24px;
+            }
+            
+            .component-name {
+                font-size: 11px;
+            }
+            
+            .ai-chat-panel {
+                width: calc(100vw - 32px);
+                right: 16px;
+                bottom: 96px;
+                height: 500px;
+            }
+            
+            .ai-chat-button {
+                bottom: 16px;
+                right: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <nav>
+        <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <div class="logo-glow"></div>
+            <svg class="logo-svg" viewBox="0 0 120 40">
+                <text x="10" y="30" class="logo-letter">P</text>
+                <text x="45" y="30" class="logo-letter">K</text>
+                <text x="80" y="30" class="logo-letter">P</text>
+            </svg>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- AI Chat Button -->
+    <button class="ai-chat-button" id="aiChatButton">
+        🤖
+    </button>
+    
+    <!-- AI Chat Panel -->
+    <div class="ai-chat-panel" id="aiChatPanel">
+        <div class="chat-header">
+            <h3>AI Career Assistant</h3>
+            <button class="chat-close" id="chatClose">✕</button>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="chat-message ai">
+                <div class="message-avatar ai">🤖</div>
+                <div class="message-content">
+                    Hi! I'm Pankaj's AI assistant. I can help you learn about his experience, skills, and projects. What would you like to know?
+                    <div class="suggested-questions">
+                        <button class="suggested-question" onclick="askQuestion('Tell me about the CoCounsel AI project')">Tell me about the CoCounsel AI project</button>
+                        <button class="suggested-question" onclick="askQuestion('What cloud certifications does Pankaj have?')">What cloud certifications does Pankaj have?</button>
+                        <button class="suggested-question" onclick="askQuestion('What is Pankaj\\'s experience with CNCF technologies?')">What is Pankaj's experience with CNCF technologies?</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+        </div>
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything..." />
+            <button class="chat-send" id="chatSend">➤</button>
+        </div>
+    </div>
+    
+    <section class="hero" id="about">
+        <div class="hero-content">
+            <div class="hero-left">
+                <div class="hero-tag">Cloud Native Architect • CNCF Expert</div>
+                <h1>Architecting <span>Cloud Native</span> Excellence</h1>
+                <p>20 years of transforming enterprises through cloud-native solutions, CNCF technologies, Kubernetes orchestration, and multi-cloud architectures.</p>
+                
+                <div class="cncf-badge">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" opacity="0.3"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    CNCF Cloud Native Architect
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-target="20">0</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="500">0</span>
+                        <span class="stat-label">Solutions Delivered</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="90">0</span>
+                        <span class="stat-label">Infrastructure Workloads</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" data-target="15">0</span>
+                        <span class="stat-label">Cloud Certifications</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cncf-architecture">
+                <!-- Layer 1: Application Layer -->
+                <div class="arch-layer">
+                    <span class="layer-label">Application</span>
+                    <div class="arch-component">
+                        <span class="component-icon">🚀</span>
+                        <div class="component-name">Microservices</div>
+                        <div class="component-desc">API Gateway</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">⚛️</span>
+                        <div class="component-name">React/AEM</div>
+                        <div class="component-desc">Frontend</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">🔌</span>
+                        <div class="component-name">GraphQL</div>
+                        <div class="component-desc">API Layer</div>
+                    </div>
+                </div>
+                
+                <div class="data-flow"></div>
+                
+                <!-- Layer 2: Orchestration Layer -->
+                <div class="arch-layer">
+                    <span class="layer-label">Orchestration</span>
+                    <div class="arch-component">
+                        <span class="component-icon">☸️</span>
+                        <div class="component-name">Kubernetes</div>
+                        <div class="component-desc">EKS/GKE/AKS</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">🎯</span>
+                        <div class="component-name">Istio</div>
+                        <div class="component-desc">Service Mesh</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">⚓</span>
+                        <div class="component-name">Helm</div>
+                        <div class="component-desc">Package Mgmt</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">🔄</span>
+                        <div class="component-name">ArgoCD</div>
+                        <div class="component-desc">GitOps</div>
+                    </div>
+                </div>
+                
+                <div class="data-flow"></div>
+                
+                <!-- Layer 3: Runtime Layer -->
+                <div class="arch-layer">
+                    <span class="layer-label">Runtime</span>
+                    <div class="arch-component">
+                        <span class="component-icon">🐳</span>
+                        <div class="component-name">Docker</div>
+                        <div class="component-desc">Containers</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">🔐</span>
+                        <div class="component-name">Envoy</div>
+                        <div class="component-desc">Proxy</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">📨</span>
+                        <div class="component-name">Kafka</div>
+                        <div class="component-desc">Messaging</div>
+                    </div>
+                </div>
+                
+                <div class="data-flow"></div>
+                
+                <!-- Layer 4: Observability Layer -->
+                <div class="arch-layer">
+                    <span class="layer-label">Observability</span>
+                    <div class="arch-component">
+                        <span class="component-icon">📊</span>
+                        <div class="component-name">Prometheus</div>
+                        <div class="component-desc">Metrics</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">📈</span>
+                        <div class="component-name">Grafana</div>
+                        <div class="component-desc">Visualization</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">🔍</span>
+                        <div class="component-name">Jaeger</div>
+                        <div class="component-desc">Tracing</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">📝</span>
+                        <div class="component-name">Fluentd</div>
+                        <div class="component-desc">Logging</div>
+                    </div>
+                </div>
+                
+                <div class="data-flow"></div>
+                
+                <!-- Layer 5: Infrastructure Layer -->
+                <div class="arch-layer">
+                    <span class="layer-label">Infrastructure</span>
+                    <div class="arch-component">
+                        <span class="component-icon">☁️</span>
+                        <div class="component-name">AWS</div>
+                        <div class="component-desc">Cloud</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">🌐</span>
+                        <div class="component-name">GCP</div>
+                        <div class="component-desc">Cloud</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">⚡</span>
+                        <div class="component-name">Azure</div>
+                        <div class="component-desc">Cloud</div>
+                    </div>
+                    <div class="arch-component">
+                        <span class="component-icon">🔷</span>
+                        <div class="component-name">OCI</div>
+                        <div class="component-desc">Cloud</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="skills">
+        <div class="section-header">
+            <div class="section-tag">Expertise</div>
+            <h2 class="section-title">Cloud Native Stack</h2>
+            <p class="section-subtitle">Comprehensive CNCF ecosystem expertise with enterprise-grade implementations</p>
+        </div>
+        
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">☸️</div>
+                <h3 class="skill-title">Container Orchestration</h3>
+                <div class="skill-items">
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Docker</span>
+                    <span class="skill-tag">EKS</span>
+                    <span class="skill-tag">GKE</span>
+                    <span class="skill-tag">AKS</span>
+                    <span class="skill-tag">Helm</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">🔄</div>
+                <h3 class="skill-title">CI/CD & GitOps</h3>
+                <div class="skill-items">
+                    <span class="skill-tag">ArgoCD</span>
+                    <span class="skill-tag">Jenkins</span>
+                    <span class="skill-tag">GitLab CI</span>
+                    <span class="skill-tag">Tekton</span>
+                    <span class="skill-tag">Spinnaker</span>
+                    <span class="skill-tag">Flux</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">🎯</div>
+                <h3 class="skill-title">Service Mesh</h3>
+                <div class="skill-items">
+                    <span class="skill-tag">Istio</span>
+                    <span class="skill-tag">Linkerd</span>
+                    <span class="skill-tag">Envoy</span>
+                    <span class="skill-tag">Consul</span>
+                    <span class="skill-tag">mTLS</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">📊</div>
+                <h3 class="skill-title">Observability</h3>
+                <div class="skill-items">
+                    <span class="skill-tag">Prometheus</span>
+                    <span class="skill-tag">Grafana</span>
+                    <span class="skill-tag">Jaeger</span>
+                    <span class="skill-tag">Fluentd</span>
+                    <span class="skill-tag">Datadog</span>
+                    <span class="skill-tag">ELK Stack</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3 class="skill-title">AI/ML Platform</h3>
+                <div class="skill-items">
+                    <span class="skill-tag">OpenAI GPT-4</span>
+                    <span class="skill-tag">Vertex AI</span>
+                    <span class="skill-tag">SageMaker</span>
+                    <span class="skill-tag">KubeFlow</span>
+                    <span class="skill-tag">MLflow</span>
+                    <span class="skill-tag">RAG</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">🔗</div>
+                <h3 class="skill-title">Event-Driven</h3>
+                <div class="skill-items">
+                    <span class="skill-tag">Kafka</span>
+                    <span class="skill-tag">NATS</span>
+                    <span class="skill-tag">RabbitMQ</span>
+                    <span class="skill-tag">Solace</span>
+                    <span class="skill-tag">ActiveMQ</span>
+                    <span class="skill-tag">KNative</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">🏗️</div>
+                <h3 class="skill-title">Infrastructure as Code</h3>
+                <div class="skill-items">
+                    <span class="skill-tag">Terraform</span>
+                    <span class="skill-tag">Ansible</span>
+                    <span class="skill-tag">Pulumi</span>
+                    <span class="skill-tag">CloudFormation</span>
+                    <span class="skill-tag">Crossplane</span>
+                </div>
+            </div>
+            
+            <div class="skill-card">
+                <div class="skill-icon">🛡️</div>
+                <h3 class="skill-title">Security & Policy</h3>
+                <div class="skill-items">
+                    <span class="skill-tag">OPA</span>
+                    <span class="skill-tag">Falco</span>
+                    <span class="skill-tag">Vault</span>
+                    <span class="skill-tag">Cert-Manager</span>
+                    <span class="skill-tag">Trivy</span>
+                    <span class="skill-tag">Kyverno</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="experience">
+        <div class="section-header">
+            <div class="section-tag">Career Journey</div>
+            <h2 class="section-title">Experience Timeline</h2>
+            <p class="section-subtitle">Two decades of innovation and transformation across Fortune 500 companies</p>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2019 - PRESENT</div>
+                    <h3 class="timeline-title">Enterprise Architect - CoCounsel AI</h3>
+                    <div class="timeline-company">Thomson Reuters / TCS • London, UK</div>
+                    <p class="timeline-description">
+                        Spearheaded integration of world's first AI-powered legal assistant into Thomson Reuters core workflows. 
+                        Achieved 3x faster legal document processing, 35% increase in information retrieval accuracy, 
+                        and sub-2-second response time.
+                    </p>
+                    <div class="timeline-tech">
+                        <span class="tech-badge">OpenAI GPT-4</span>
+                        <span class="tech-badge">AWS Lambda</span>
+                        <span class="tech-badge">SageMaker</span>
+                        <span class="tech-badge">Kubernetes</span>
+                        <span class="tech-badge">RAG</span>
+                    </div>
+                </div>
+                <div class="timeline-dot">2019</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2019 - PRESENT</div>
+                    <h3 class="timeline-title">Solution Architect - Digital Commerce Platform</h3>
+                    <div class="timeline-company">Thomson Reuters / TCS • London, UK</div>
+                    <p class="timeline-description">
+                        Led $290M greenfield project consolidating 245+ platforms into unified multi-cloud digital commerce solution. 
+                        Achieved 99.9% uptime with &lt;1% transaction failure rate. Increased digital sales share to 80%.
+                    </p>
+                    <div class="timeline-tech">
+                        <span class="tech-badge">AWS</span>
+                        <span class="tech-badge">GCP</span>
+                        <span class="tech-badge">Azure</span>
+                        <span class="tech-badge">OCI</span>
+                        <span class="tech-badge">AEM</span>
+                        <span class="tech-badge">SAP S/4HANA</span>
+                    </div>
+                </div>
+                <div class="timeline-dot">DCP</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2019 - 2023</div>
+                    <h3 class="timeline-title">Solution Architect - Enterprise Data Lake</h3>
+                    <div class="timeline-company">Thomson Reuters / TCS • London, UK</div>
+                    <p class="timeline-description">
+                        Designed scalable Enterprise Data Lake enabling 50% faster data processing and 40% improved query performance. 
+                        Supported 100+ data sources with 99.9% availability SLA. Reduced onboarding time from days to minutes.
+                    </p>
+                    <div class="timeline-tech">
+                        <span class="tech-badge">BigQuery</span>
+                        <span class="tech-badge">Snowflake</span>
+                        <span class="tech-badge">Kafka</span>
+                        <span class="tech-badge">Airflow</span>
+                        <span class="tech-badge">dbt</span>
+                    </div>
+                </div>
+                <div class="timeline-dot">EDL</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2020 - 2022</div>
+                    <h3 class="timeline-title">Solution Architect - Cloud Migration</h3>
+                    <div class="timeline-company">Thomson Reuters / TCS • London, UK</div>
+                    <p class="timeline-description">
+                        Led cloud migration strategy for 35 legacy Microsoft applications to AWS. Achieved 40% reduction in 
+                        infrastructure costs and 50% improvement in system scalability. Migrated enterprise databases to 
+                        Aurora PostgreSQL and DynamoDB.
+                    </p>
+                    <div class="timeline-tech">
+                        <span class="tech-badge">AWS Migration</span>
+                        <span class="tech-badge">Aurora PostgreSQL</span>
+                        <span class="tech-badge">DynamoDB</span>
+                        <span class="tech-badge">Terraform</span>
+                    </div>
+                </div>
+                <div class="timeline-dot">AWS</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2008 - 2016</div>
+                    <h3 class="timeline-title">Integration Architect / Senior IT Engineer</h3>
+                    <div class="timeline-company">Bloomberg Inc / TCS • London, UK/USA</div>
+                    <p class="timeline-description">
+                        Led enterprise integration initiatives across global teams. Architected mission-critical financial systems 
+                        for Bloomberg's trading platforms. Developed real-time data processing solutions handling billions of 
+                        market data points.
+                    </p>
+                    <div class="timeline-tech">
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">C++</span>
+                        <span class="tech-badge">Oracle</span>
+                        <span class="tech-badge">SOA</span>
+                    </div>
+                </div>
+                <div class="timeline-dot">2008</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2004 - 2008</div>
+                    <h3 class="timeline-title">Integration Architect / Senior IT Engineer</h3>
+                    <div class="timeline-company">Ricoh Japan, Xerox USA, Gov of India • Multiple Locations</div>
+                    <p class="timeline-description">
+                        Architected enterprise solutions for Fortune 500 clients including Ricoh Japan, Xerox USA, and various 
+                        Government of India departments. Led digital transformation initiatives across financial services, 
+                        e-governance, and telecommunications sectors.
+                    </p>
+                    <div class="timeline-tech">
+                        <span class="tech-badge">Java EE</span>
+                        <span class="tech-badge">WebLogic</span>
+                        <span class="tech-badge">Oracle</span>
+                        <span class="tech-badge">Enterprise Integration</span>
+                    </div>
+                </div>
+                <div class="timeline-dot">2004</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="certifications">
+        <div class="section-header">
+            <div class="section-tag">Credentials</div>
+            <h2 class="section-title">Certifications</h2>
+            <p class="section-subtitle">Industry-recognized certifications across multiple cloud platforms and technologies</p>
+        </div>
+        
+        <div class="cert-grid">
+            <div class="cert-card">
+                <div class="cert-logo">🏆</div>
+                <div class="cert-name">AWS Solutions Architect Professional</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">☁️</div>
+                <div class="cert-name">Google Cloud Professional Cloud Architect</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">⚡</div>
+                <div class="cert-name">Azure Solutions Architect Expert</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">🔷</div>
+                <div class="cert-name">OCI Architect Professional</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">🏛️</div>
+                <div class="cert-name">TOGAF 10 Enterprise Architecture</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">🔗</div>
+                <div class="cert-name">Dell Boomi Professional Architect</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">🤖</div>
+                <div class="cert-name">Oracle AI Vector Search Professional</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">🛡️</div>
+                <div class="cert-name">Azure Cybersecurity Architect Expert</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">📊</div>
+                <div class="cert-name">GCP Professional Data Engineer</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">🔐</div>
+                <div class="cert-name">GCP Professional Security Engineer</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">☕</div>
+                <div class="cert-name">Oracle Certified Master Java EE</div>
+            </div>
+            <div class="cert-card">
+                <div class="cert-logo">💬</div>
+                <div class="cert-name">Solace Event-Driven Architecture</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <div style="max-width: 800px; margin: 0 auto; text-align: center; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); padding: 80px 60px; border-radius: 32px; color: white;">
+            <h2 style="font-family: 'Syne', sans-serif; font-size: 48px; font-weight: 800; margin-bottom: 24px;">Let's Build Something Amazing</h2>
+            <p style="font-size: 20px; margin-bottom: 40px; opacity: 0.9;">Available for cloud-native consulting, architecture reviews, and strategic initiatives</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-bottom: 40px;">
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <div style="width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 8px;">📧</div>
+                    <a href="mailto:pankajpandey.architect@gmail.com" style="color: white; text-decoration: none; font-weight: 500;">pankajpandey.architect@gmail.com</a>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <div style="width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 8px;">📱</div>
+                    <a href="tel:+447760839026" style="color: white; text-decoration: none; font-weight: 500;">+44 7760839026</a>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <div style="width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 8px;">💼</div>
+                    <a href="https://linkedin.com/in/pankajpandey-architect" target="_blank" style="color: white; text-decoration: none; font-weight: 500;">LinkedIn Profile</a>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                    <div style="width: 48px; height: 48px; background: rgba(255, 255, 255, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 8px;">📍</div>
+                    <span style="color: white; font-weight: 500;">London, UK</span>
+                </div>
+            </div>
+            
+            <a href="mailto:pankajpandey.architect@gmail.com" style="display: inline-block; padding: 18px 48px; background: white; color: var(--accent-blue); text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 18px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: all 0.3s ease;">Get In Touch</a>
+        </div>
+    </section>
+    
+    <footer style="background: var(--bg-secondary); padding: 40px 48px; text-align: center; color: var(--text-secondary);">
+        <p>&copy; 2025 Pankaj Kumar Pandey. All rights reserved.</p>
+        <p style="margin-top: 8px; font-size: 14px;">Senior Solution Architect • Multi-Cloud & AI/ML Expert • London, UK</p>
+    </footer>
+    
+    <script>
+        // Knowledge base for AI assistant
+        const knowledgeBase = {
+            experience: {
+                cocounsel: "Pankaj spearheaded the integration of CoCounsel, the world's first AI-powered legal assistant, into Thomson Reuters core workflows including Westlaw, HighQ, and Practical Law. He achieved 3x faster legal document processing, 35% increase in information retrieval accuracy, and sub-2-second average response time. The tech stack included OpenAI GPT-4, Google Vertex AI (Gemini), AWS Lambda, SageMaker, Aurora Serverless PostgreSQL, and Kubernetes (EKS/GKE).",
+                digitalCommerce: "Led a $290M greenfield project consolidating 245+ platforms into a unified multi-cloud digital commerce solution. Achieved 99.9% customer uptime with only 5 high-impact incidents per year, 98% proactively detected. Increased digital share of sales to 80%. The platform leveraged AWS, OCI, Azure, and GCP for optimal performance and scalability.",
+                dataLake: "Designed and implemented a scalable Enterprise Data Lake (EDL) architecture enabling 50% faster data processing and 40% improved query performance. Developed a self-service data ingestion platform reducing onboarding time from days to minutes, leading to 60% reduction in manual intervention. Supported 100+ data sources with 99.9% data availability SLA.",
+                cncf: "Expert in CNCF (Cloud Native Computing Foundation) technologies including Kubernetes orchestration across EKS, GKE, and AKS. Extensive experience with service mesh (Istio, Linkerd, Envoy), GitOps workflows (ArgoCD, Flux), observability stack (Prometheus, Grafana, Jaeger, Fluentd), and container runtime (Docker, containerd). Has architected 15 secure landing zones and managed 90 infrastructure workloads using cloud-native patterns.",
+                bloomberg: "From 2008-2016, Pankaj served as Integration Architect at Bloomberg Inc, leading enterprise integration initiatives across global teams. He architected mission-critical financial systems for Bloomberg's trading platforms and developed real-time data processing solutions handling billions of market data points."
+            },
+            skills: {
+                cloud: "Expert in multi-cloud architecture with AWS (Lambda, SageMaker, Aurora, S3, API Gateway), Azure (Azure OpenAI, Kubernetes Service, Cognitive Search), GCP (GKE, Vertex AI, BigQuery, Cloud Composer), and OCI. Holds professional certifications from all major cloud providers.",
+                cncf: "Comprehensive CNCF technology stack expertise: Kubernetes (EKS/GKE/AKS), Docker, Istio service mesh, ArgoCD GitOps, Helm charts, Prometheus monitoring, Grafana dashboards, Jaeger tracing, Fluentd logging, Envoy proxy, Kafka messaging, Terraform IaC, and comprehensive security tools (OPA, Falco, Vault, Kyverno).",
+                ai: "Extensive experience with AI/ML including OpenAI GPT-4, Google Vertex AI (Gemini), AWS SageMaker, RAG (Retrieval-Augmented Generation), LlamaIndex, KubeFlow, MLflow, and vector embeddings. Developed 5 RAG solutions and built 15 efficient MLOps pipelines.",
+                devops: "Skilled in Kubernetes, Docker, Istio, Helm, ArgoCD, Terraform, Ansible, Jenkins, GitLab CI/CD, Tekton, Spinnaker. Has designed 25 DevOps pipelines and architected 15 secure Landing Zones.",
+                programming: "Proficient in Python, Java, C#, JavaScript, Golang, and Groovy. Over 20 years of development experience across various languages and frameworks."
+            },
+            certifications: [
+                "AWS Solutions Architect Professional",
+                "AWS Solutions Architect Associate", 
+                "Google Cloud Professional Cloud Architect",
+                "Google Cloud Professional Data Engineer",
+                "Google Cloud Professional Security Engineer",
+                "Azure Solutions Architect Expert",
+                "Azure Cybersecurity Architect Expert",
+                "Azure AI Engineer Associate",
+                "OCI Architect Professional",
+                "OCI Architect Associate",
+                "Oracle AI Vector Search Professional",
+                "TOGAF 10 Enterprise Architecture Practitioner",
+                "Dell Boomi Professional Architect",
+                "Oracle Certified Master Java EE Enterprise Architect",
+                "Solace Event-Driven Architecture Practitioner"
+            ],
+            achievements: [
+                "Led 5 TOGAF enterprise architecture initiatives",
+                "Designed and implemented 7 data pipelines",
+                "Led 15 cloud adoption strategies",
+                "Architected 15 secure Landing Zones",
+                "Optimised 25 application workloads",
+                "Designed 25 DevOps pipelines",
+                "Enhanced storage performance for 35 workloads",
+                "Managed 90 infrastructure workloads",
+                "Modernised 20 legacy systems to MACH platforms",
+                "Developed 5 RAG solutions",
+                "Built 15 efficient MLOps pipelines",
+                "Strengthened 35 cybersecurity frameworks",
+                "Supported 50+ startups and SMBs, achieving 40% revenue increase and 30% cost reduction"
+            ],
+            contact: {
+                email: "pankajpandey.architect@gmail.com",
+                phone: "+44 7760839026",
+                linkedin: "linkedin.com/in/pankajpandey-architect",
+                location: "London, UK"
+            }
+        };
+        
+        // AI Chat functionality
+        const chatButton = document.getElementById('aiChatButton');
+        const chatPanel = document.getElementById('aiChatPanel');
+        const chatClose = document.getElementById('chatClose');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const chatSend = document.getElementById('chatSend');
+        const typingIndicator = document.getElementById('typingIndicator');
+        
+        chatButton.addEventListener('click', () => {
+            chatPanel.classList.toggle('active');
+            chatButton.classList.toggle('active');
+        });
+        
+        chatClose.addEventListener('click', () => {
+            chatPanel.classList.remove('active');
+            chatButton.classList.remove('active');
+        });
+        
+        function addMessage(content, isAI = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${isAI ? 'ai' : 'user'}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = `message-avatar ${isAI ? 'ai' : 'user'}`;
+            avatar.textContent = isAI ? '🤖' : '👤';
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = content;
+            
+            messageDiv.appendChild(avatar);
+            messageDiv.appendChild(contentDiv);
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function generateResponse(question) {
+            const lowerQuestion = question.toLowerCase();
+            
+            // CoCounsel AI
+            if (lowerQuestion.includes('cocounsel') || lowerQuestion.includes('ai assistant')) {
+                return knowledgeBase.experience.cocounsel;
+            }
+            
+            // Digital Commerce
+            if (lowerQuestion.includes('digital commerce') || lowerQuestion.includes('290') || lowerQuestion.includes('platform')) {
+                return knowledgeBase.experience.digitalCommerce;
+            }
+            
+            // Data Lake
+            if (lowerQuestion.includes('data lake') || lowerQuestion.includes('edl')) {
+                return knowledgeBase.experience.dataLake;
+            }
+            
+            // CNCF
+            if (lowerQuestion.includes('cncf') || lowerQuestion.includes('cloud native') || lowerQuestion.includes('kubernetes')) {
+                return knowledgeBase.experience.cncf;
+            }
+            
+            // Bloomberg
+            if (lowerQuestion.includes('bloomberg')) {
+                return knowledgeBase.experience.bloomberg;
+            }
+            
+            // Certifications
+            if (lowerQuestion.includes('certification') || lowerQuestion.includes('certified')) {
+                return `Pankaj holds ${knowledgeBase.certifications.length} professional certifications including:<br/><br/>` + 
+                       knowledgeBase.certifications.slice(0, 8).map(cert => `• ${cert}`).join('<br/>') +
+                       '<br/><br/>And several more across cloud platforms and enterprise architecture.';
+            }
+            
+            // Cloud/Multi-cloud
+            if (lowerQuestion.includes('cloud') || lowerQuestion.includes('aws') || lowerQuestion.includes('azure') || lowerQuestion.includes('gcp')) {
+                return knowledgeBase.skills.cloud;
+            }
+            
+            // AI/ML
+            if (lowerQuestion.includes('ai') || lowerQuestion.includes('ml') || lowerQuestion.includes('machine learning')) {
+                return knowledgeBase.skills.ai;
+            }
+            
+            // Skills
+            if (lowerQuestion.includes('skill') || lowerQuestion.includes('technology') || lowerQuestion.includes('tech stack')) {
+                return `Pankaj has expertise across:<br/><br/>` +
+                       `<strong>Cloud:</strong> ${knowledgeBase.skills.cloud.substring(0, 150)}...<br/><br/>` +
+                       `<strong>CNCF:</strong> ${knowledgeBase.skills.cncf.substring(0, 150)}...<br/><br/>` +
+                       `<strong>AI/ML:</strong> ${knowledgeBase.skills.ai.substring(0, 150)}...`;
+            }
+            
+            // Experience
+            if (lowerQuestion.includes('experience') || lowerQuestion.includes('years')) {
+                return `Pankaj has over 20 years of experience as a Senior Solution Architect and Multi-Cloud Expert. He has worked with Fortune 500 companies including Thomson Reuters, Bloomberg Inc, and many others. His experience spans digital transformation, AI/ML integration, cloud migration, CNCF technologies, and enterprise architecture across financial services, media, retail, and e-governance sectors.`;
+            }
+            
+            // Achievements
+            if (lowerQuestion.includes('achievement') || lowerQuestion.includes('accomplish')) {
+                return `Key achievements include:<br/><br/>` + 
+                       knowledgeBase.achievements.slice(0, 6).map(ach => `• ${ach}`).join('<br/>');
+            }
+            
+            // Contact
+            if (lowerQuestion.includes('contact') || lowerQuestion.includes('email') || lowerQuestion.includes('phone')) {
+                return `You can reach Pankaj at:<br/><br/>` +
+                       `📧 Email: ${knowledgeBase.contact.email}<br/>` +
+                       `📱 Phone: ${knowledgeBase.contact.phone}<br/>` +
+                       `💼 LinkedIn: ${knowledgeBase.contact.linkedin}<br/>` +
+                       `📍 Location: ${knowledgeBase.contact.location}`;
+            }
+            
+            // Default response
+            return `Great question! Pankaj has 20+ years of experience in cloud-native architecture and digital transformation. He's an expert in CNCF technologies like Kubernetes, Istio, ArgoCD, and the complete observability stack. He's worked on major projects like CoCounsel AI (world's first AI legal assistant), a $290M digital commerce platform, and enterprise data lake implementations. He holds 15+ professional certifications from AWS, Azure, GCP, OCI, and TOGAF. Would you like to know more about any specific project or expertise area?`;
+        }
+        
+        async function handleSendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, false);
+            chatInput.value = '';
+            chatSend.disabled = true;
+            
+            // Show typing indicator
+            typingIndicator.classList.add('active');
+            
+            // Simulate AI thinking time
+            await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 1000));
+            
+            // Hide typing indicator
+            typingIndicator.classList.remove('active');
+            
+            // Generate and add AI response
+            const response = generateResponse(message);
+            addMessage(response, true);
+            
+            chatSend.disabled = false;
+        }
+        
+        chatSend.addEventListener('click', handleSendMessage);
+        
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+        
+        function askQuestion(question) {
+            chatInput.value = question;
+            handleSendMessage();
+        }
+        
+        // Scroll Progress Bar
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight - windowHeight;
+            const scrolled = window.pageYOffset;
+            const progress = (scrolled / documentHeight) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+        
+        // Animated Counter for Stats
+        function animateCounter(element, start, end, duration) {
+            let startTime = null;
+            const step = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                element.textContent = current + '+';
+                if (progress < 1) {
+                    requestAnimationFrame(step);
+                }
+            };
+            requestAnimationFrame(step);
+        }
+        
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    
+                    // Animate counters when hero comes into view
+                    if (entry.target.classList.contains('hero-stats')) {
+                        const counters = entry.target.querySelectorAll('.stat-number');
+                        counters.forEach(counter => {
+                            const target = parseInt(counter.dataset.target);
+                            animateCounter(counter, 0, target, 2000);
+                        });
+                    }
+                    
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        
+        // Observe skill cards
+        document.querySelectorAll('.skill-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
+        
+        // Observe timeline items
+        document.querySelectorAll('.timeline-item').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.2}s`;
+            observer.observe(item);
+        });
+        
+        // Observe certification cards
+        document.querySelectorAll('.cert-card').forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+            observer.observe(card);
+        });
+        
+        // Observe hero stats
+        observer.observe(document.querySelector('.hero-stats'));
+        
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add tooltips to CNCF components
+        document.querySelectorAll('.arch-component').forEach(component => {
+            component.addEventListener('click', function() {
+                const name = this.querySelector('.component-name').textContent;
+                const desc = this.querySelector('.component-desc').textContent;
+                alert(`${name}\n${desc}\n\nPankaj has extensive experience implementing and managing this technology in enterprise cloud-native environments.`);
+            });
+        });
+    </script>
+</body>
+</html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

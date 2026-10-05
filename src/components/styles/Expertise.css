@@ -1,0 +1,14 @@
+.expertise-section { position: relative; z-index: 2; margin: 60px auto 100px; }
+.expertise-section h2 { font-size: clamp(32px, 4vw, 60px); font-weight: 500; }
+.expertise-section h2 span { color: var(--accentColor); }
+.expertise-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.expertise-grid article { border: 1px solid #ffffff25; border-radius: 16px; padding: 28px; background: #ffffff04; }
+.expertise-grid h3 { color: var(--accentColor); font-size: 22px; margin-top: 0; }
+.expertise-grid p, .credentials-list { line-height: 1.8; color: #c4cbd4; }
+.credentials-title { margin-top: 44px; font-size: 26px; }
+.credentials-list { padding-left: 22px; }
+.credentials-list li { margin: 12px 0; }
+@media (max-width: 650px) { .expertise-grid { grid-template-columns: 1fr; } }
+
+.skill-animation { height: clamp(360px, 65vh, 720px); position: relative; margin: 0 0 40px; background: radial-gradient(ellipse at center, #12343f55, transparent 65%); }
+.skill-animation-hint { position: absolute; bottom: 0; left: 0; width: 100%; text-align: center; color: #b4becb; font-size: 13px; pointer-events: none; z-index: 1; }

@@ -1,0 +1,17 @@
+.skills-keyboard { margin: 45px 0 70px; border: 1px solid #5eead433; border-radius: 24px; overflow: hidden; background: radial-gradient(ellipse at 50% 40%, #123d4caa, #0a0e17 70%); }
+.keyboard-heading { padding: 36px 32px 0; text-align: center; }
+.keyboard-eyebrow { font-size: 11px; letter-spacing: 3px; color: var(--accentColor); }
+.keyboard-heading h3 { font-size: clamp(27px, 3vw, 42px); margin: 14px 0; font-weight: 500; }
+.keyboard-heading p { color: #b4becb; font-size: 14px; line-height: 1.6; }
+.keyboard-stage { height: clamp(290px, 45vw, 480px); cursor: pointer; }
+.keyboard-readout { display: flex; align-items: center; justify-content: center; gap: 20px; min-height: 70px; padding: 0 24px; text-align: center; }
+.keyboard-readout strong { color: var(--accentColor); font-size: 22px; }
+.keyboard-readout span { color: #c4cbd4; font-size: 14px; }
+.keyboard-controls { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); max-width: 640px; margin: 24px auto; gap: 8px; padding: 0 20px; }
+.keyboard-controls button { border: 1px solid #ffffff26; border-radius: 8px; background: #16303c; color: #e1edf3; padding: 12px 4px; font: inherit; font-size: 11px; cursor: pointer; transition: background .15s, transform .15s; }
+.keyboard-controls kbd { color: #5eead4; margin-right: 4px; }
+.keyboard-controls button:hover, .keyboard-controls button:focus-visible, .keyboard-controls button.key-active { background: #245966; outline: 2px solid #5eead4; transform: translateY(2px); }
+.keyboard-credit { color: #9caab8; text-align: center; font-size: 11px; margin: 24px 16px; }
+.keyboard-credit a { text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 600px) { .keyboard-heading { padding: 28px 18px 0; } .keyboard-readout { flex-direction: column; gap: 8px; min-height: 90px; } .keyboard-controls { gap: 5px; padding: 0 12px; } .keyboard-controls kbd { display: block; margin: 0 0 5px; } }
+@media (prefers-reduced-motion: reduce) { .keyboard-controls button { transition: none; } }

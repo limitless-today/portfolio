@@ -1,0 +1,197 @@
+/* Shared visual system; body specificity keeps lazy-loaded sections consistent. */
+:root { --accentColor: #0071e3; --backgroundColor: #f5f5f7; color-scheme: light; color: #1d1d1f; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
+body { background: #f5f5f7; color: #1d1d1f; }
+body h1, body h2, body h3, body h4, body h5, body h6, body button, body input { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; }
+body a, body button { -webkit-tap-highlight-color: transparent; }
+body :focus-visible { outline: 3px solid #0071e3; outline-offset: 5px; }
+body .section-container { width: 1100px; max-width: calc(100% - 96px); }
+body .header { width: 100%; max-width: none; padding: 17px max(6%, calc((100vw - 1100px)/2)); align-items: center; background: #fafafacc; backdrop-filter: blur(24px) saturate(150%); border-bottom: 1px solid #0000000c; }
+body .header ul { flex-direction: row; align-items: center; column-gap: 30px; font-size: 12px; }
+body .header ul li { color: #333336; font-weight: 400; letter-spacing: 0; }
+body .navbar-title { font-size: 19px; letter-spacing: -1px; }
+body .navbar-connect { font-size: 12px; letter-spacing: 0; color: #515154; }
+body .landing-circle1, body .landing-circle2, body .nav-fade, body .character-rim { display: none; }
+body .landing-intro h2, body .landing-info h3 { font-size: 18px; letter-spacing: -.3px; font-weight: 500; color: #6e6e73; }
+body .landing-intro h1 { font-size: clamp(32px, 3.1vw, 54px); font-weight: 650; letter-spacing: -1.8px; line-height: 1.08; }
+body .landing-info h2 { text-transform: none; letter-spacing: -1.5px; font-size: clamp(30px, 3.2vw, 52px); font-weight: 600; }
+body h2.landing-info-h2 { color: #0071e3; font-size: clamp(32px, 3.4vw, 56px); }
+body .landing-intro { right: 72%; }
+body .landing-info { left: 72%; }
+body .social-icons { gap: 8px; color: #6e6e73; }
+body .social-icons a { font-size: 20px; }
+body .social-icons a:hover { color: #0071e3; }
+body .resume-button { bottom: 100px; color: #515154; font-size: 12px; letter-spacing: 1px; }
+body .about-me h3 { color: #6e6e73; text-transform: none; font-size: 21px; font-weight: 600; letter-spacing: -.4px; }
+body .about-me p { font-size: clamp(22px, 2.05vw, 32px); line-height: 1.4; letter-spacing: -.6px; font-weight: 500; }
+body .what-box h2 { letter-spacing: -3px; line-height: 1.05; }
+body .hat-h2 { font-style: normal; }
+body .what-content { background: #fff; border-radius: 24px; box-shadow: 0 10px 40px #00000005; border: 1px solid #00000008; }
+body .what-content h3 { letter-spacing: -.8px; }
+body .what-content p { color: #515154; font-weight: 400; letter-spacing: 0; line-height: 1.5; }
+body .what-content h4, body .what-content-in h5 { opacity: 1; color: #6e6e73; }
+body .what-content::before, body .what-content::after, body .what-corner, body .what-border1, body .what-border2 { display: none; }
+body .what-arrow, body .what-arrow::before { border-color: #86868b; border-radius: 4px; }
+body .what-tags { background: #f5f5f7; border: 0; color: #515154; }
+body .career-section { margin-bottom: 40px; padding: 100px 0; }
+body .career-section h2, body .work-section h2, body .expertise-section h2, body .contact-section h3 { font-size: clamp(36px, 4.5vw, 64px); line-height: 1.07; font-weight: 600; letter-spacing: -2px; text-transform: none; background: none; color: #1d1d1f; -webkit-text-fill-color: currentColor; }
+body .career-section h2 { text-align: left; margin: 0 0 56px; }
+body .career-section h2 br { display: none; }
+body .career-container { width: 100%; }
+body .career-info-box { background: #fff; border-radius: 28px; padding: 36px; gap: 40px; margin-bottom: 20px; box-shadow: 0 8px 32px #00000003; }
+body .career-timeline { display: none; }
+body .career-info-in { width: 44%; padding: 0; }
+body .career-info-box p { width: 52%; font-size: 16px; line-height: 1.65; font-weight: 400; color: #6e6e73; padding: 0; }
+body .career-info h4 { font-size: 24px; letter-spacing: -.6px; }
+body .career-info h5 { font-size: 15px; letter-spacing: 0; line-height: 1.5; }
+body .career-info h3 { font-size: 17px; color: #6e6e73; }
+body .work-section { padding: 90px 0; }
+body .carousel-track-container { border: 0; border-radius: 30px; background: #fff; }
+body .carousel-slide { padding: 44px 0; }
+body .carousel-content { width: auto; margin: 0 64px; gap: 32px; }
+body .carousel-number h3 { color: #86868b; opacity: .45; font-size: 32px; }
+body .carousel-details h4 { font-size: 28px; letter-spacing: -.8px; }
+body .carousel-category, body .carousel-tools p { color: #6e6e73; font-weight: 400; }
+body .project-outcome { background: #f5f5f7; border: 0; border-radius: 24px; padding: 30px; }
+body .project-outcome p { color: #515154; font-size: 15px; }
+body .project-outcome strong { letter-spacing: -3px; }
+body .carousel-arrow { background: #e8e8ed; color: #515154; border: 0; width: 38px; height: 38px; box-shadow: none; }
+body .carousel-arrow:hover { background: #dcdce1; color: #1d1d1f; box-shadow: none; }
+body .carousel-arrow-left { left: 12px; }
+body .carousel-arrow-right { right: 12px; }
+body .carousel-dot { background: #c5c5ca; border: 0; box-shadow: none; }
+body .carousel-dot-active { background: #1d1d1f; }
+body .expertise-section { margin: 70px auto 100px; }
+body .expertise-grid article { border: 0; border-radius: 26px; padding: 32px; background: #fff; }
+body .expertise-grid h3 { color: #1d1d1f; letter-spacing: -.6px; }
+body .expertise-grid p, body .credentials-list { color: #6e6e73; }
+body .credentials-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+body .credentials-list li { padding: 22px 26px; border-radius: 18px; background: #fff; margin: 0; font-size: 15px; }
+body .skills-keyboard { background: linear-gradient(150deg, #fff, #e9edf3); border: 1px solid #fff; border-radius: 32px; box-shadow: 0 20px 60px #00000004; }
+body .keyboard-heading { padding-top: 48px; }
+body .keyboard-heading h3 { font-weight: 600; letter-spacing: -1px; }
+body .keyboard-eyebrow { letter-spacing: 1.5px; font-weight: 600; }
+body .keyboard-heading p, body .keyboard-readout span, body .keyboard-credit, body .skill-animation-hint { color: #6e6e73; }
+body .keyboard-controls button { background: #ffffffc9; border-color: #d2d2d7; color: #515154; border-radius: 12px; }
+body .keyboard-controls kbd { color: #0071e3; }
+body .keyboard-controls button:hover, body .keyboard-controls button:focus-visible, body .keyboard-controls button.key-active { background: #e8f2ff; outline-color: #0071e3; }
+body .skill-animation { background: radial-gradient(ellipse, #dfeafa66, transparent 65%); }
+body .contact-section { padding-top: 64px; border-top: 1px solid #d2d2d7; }
+body .contact-section h3 { margin-bottom: 50px; }
+body .contact-flex { gap: 40px; }
+body .contact-box { flex: 1; }
+body .contact-flex p { font-size: 14px; color: #6e6e73; line-height: 1.6; }
+body a.contact-social { font-size: 17px; padding: 10px 0; border-color: #d2d2d7; color: #0071e3; }
+body .contact-box h2 { font-size: 18px; line-height: 1.5; }
+body .contact-box h5 { font-size: 13px; }
+body .ask-ai-launcher { background: #0071e3; color: #fff; border: 1px solid #ffffff35; box-shadow: 0 8px 30px #0071e325; font-family: inherit; font-weight: 500; }
+body .ask-ai-dialog { background: #fbfbfdee; color: #1d1d1f; border: 1px solid #ffffffaa; border-radius: 28px; box-shadow: 0 24px 100px #00000026; backdrop-filter: blur(30px); font-family: inherit; }
+body .ask-ai-dialog::backdrop { background: #1d1d1f30; backdrop-filter: blur(5px); }
+body .ask-ai-eyebrow, body .ask-ai-welcome > svg, body .ask-ai-dialog footer a { color: #0071e3; }
+body .ask-ai-close { color: #515154; }
+body .ask-ai-disclosure, body .ask-ai-welcome p, body .ask-ai-message small, body .ask-ai-input-label, body .ask-ai-dialog footer button { color: #6e6e73; }
+body .ask-ai-messages { border-color: #d2d2d780; }
+body .ask-ai-message { background: #ededf0; border-radius: 18px; }
+body .ask-ai-message.visitor { background: #e2efff; }
+body .ask-ai-message > span { color: #0066cc; }
+body .ask-ai-suggestions button { background: #fff; color: #515154; border-color: #d2d2d7; }
+body .ask-ai-input-row { border-color: #d2d2d7; }
+body .ask-ai-input-row input { background: #fff; color: #1d1d1f; }
+body .ask-ai-input-row button { background: #0071e3; color: #fff; }
+body .ask-ai-dialog :focus-visible, body .ask-ai-launcher:focus-visible { outline-color: #0071e3; }
+@media (max-width: 1024px) {
+  body .landing-intro { top: 105px; left: 6%; right: auto; }
+  body .landing-info { left: auto; right: 50%; bottom: 35px; }
+  body .career-section { margin-top: 0; }
+  body .career-info-box { flex-direction: column; gap: 20px; }
+  body .career-info-in, body .career-info-box p { width: 100%; }
+}
+@media (max-width: 600px) {
+  body .section-container { max-width: calc(100% - 40px); }
+  body .header { padding: 16px 20px; }
+  body .header ul { column-gap: 18px; font-size: 11px; }
+  body .landing-intro h1 { font-size: 32px; }
+  body .landing-intro h2 { font-size: 15px; }
+  body .about-me { padding: 65px 12px 25px; }
+  body .about-me p { font-size: 23px; }
+  body .career-info-box { padding: 26px; }
+  body .career-section, body .work-section { padding: 60px 0; }
+  body .carousel-content { margin: 0 48px; }
+  body .carousel-info { gap: 12px; }
+  body .carousel-number { display: none; }
+  body .carousel-details h4 { font-size: 25px; }
+  body .project-outcome { padding: 22px; }
+  body .credentials-list { grid-template-columns: 1fr; }
+  body .contact-flex { gap: 28px; }
+  body .resume-button { display: none; }
+}
+
+body .cursor-main { display: none; }
+body .loading-screen { background: #f5f5f7; }
+body .loading-button { color: #fff; background: #1d1d1f; box-shadow: none; }
+
+/* Keep the role readable; motion is reserved for the avatar and skills. */
+body .landing-h2-2, body .landing-h2-info-1, body .landing-info-h2::after { display: none; }
+body .landing-info h2 { margin: 0; line-height: 1.12; }
+body h2.landing-info-h2 { margin: 6px 0 0; }
+@media (max-width: 600px) {
+  body .landing-info { bottom: 84px; z-index: 12; padding: 12px 20px; background: #f5f5f7e8; border-radius: 20px; backdrop-filter: blur(12px); text-align: center; }
+  body .landing-info h2 { font-size: 27px; justify-content: center; }
+  body .landing-info h3 { font-size: 14px; }
+}
+
+/* A left-edge, macOS-inspired navigation dock. */
+body .header.mac-dock { width: auto; max-width: none; top: 50%; left: 18px; transform: translateY(-50%); padding: 10px; margin: 0; border: 1px solid #ffffffd9; border-radius: 23px; background: #e9e9ee99; backdrop-filter: blur(28px) saturate(160%); box-shadow: inset 0 0 0 1px #00000005, 0 12px 38px #00000014; }
+body .mac-dock ul { flex-direction: column; gap: 12px; align-items: center; }
+body .mac-dock li { position: relative; }
+body .mac-dock .dock-icon { position: relative; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 13px; color: #fff; box-shadow: inset 0 1px 1px #ffffff80, inset 0 -1px 1px #00000020, 0 3px 6px #00000016; transition: transform .2s ease, box-shadow .2s ease; transform-origin: left center; }
+body .dock-icon svg { width: 27px; height: 27px; stroke-width: 1.7; }
+body .dock-home { background: linear-gradient(145deg, #80caff, #0071e3); }
+body .dock-about { background: linear-gradient(145deg, #aa9afa, #6552ce); }
+body .dock-work { background: linear-gradient(145deg, #ffcc71, #e38a20); }
+body .dock-contact { background: linear-gradient(145deg, #67c9ff, #1477ed); }
+body .dock-linkedin { background: linear-gradient(145deg, #328bc7, #075b94); }
+body .mac-dock .dock-icon:hover, body .mac-dock .dock-icon:focus-visible { transform: translateX(5px) scale(1.16); box-shadow: 0 8px 18px #00000020; color: #fff; z-index: 2; }
+body .mac-dock li:has(+ li .dock-icon:hover) .dock-icon, body .mac-dock li:has(.dock-icon:hover) + li .dock-icon { transform: translateX(2px) scale(1.06); }
+body .dock-label { position: absolute; left: calc(100% + 18px); top: 50%; transform: translateY(-50%) translateX(-4px); opacity: 0; pointer-events: none; white-space: nowrap; padding: 7px 12px; border-radius: 9px; background: #fafafaf5; border: 1px solid #00000010; color: #1d1d1f; font-size: 12px; font-weight: 500; letter-spacing: 0; box-shadow: 0 4px 16px #00000012; transition: opacity .15s, transform .15s; }
+body .dock-icon:hover .dock-label, body .dock-icon:focus-visible .dock-label { opacity: 1; transform: translateY(-50%); }
+body .mac-dock .dock-divider { width: 34px; height: 1px; background: #00000020; margin: 2px 0; }
+body .social-icons { display: none; }
+@media (max-width: 600px) {
+  body .header.mac-dock { left: 8px; padding: 7px; border-radius: 18px; }
+  body .mac-dock ul { gap: 10px; }
+  body .mac-dock .dock-icon { width: 36px; height: 36px; border-radius: 10px; }
+  body .dock-icon svg { width: 22px; height: 22px; }
+  body .mac-dock .dock-divider { width: 26px; }
+  body .section-container { width: auto; max-width: none; margin-left: 76px; margin-right: 20px; }
+  body .about-me { width: auto; max-width: none; padding-left: 65px; }
+  body .whatIDO { width: calc(100% - 86px); margin-left: 76px; }
+  body .landing-intro { left: 76px; top: 60px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body .mac-dock .dock-icon, body .dock-label { transition: none; }
+  body .mac-dock .dock-icon:hover, body .mac-dock .dock-icon:focus-visible { transform: none; }
+}
+
+/* Top-centered navigation dock. */
+body .header.mac-dock { top: 16px; left: 50%; transform: translateX(-50%); padding: 9px 12px; }
+body .mac-dock ul { flex-direction: row; gap: 12px; }
+body .mac-dock .dock-icon { transform-origin: center top; }
+body .mac-dock .dock-icon:hover, body .mac-dock .dock-icon:focus-visible { transform: translateY(4px) scale(1.12); }
+body .mac-dock li:has(+ li .dock-icon:hover) .dock-icon, body .mac-dock li:has(.dock-icon:hover) + li .dock-icon { transform: translateY(2px) scale(1.04); }
+body .mac-dock .dock-divider { width: 1px; height: 34px; margin: 0 2px; }
+body .dock-label { left: 50%; top: calc(100% + 14px); transform: translateX(-50%) translateY(-4px); }
+body .dock-icon:hover .dock-label, body .dock-icon:focus-visible .dock-label { transform: translateX(-50%); }
+@media (max-width: 600px) {
+  body .header.mac-dock { top: 10px; left: 50%; padding: 8px 10px; }
+  body .mac-dock ul { gap: 10px; }
+  body .mac-dock .dock-divider { width: 1px; height: 26px; }
+  body .section-container { width: auto; max-width: calc(100% - 40px); margin-left: auto; margin-right: auto; }
+  body .about-me { padding-left: 12px; }
+  body .whatIDO { width: var(--cWidth); margin-left: auto; margin-right: auto; }
+  body .landing-intro { left: 6%; top: 105px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  body .mac-dock .dock-icon:hover, body .mac-dock .dock-icon:focus-visible,
+  body .mac-dock li:has(+ li .dock-icon:hover) .dock-icon,
+  body .mac-dock li:has(.dock-icon:hover) + li .dock-icon { transform: none; }
+}

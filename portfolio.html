@@ -1,0 +1,3710 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="claude-code">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pankaj Kumar Pandey | Principal Solutions &amp; Agentic AI Architect — pankaj@architect</title>
+    <style>
+        /* =====================================================================
+           1. THEME VARIABLES (6 AI CODING AGENT & IDE THEMES)
+        ===================================================================== */
+        :root,
+        [data-theme="claude-code"] {
+            --bg-canvas: #0b0b0a;
+            --bg-surface: #141311;
+            --bg-elevated: #1e1c19;
+            --bg-input: #080807;
+            --border-hairline: #282621;
+            --border-strong: #3f3b33;
+            --text-primary: #f4f1ea;
+            --text-secondary: #a8a196;
+            --text-muted: #6e685f;
+            --accent-primary: #d97757;
+            --accent-primary-soft: rgba(217, 119, 87, 0.14);
+            --accent-primary-border: rgba(217, 119, 87, 0.44);
+            --accent-secondary: #27c93f;
+            --accent-warn: #ffbd2e;
+            --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.48);
+        }
+
+        [data-theme="cursor"] {
+            --bg-canvas: #0f1012;
+            --bg-surface: #18191c;
+            --bg-elevated: #222429;
+            --bg-input: #0a0b0d;
+            --border-hairline: #2b2d33;
+            --border-strong: #42464f;
+            --text-primary: #ebebed;
+            --text-secondary: #9fa3ad;
+            --text-muted: #696d77;
+            --accent-primary: #3794ff;
+            --accent-primary-soft: rgba(55, 148, 255, 0.15);
+            --accent-primary-border: rgba(55, 148, 255, 0.44);
+            --accent-secondary: #4ec9b0;
+            --accent-warn: #dcdcaa;
+            --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="codex"] {
+            --bg-canvas: #0a0d0c;
+            --bg-surface: #121715;
+            --bg-elevated: #1b221f;
+            --bg-input: #070908;
+            --border-hairline: #232d29;
+            --border-strong: #36453f;
+            --text-primary: #edf3f0;
+            --text-secondary: #9cb0a7;
+            --text-muted: #63756d;
+            --accent-primary: #10a37f;
+            --accent-primary-soft: rgba(16, 163, 127, 0.15);
+            --accent-primary-border: rgba(16, 163, 127, 0.44);
+            --accent-secondary: #34d399;
+            --accent-warn: #fbbf24;
+            --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="google-antigravity"] {
+            --bg-canvas: #090b12;
+            --bg-surface: #111420;
+            --bg-elevated: #191e2e;
+            --bg-input: #06070c;
+            --border-hairline: #23293e;
+            --border-strong: #363f5e;
+            --text-primary: #eef2ff;
+            --text-secondary: #a2add4;
+            --text-muted: #667299;
+            --accent-primary: #8b5cf6;
+            --accent-primary-soft: rgba(139, 92, 246, 0.16);
+            --accent-primary-border: rgba(139, 92, 246, 0.46);
+            --accent-secondary: #38bdf8;
+            --accent-warn: #f472b6;
+            --shadow-card: 0 12px 34px rgba(6, 7, 12, 0.56);
+        }
+
+        [data-theme="grok-code"] {
+            --bg-canvas: #060606;
+            --bg-surface: #101010;
+            --bg-elevated: #1b1b1b;
+            --bg-input: #030303;
+            --border-hairline: #242424;
+            --border-strong: #3a3a3a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #a1a1a1;
+            --text-muted: #666666;
+            --accent-primary: #f97316;
+            --accent-primary-soft: rgba(249, 115, 22, 0.16);
+            --accent-primary-border: rgba(249, 115, 22, 0.45);
+            --accent-secondary: #27c93f;
+            --accent-warn: #facc15;
+            --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.58);
+        }
+
+        [data-theme="meta-code"] {
+            --bg-canvas: #080d14;
+            --bg-surface: #101826;
+            --bg-elevated: #182336;
+            --bg-input: #05090e;
+            --border-hairline: #1f2e45;
+            --border-strong: #31486b;
+            --text-primary: #edf4fc;
+            --text-secondary: #98aec9;
+            --text-muted: #5f7796;
+            --accent-primary: #0ea5e9;
+            --accent-primary-soft: rgba(14, 165, 233, 0.15);
+            --accent-primary-border: rgba(14, 165, 233, 0.45);
+            --accent-secondary: #34d399;
+            --accent-warn: #fbbf24;
+            --shadow-card: 0 12px 32px rgba(5, 9, 14, 0.54);
+        }
+
+        /* =====================================================================
+           2. RESET & BASE TYPOGRAPHY
+        ===================================================================== */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-canvas);
+            color: var(--text-primary);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+            line-height: 1.55;
+            min-height: 100vh;
+            padding-bottom: 44px;
+            overflow-x: hidden;
+            transition: background-color 0.22s ease, color 0.22s ease;
+        }
+
+        .mono {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button, input, select, textarea {
+            font-family: inherit;
+            color: inherit;
+        }
+
+        /* =====================================================================
+           3. TOP NAVIGATION BAR & SUB-HEADER RIBBON (MATCHING ATTACHED SCREENSHOT)
+        ===================================================================== */
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 60;
+            background: var(--bg-canvas);
+            border-bottom: 1px solid var(--border-hairline);
+            backdrop-filter: blur(10px);
+        }
+
+        .topbar-main {
+            max-width: 1380px;
+            min-height: 68px;
+            margin: 0 auto;
+            padding: 8px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+
+        /* Left Block ASCII Monogram 'PKP' + 'PORTFOLIO' + Kinetic Identity Strip */
+        .brand-lockup {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .ascii-logo-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+
+        .ascii-pkp {
+            font-size: 7.5px;
+            line-height: 7.5px;
+            letter-spacing: 0px;
+            color: var(--text-primary);
+            font-weight: 800;
+            text-shadow: 1.5px 1.5px 0 var(--border-strong);
+            user-select: none;
+        }
+
+        .ascii-sub {
+            font-size: 8.5px;
+            letter-spacing: 0.32em;
+            color: var(--text-muted);
+            margin-top: 4px;
+            font-weight: 700;
+        }
+
+        .brand-kinetic-strip {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding-left: 10px;
+            border-left: 1px solid var(--border-hairline);
+        }
+
+        .brand-name {
+            display: inline-flex;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .brand-char {
+            display: inline-block;
+            animation: waveFloat 3.4s ease-in-out infinite;
+            animation-delay: calc(var(--ci) * 0.085s);
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .brand-char.is-anchor {
+            color: var(--accent-primary);
+            font-weight: 900;
+            text-shadow: 0 0 12px var(--accent-primary-soft);
+        }
+
+        @keyframes waveFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-2.2px); }
+        }
+
+        .brand-pillar-sub {
+            font-size: 10px;
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        /* Center Two-Tier Uppercase CLI Command Navigation (Exact Screenshot Style) */
+        .cli-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+
+        .cli-nav-links::-webkit-scrollbar {
+            display: none;
+        }
+
+        .cli-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 5px 8px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
+        }
+
+        .cli-nav-item:hover {
+            background: var(--bg-surface);
+            border-color: var(--border-hairline);
+        }
+
+        .cli-nav-item.active {
+            background: var(--bg-surface);
+            border-color: var(--border-strong);
+        }
+
+        .cli-nav-cmd {
+            font-size: 10.5px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            line-height: 1.25;
+        }
+
+        .cli-nav-item.active .cli-nav-cmd {
+            color: var(--accent-primary);
+        }
+
+        .cli-nav-sub {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-secondary);
+            line-height: 1.2;
+            margin-top: 1px;
+        }
+
+        .cli-nav-item.active .cli-nav-sub,
+        .cli-nav-item:hover .cli-nav-sub {
+            color: var(--text-primary);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .icon-chip {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 7px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 6px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: border-color 0.15s ease, color 0.15s ease;
+        }
+
+        .icon-chip:hover {
+            border-color: var(--accent-primary-border);
+            color: var(--accent-primary);
+        }
+
+        /* Sub-Header Ribbon: PANKAJ ON MONDAY // 17:31:00 */
+        .subbar {
+            background: var(--bg-input);
+            border-top: 1px solid var(--border-hairline);
+        }
+
+        .subbar-inner {
+            max-width: 1380px;
+            min-height: 30px;
+            margin: 0 auto;
+            padding: 4px 18px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            font-size: 11.5px;
+            letter-spacing: 0.09em;
+            color: var(--text-muted);
+        }
+
+        .subbar-links {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 0.03em;
+        }
+
+        .subbar-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px 10px;
+            font-size: 12px;
+            border-radius: 7px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-hairline);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.1s ease;
+        }
+
+        .btn:hover {
+            border-color: var(--accent-primary-border);
+            background: var(--bg-surface);
+        }
+
+        .btn-accent {
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .btn-accent:hover {
+            opacity: 0.92;
+            background: var(--accent-primary);
+        }
+
+        .theme-dropdown {
+            position: relative;
+        }
+
+        .theme-menu {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 6px);
+            width: 248px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-strong);
+            border-radius: 10px;
+            padding: 6px;
+            box-shadow: var(--shadow-card);
+            display: none;
+            z-index: 80;
+        }
+
+        .theme-menu.open {
+            display: block;
+        }
+
+        .theme-opt {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 9px;
+            border-radius: 7px;
+            border: 1px solid transparent;
+            background: transparent;
+            text-align: left;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .theme-opt:hover {
+            background: var(--bg-elevated);
+        }
+
+        .theme-opt.active {
+            background: var(--accent-primary-soft);
+            border-color: var(--accent-primary-border);
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        .mobile-toggle {
+            display: none;
+        }
+
+        .mobile-drawer {
+            display: none;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-hairline);
+            padding: 12px 18px;
+        }
+
+        .mobile-drawer.open {
+            display: block;
+        }
+
+        .mobile-drawer-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+
+        @media (max-width: 1300px) {
+            .cli-nav-links {
+                display: none;
+            }
+            .mobile-toggle {
+                display: inline-flex;
+            }
+        }
+
+        @media (max-width: 760px) {
+            .desktop-only-chip,
+            .brand-kinetic-strip {
+                display: none;
+            }
+        }
+
+        /* =====================================================================
+           4. LAYOUT CONTAINERS, CARDS & SECTION RHYTHM
+        ===================================================================== */
+        .container {
+            max-width: 1260px;
+            margin: 0 auto;
+            padding: 0 18px;
+        }
+
+        .section-block {
+            padding-top: 44px;
+            scroll-margin-top: 106px;
+        }
+
+        .section-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 12px;
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+            border-bottom: 1px solid var(--border-hairline);
+        }
+
+        .section-kicker {
+            font-size: 11.5px;
+            color: var(--accent-primary);
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .section-title {
+            font-size: 21px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .elevated {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-hairline);
+            border-radius: 8px;
+        }
+
+        .accent { color: var(--accent-primary); }
+        .secondary { color: var(--accent-secondary); }
+        .sub { color: var(--text-secondary); }
+        .dim { color: var(--text-muted); }
+
+        /* =====================================================================
+           5. SECTION 01: MACOS TERMINAL HERO WINDOW & EXECUTIVE SIGNAL (#home)
+        ===================================================================== */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.24fr 0.76fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 1040px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Authentic macOS Terminal Window matching AA383D8D-C370-4431-B003-B60A95557F64.png */
+        .mac-term {
+            background: var(--bg-input);
+            border: 1px solid var(--border-strong);
+            border-radius: 12px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .mac-term-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 11px 16px;
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-hairline);
+            font-size: 11.5px;
+            letter-spacing: 0.14em;
+            color: var(--text-muted);
+        }
+
+        .mac-dots-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mac-dots {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .mac-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .mac-term-body {
+            padding: 20px 22px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            flex: 1;
+        }
+
+        .boot-seq {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        /* Large Block ANSI-Shadow ASCII Banner */
+        .ansi-banner-wrap {
+            overflow-x: auto;
+            padding: 4px 0 2px;
+            scrollbar-width: none;
+        }
+
+        .ansi-banner-wrap::-webkit-scrollbar {
+            display: none;
+        }
+
+        .ansi-banner {
+            font-size: clamp(8px, 1.12vw, 11.5px);
+            line-height: 1.08;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-shadow: 2px 2px 0 var(--border-strong), 3px 3px 0 rgba(0, 0, 0, 0.75);
+            letter-spacing: 0;
+            user-select: none;
+        }
+
+        /* Large Interactive Shell Prompt Line: pankaj@architect:~$ Pankaj Kumar Pandey █ */
+        .shell-identity-line {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 13px;
+            border-radius: 8px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+        }
+
+        .shell-prompt-host {
+            font-size: 14px;
+            font-weight: 800;
+            color: var(--accent-secondary);
+        }
+
+        .shell-prompt-fullname {
+            font-size: clamp(19px, 2.3vw, 25px);
+            font-weight: 800;
+            letter-spacing: -0.015em;
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .shell-block-cursor {
+            display: inline-block;
+            width: 11px;
+            height: 22px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+            animation: cursorBlink 1.05s steps(1, end) infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes cursorBlink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+
+        .shell-pillar-chip {
+            margin-left: auto;
+            padding: 3px 9px;
+            border-radius: 5px;
+            background: var(--accent-primary-soft);
+            border: 1px solid var(--accent-primary-border);
+            color: var(--accent-primary);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .tracked-subtitle {
+            font-size: 11.5px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Interactive Command Directory Lines (exact screenshot rows) */
+        .term-cmd-guide {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            padding-top: 2px;
+        }
+
+        .term-cmd-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .term-cmd-label {
+            color: var(--text-muted);
+            margin-right: 4px;
+        }
+
+        .term-link {
+            background: none;
+            border: none;
+            padding: 0;
+            font-family: inherit;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: color 0.14s ease;
+        }
+
+        .term-link:hover {
+            color: var(--accent-primary);
+            text-decoration: underline;
+        }
+
+        .term-sep {
+            color: var(--text-muted);
+            user-select: none;
+        }
+
+        /* Live Terminal Output Stream & Input Bar inside macOS Terminal */
+        .cli-output {
+            max-height: 145px;
+            min-height: 76px;
+            overflow-y: auto;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            font-size: 12px;
+            line-height: 1.55;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .cli-input-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-hairline);
+        }
+
+        .cli-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 12.5px;
+            color: var(--text-primary);
+        }
+
+        /* Right Companion Column: Executive-Safe Signal + Metadata Grid + Directory Index */
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .exec-signal-box {
+            padding: 18px;
+            border-radius: 12px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            border-left: 3px solid var(--accent-primary);
+            box-shadow: var(--shadow-card);
+        }
+
+        .meta-grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .meta-cell {
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+        }
+
+        .dir-list {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .dir-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 7px 11px;
+            border-radius: 7px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-hairline);
+            font-size: 11.5px;
+            transition: border-color 0.15s ease, transform 0.1s ease;
+        }
+
+        .dir-row:hover {
+            border-color: var(--accent-primary);
+            transform: translateX(2px);
+        }
+
+        /* =====================================================================
+           6. SECTION 02: UNIFIED DIGITAL & AGENTIC TRANSFORMATION HUB
+        ===================================================================== */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: 1.22fr 0.78fr;
+            gap: 18px;
+            align-items: stretch;
+        }
+
+        @media (max-width: 1024px) {
+            .hub-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .hub-svg-box {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @keyframes gearRotateCW {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes gearRotateCCW {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        @keyframes arrowStreamFlow {
+            from { stroke-dashoffset: 36; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        .gear-outer-ring {
+            transform-origin: 410px 360px;
+            animation: gearRotateCW 40s linear infinite;
+        }
+
+        .gear-inner-orbit {
+            transform-origin: 410px 360px;
+            animation: gearRotateCCW 26s linear infinite;
+        }
+
+        .gear-outer-ring.paused,
+        .gear-inner-orbit.paused {
+            animation-play-state: paused;
+        }
+
+        .spoke-flow-stream {
+            stroke-dasharray: 8 6;
+            animation: arrowStreamFlow 1.25s linear infinite;
+        }
+
+        .spoke-flow-stream.is-active {
+            stroke-dasharray: 10 5;
+            animation-duration: 0.7s;
+        }
+
+        .hub-spoke-g {
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+
+        .hub-spoke-g .hex-shape {
+            transition: transform 0.22s ease, stroke-width 0.22s ease;
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+
+        .hub-spoke-g:hover .hex-shape,
+        .hub-spoke-g.active .hex-shape {
+            transform: scale(1.1);
+            stroke: #ffffff;
+            stroke-width: 2.5px;
+        }
+
+        .hub-inspector {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .identity-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+        }
+
+        @media (max-width: 520px) {
+            .identity-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .identity-pill {
+            padding: 7px 6px;
+            border-radius: 8px;
+            border: 1px solid var(--border-hairline);
+            background: var(--bg-elevated);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.16s ease;
+        }
+
+        .identity-pill.active {
+            background: var(--accent-primary-soft);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .hub-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 14px;
+        }
+
+        .hub-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border-radius: 7px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            font-size: 11.5px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .hub-pill:hover {
+            background: var(--bg-elevated);
+        }
+
+        .hub-pill.active {
+            background: var(--accent-primary-soft);
+            font-weight: 700;
+        }
+
+        /* =====================================================================
+           7. SECTION GRIDS (CNCF STACK, JOURNAL, LAB, TOOLS, ABOUT, CONTACT)
+        ===================================================================== */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        @media (max-width: 960px) {
+            .grid-3, .grid-4 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 680px) {
+            .grid-2, .grid-3, .grid-4 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .filter-btn {
+            padding: 6px 11px;
+            border-radius: 7px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            font-size: 11.5px;
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            background: var(--accent-primary-soft);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        .tag-pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 9px;
+            border-radius: 6px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-hairline);
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .tag-pill:hover,
+        .tag-pill.active {
+            background: var(--accent-primary-soft);
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            font-weight: 700;
+        }
+
+        .field {
+            width: 100%;
+            padding: 8px 10px;
+            border-radius: 7px;
+            background: var(--bg-input);
+            border: 1px solid var(--border-hairline);
+            color: var(--text-primary);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .field:focus {
+            border-color: var(--accent-primary);
+        }
+
+        /* =====================================================================
+           8. MODALS, BOTTOM STATUS BAR & FLOATING ARCHITECT BOT
+        ===================================================================== */
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.74);
+            backdrop-filter: blur(4px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+        }
+
+        .modal-backdrop.open {
+            display: flex;
+        }
+
+        .modal-box {
+            width: 100%;
+            max-width: 660px;
+            max-height: 86vh;
+            overflow-y: auto;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-strong);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .statusbar {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 28px;
+            z-index: 70;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-hairline);
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .online-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22c55e;
+            margin-right: 4px;
+        }
+
+        .bot-launcher {
+            position: fixed;
+            right: 18px;
+            bottom: 42px;
+            z-index: 85;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 9px 14px;
+            border-radius: 999px;
+            background: var(--bg-surface);
+            border: 1px solid var(--accent-primary-border);
+            color: var(--text-primary);
+            box-shadow: var(--shadow-card);
+            cursor: pointer;
+            transition: transform 0.16s ease, border-color 0.16s ease, background-color 0.16s ease;
+        }
+
+        .bot-launcher:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent-primary);
+            background: var(--bg-elevated);
+        }
+
+        .bot-pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            animation: botPulse 2s infinite;
+            flex-shrink: 0;
+        }
+
+        @keyframes botPulse {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.65); }
+            70% { box-shadow: 0 0 0 7px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .bot-drawer {
+            position: fixed;
+            right: 18px;
+            bottom: 92px;
+            z-index: 86;
+            width: calc(100vw - 36px);
+            max-width: 390px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-strong);
+            border-radius: 14px;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(12px);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .bot-drawer.open {
+            display: flex;
+            animation: botSlideUp 0.18s ease-out;
+        }
+
+        @keyframes botSlideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .bot-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 13px;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border-hairline);
+        }
+
+        .bot-messages {
+            height: 270px;
+            overflow-y: auto;
+            padding: 12px;
+            background: var(--bg-input);
+            display: flex;
+            flex-direction: column;
+            gap: 9px;
+            font-size: 12.5px;
+        }
+
+        .bot-msg {
+            max-width: 88%;
+            padding: 9px 11px;
+            border-radius: 10px;
+            line-height: 1.5;
+            word-wrap: break-word;
+        }
+
+        .bot-msg.user {
+            align-self: flex-end;
+            background: var(--accent-primary);
+            color: #ffffff;
+            border-bottom-right-radius: 3px;
+        }
+
+        .bot-msg.assistant {
+            align-self: flex-start;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            color: var(--text-primary);
+            border-bottom-left-radius: 3px;
+        }
+
+        .bot-action-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 7px;
+        }
+
+        .bot-action-btn {
+            padding: 3px 8px;
+            border-radius: 5px;
+            background: var(--accent-primary-soft);
+            border: 1px solid var(--accent-primary-border);
+            color: var(--accent-primary);
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .bot-action-btn:hover {
+            background: var(--accent-primary);
+            color: #ffffff;
+        }
+
+        .bot-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            padding: 8px 11px;
+            background: var(--bg-elevated);
+            border-top: 1px solid var(--border-hairline);
+        }
+
+        .bot-chip {
+            padding: 3px 7px;
+            border-radius: 5px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            font-size: 10.5px;
+            cursor: pointer;
+        }
+
+        .bot-chip:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .bot-input-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 10px;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-hairline);
+        }
+
+        .bot-typing {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-hairline);
+            align-self: flex-start;
+        }
+
+        .bot-typing span {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--accent-primary);
+            animation: typingBounce 1.1s infinite ease-in-out;
+        }
+
+        .bot-typing span:nth-child(2) { animation-delay: 0.18s; }
+        .bot-typing span:nth-child(3) { animation-delay: 0.36s; }
+
+        @keyframes typingBounce {
+            0%, 80%, 100% { transform: scale(0.7); opacity: 0.45; }
+            40% { transform: scale(1.15); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =========================================================================
+         TOP CLI NAVIGATION BAR & SUB-HEADER RIBBON (EXACT SCREENSHOT LAYOUT)
+    ========================================================================= -->
+    <header class="topbar">
+        <div class="topbar-main">
+            <!-- Top-Left Block ANSI-Shadow PKP Monogram + PORTFOLIO + Kinetic Identity Strip -->
+            <a href="#home" class="brand-lockup mono" aria-label="PKP Portfolio — Pankaj Kumar Pandey">
+                <div class="ascii-logo-box">
+<pre class="ascii-pkp">██████╗ ██╗  ██╗██████╗
+██╔══██╗██║ ██╔╝██╔══██╗
+██████╔╝█████╔╝ ██████╔╝
+██╔═══╝ ██╔═██╗ ██╔═══╝
+██║     ██║  ██╗██║
+╚═╝     ╚═╝  ╚═╝╚═╝</pre>
+                    <span class="ascii-sub">PORTFOLIO</span>
+                </div>
+                <div class="brand-kinetic-strip">
+                    <span id="animated-brand" class="brand-name">Pankaj Kumar Pandey</span>
+                    <span id="brand-pillar-pill" class="brand-pillar-sub">A → AI Architect</span>
+                </div>
+            </a>
+
+            <!-- Center Two-Tier Uppercase CLI Command Navigation -->
+            <nav class="cli-nav-links mono" aria-label="Primary CLI Navigation">
+                <a href="#home" class="cli-nav-item active" data-spy="home">
+                    <span class="cli-nav-cmd">(01) CD ~</span>
+                    <span class="cli-nav-sub">home</span>
+                </a>
+                <a href="#transformation-hub" class="cli-nav-item" data-spy="transformation-hub">
+                    <span class="cli-nav-cmd">(02) OPEN ./HUB</span>
+                    <span class="cli-nav-sub">transform</span>
+                </a>
+                <a href="#ai-native-stack" class="cli-nav-item" data-spy="ai-native-stack">
+                    <span class="cli-nav-cmd">(03) LS STACK/</span>
+                    <span class="cli-nav-sub">ai-native</span>
+                </a>
+                <a href="#journal" class="cli-nav-item" data-spy="journal">
+                    <span class="cli-nav-cmd">(04) LS POSTS/</span>
+                    <span class="cli-nav-sub">journal</span>
+                </a>
+                <a href="#lab" class="cli-nav-item" data-spy="lab">
+                    <span class="cli-nav-cmd">(05) LS LAB/</span>
+                    <span class="cli-nav-sub">lab</span>
+                </a>
+                <a href="#tools" class="cli-nav-item" data-spy="tools">
+                    <span class="cli-nav-cmd">(06) LS TOOLS/</span>
+                    <span class="cli-nav-sub">tools</span>
+                </a>
+                <a href="#about" class="cli-nav-item" data-spy="about">
+                    <span class="cli-nav-cmd">(07) CAT RESUME.MD</span>
+                    <span class="cli-nav-sub">about</span>
+                </a>
+                <a href="#contact" class="cli-nav-item" data-spy="contact">
+                    <span class="cli-nav-cmd">(08) PING ME</span>
+                    <span class="cli-nav-sub">contact</span>
+                </a>
+            </nav>
+
+            <!-- Top-Right 6-Theme Dropdown, Social Icon Pills & Command Palette -->
+            <div class="nav-right mono">
+                <div class="theme-dropdown">
+                    <button type="button" id="theme-toggle-btn" class="btn" style="padding: 5px 9px; font-size: 11.5px;">
+                        <span id="theme-btn-label">themes: claude-code</span> ▾
+                    </button>
+                    <div id="theme-menu" class="theme-menu" role="menu"></div>
+                </div>
+                <a href="#lab" class="icon-chip desktop-only-chip" title="GitHub &amp; Reference Lab">&lt;/&gt;</a>
+                <a href="#about" class="icon-chip desktop-only-chip" title="Executive Dossier &amp; LinkedIn">[in]</a>
+                <a href="#journal" class="icon-chip desktop-only-chip" title="Architectural Notes on X">𝕏</a>
+                <a href="#contact" class="icon-chip desktop-only-chip" title="Direct Email Briefing">@</a>
+                <button type="button" id="cmd-open-btn" class="icon-chip" title="Command Palette (⌘K)">[⌘K]</button>
+                <button type="button" id="mobile-menu-btn" class="icon-chip mobile-toggle" aria-label="Toggle Menu">[=]</button>
+            </div>
+        </div>
+
+        <!-- Sub-Header Status Ribbon: PANKAJ ON MONDAY // 17:31:00 -->
+        <div class="subbar mono">
+            <div class="subbar-inner">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <span class="secondary font-bold">PANKAJ</span>
+                    <span>ON <span id="subbar-day-clock">MONDAY // --:--:--</span></span>
+                </div>
+                <div class="subbar-links">
+                    <a href="#lab">&lt;/&gt; GitHub</a>
+                    <span class="dim">·</span>
+                    <a href="#about">[in] LinkedIn</a>
+                    <span class="dim">·</span>
+                    <a href="#journal">𝕏 X</a>
+                    <span class="dim">·</span>
+                    <a href="#transformation-hub" class="accent">How I work</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-drawer" class="mobile-drawer mono">
+            <div class="mobile-drawer-grid">
+                <a href="#home" class="cli-nav-item"><span class="cli-nav-cmd">(01) CD ~</span><span class="cli-nav-sub">home</span></a>
+                <a href="#transformation-hub" class="cli-nav-item"><span class="cli-nav-cmd">(02) OPEN ./HUB</span><span class="cli-nav-sub">transform</span></a>
+                <a href="#ai-native-stack" class="cli-nav-item"><span class="cli-nav-cmd">(03) LS STACK/</span><span class="cli-nav-sub">ai-native</span></a>
+                <a href="#journal" class="cli-nav-item"><span class="cli-nav-cmd">(04) LS POSTS/</span><span class="cli-nav-sub">journal</span></a>
+                <a href="#lab" class="cli-nav-item"><span class="cli-nav-cmd">(05) LS LAB/</span><span class="cli-nav-sub">lab</span></a>
+                <a href="#tools" class="cli-nav-item"><span class="cli-nav-cmd">(06) LS TOOLS/</span><span class="cli-nav-sub">tools</span></a>
+                <a href="#about" class="cli-nav-item"><span class="cli-nav-cmd">(07) CAT RESUME.MD</span><span class="cli-nav-sub">about</span></a>
+                <a href="#contact" class="cli-nav-item"><span class="cli-nav-cmd">(08) PING ME</span><span class="cli-nav-sub">contact</span></a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- =====================================================================
+             SECTION 01: MACOS TERMINAL HERO WINDOW & EXECUTIVE SIGNAL DOSSIER (#home)
+        ===================================================================== -->
+        <section id="home" class="section-block" style="padding-top: 24px;">
+            <div class="hero-grid">
+                <!-- Left Column: Authentic macOS Terminal Window (matching screenshot) -->
+                <div class="mac-term mono">
+                    <!-- Window Titlebar: Traffic Lights + PANKAJ@ARCHITECT:~ + /BIN/SH -->
+                    <div class="mac-term-bar">
+                        <div class="mac-dots-group">
+                            <div class="mac-dots" aria-hidden="true">
+                                <span class="mac-dot" style="background:#ff5f56;"></span>
+                                <span class="mac-dot" style="background:#ffbd2e;"></span>
+                                <span class="mac-dot" style="background:#27c93f;"></span>
+                            </div>
+                            <span>PANKAJ@ARCHITECT:~</span>
+                        </div>
+                        <span>/BIN/SH</span>
+                    </div>
+
+                    <!-- Terminal Body: Boot Lines + ANSI-Shadow Banner + Shell Prompt + Interactive Command Directory -->
+                    <div class="mac-term-body">
+                        <!-- 3-Line Boot Sequence -->
+                        <div class="boot-seq">
+                            <div class="dim">[sys] loading enterprise &amp; agentic architecture modules...</div>
+                            <div class="dim">[sys] mounting /dev/transformation</div>
+                            <div class="secondary font-bold">[ok] ready</div>
+                        </div>
+
+                        <!-- Large Block ANSI-Shadow ASCII Art Banner: PANKAJ -->
+                        <div class="ansi-banner-wrap" aria-label="PANKAJ ASCII Art">
+<pre class="ansi-banner">██████╗  █████╗ ███╗   ██╗██╗  ██╗ █████╗      ██╗
+██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝██╔══██╗     ██║
+██████╔╝███████║██╔██╗ ██║█████╔╝ ███████║     ██║
+██╔═══╝ ██╔══██║██║╚██╗██║██╔═██╗ ██╔══██║██   ██║
+██║     ██║  ██║██║ ╚████║██║  ██╗██║  ██║╚█████╔╝
+╚═╝     ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝</pre>
+                        </div>
+
+                        <!-- Shell Prompt Line with Per-Character Kinetic Wave: Pankaj Kumar Pandey █ -->
+                        <div class="shell-identity-line">
+                            <span class="shell-prompt-host">pankaj@architect:~$</span>
+                            <h1 class="shell-prompt-fullname">
+                                <span id="hero-animated-name">Pankaj Kumar Pandey</span>
+                                <span class="shell-block-cursor" aria-hidden="true"></span>
+                            </h1>
+                            <span id="hero-pillar-badge" class="shell-pillar-chip">A → AI Architect</span>
+                        </div>
+
+                        <!-- Tracked Uppercase Subtitle -->
+                        <div class="tracked-subtitle">
+                            ENTERPRISE ARCHITECTURE &nbsp;·&nbsp; AGENTIC AI &nbsp;·&nbsp; MULTICLOUD &nbsp;·&nbsp; TRANSFORMATION
+                        </div>
+
+                        <!-- Interactive Command Directory Lines (matching screenshot bottom rows) -->
+                        <div class="term-cmd-guide">
+                            <div class="term-cmd-row">
+                                <span>type</span>
+                                <button type="button" class="term-link" data-run="help">help</button>
+                                <span>for commands</span>
+                                <span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="theme">theme</button>
+                                <span>to switch colors</span>
+                            </div>
+
+                            <div class="term-cmd-row">
+                                <span class="term-cmd-label">site tools</span>
+                                <button type="button" class="term-link" data-run="open tco">tco</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="open tokens">tokens</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="open adr">adr</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="open qr">qr</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="open ics">ics</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="open cron">cron</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="vcard">vcard</button>
+                            </div>
+
+                            <div class="term-cmd-row">
+                                <span class="term-cmd-label">terminal tools</span>
+                                <button type="button" class="term-link" data-run='json {"agent":"ucp","status":"ready"}'>json</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="base64 pankaj@architect">base64</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="wordcount Digital and agentic transformation for enterprises">wordcount</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="uuid">uuid</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="epoch">epoch</button>
+                            </div>
+
+                            <div class="term-cmd-row">
+                                <span class="term-cmd-label">explore</span>
+                                <button type="button" class="term-link" data-run="hub">hub</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="integration">integration</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="commerce">commerce</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="enterprise">enterprise</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="stack">stack</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="journal">journal</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="lab">lab</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="about">about</button><span class="term-sep">·</span>
+                                <button type="button" class="term-link" data-run="contact">contact</button>
+                            </div>
+                        </div>
+
+                        <!-- Live Interactive Terminal Output Log -->
+                        <div id="cli-output" class="cli-output">
+                            <div class="sub">Click any command above or type below (supports <span class="accent">Tab</span> autocomplete &amp; <span class="accent">↑/↓</span> history).</div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Shell Prompt Input Bar -->
+                    <div class="cli-input-row">
+                        <span class="secondary font-bold">pankaj@architect:~$</span>
+                        <input type="text" id="cli-input" class="cli-input" placeholder="help | theme cursor | json {...} | uuid | epoch | open tco" autocomplete="off" spellcheck="false">
+                        <button type="button" id="cli-run-btn" class="btn" style="padding: 4px 9px; font-size: 11px;">Run ↵</button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Executive-Safe Signal + 2x2 Metadata Grid + Quick-Jump Directory -->
+                <div class="hero-right">
+                    <!-- Executive-Safe Signal Callout Card -->
+                    <div class="exec-signal-box">
+                        <div class="mono accent" style="font-size: 11px; font-weight: 700; margin-bottom: 6px;">Executive-safe signal</div>
+                        <p style="font-size: 15px; font-weight: 500; line-height: 1.62; color: var(--text-primary); margin-bottom: 12px;">
+                            “I help organisations navigate their digital and agentic transformation journeys—connecting technology teams and executive leaders to turn complexity into clear, confident decisions.”
+                        </p>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <a href="#transformation-hub" class="btn btn-accent">open ./hub — 9-Spoke Gear ↓</a>
+                            <a href="#contact" class="btn">ping me — Book a Conversation →</a>
+                        </div>
+                    </div>
+
+                    <!-- 2x2 Metadata Grid -->
+                    <div class="meta-grid-2x2 mono">
+                        <div class="meta-cell">
+                            <div class="dim" style="font-size: 10px;">focus:</div>
+                            <div style="font-size: 11.5px; font-weight: 700; margin-top: 2px;">enterprise &amp; agentic ai</div>
+                        </div>
+                        <div class="meta-cell">
+                            <div class="dim" style="font-size: 10px;">mode:</div>
+                            <div class="secondary" style="font-size: 11.5px; font-weight: 700; margin-top: 2px;">penthouse to engine room</div>
+                        </div>
+                        <div class="meta-cell">
+                            <div class="dim" style="font-size: 10px;">base &amp; scale:</div>
+                            <div style="font-size: 11.5px; font-weight: 700; margin-top: 2px;">London, UK · $290M+</div>
+                        </div>
+                        <div class="meta-cell" style="display: flex; align-items: center; justify-content: space-between; gap: 6px;">
+                            <div>
+                                <div class="dim" style="font-size: 10px;">card:</div>
+                                <div style="font-size: 11.5px; font-weight: 700; margin-top: 2px;">vCard ready</div>
+                            </div>
+                            <button type="button" id="download-vcard-btn" class="btn btn-accent" style="padding: 4px 8px; font-size: 10.5px;" title="Download pankaj-pandey.vcf">.vcf ↓</button>
+                        </div>
+                    </div>
+
+                    <!-- Numbered Directory Quick-Jump Index -->
+                    <div class="card" style="padding: 13px 14px;">
+                        <div class="mono dim" style="font-size: 11px; margin-bottom: 7px;">$ directory index // quick-jump</div>
+                        <div class="dir-list mono">
+                            <a href="#transformation-hub" class="dir-row"><span><span class="accent font-bold">(01) hub</span> <span class="dim">// 9-spoke transformation gear</span></span><span>→</span></a>
+                            <a href="#ai-native-stack" class="dir-row"><span><span class="accent font-bold">(02) stack</span> <span class="dim">// cncf 5-layer ai-native stack</span></span><span>→</span></a>
+                            <a href="#journal" class="dir-row"><span><span class="accent font-bold">(03) journal</span> <span class="dim">// read field monographs</span></span><span>→</span></a>
+                            <a href="#lab" class="dir-row"><span><span class="accent font-bold">(04) lab</span> <span class="dim">// inspect reference repos</span></span><span>→</span></a>
+                            <a href="#tools" class="dir-row"><span><span class="accent font-bold">(05) tools</span> <span class="dim">// architect &amp; finops calculators</span></span><span>→</span></a>
+                            <a href="#about" class="dir-row"><span><span class="accent font-bold">(06) about</span> <span class="dim">// executive dossier &amp; career</span></span><span>→</span></a>
+                            <a href="#contact" class="dir-row"><span><span class="accent font-bold">(07) contact</span> <span class="dim">// book a conversation</span></span><span>→</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 02: UNIFIED DIGITAL & AGENTIC TRANSFORMATION SHOWCASE (#transformation-hub)
+        ===================================================================== -->
+        <section id="transformation-hub" class="section-block">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker mono">(02) OPEN ./HUB — ARCHITECTURAL IDENTITY &amp; TRANSFORMATION OPERATING MODEL</div>
+                    <h2 class="section-title">Digital &amp; Agentic Transformation for Enterprises</h2>
+                </div>
+                <div class="mono" style="display: flex; align-items: center; gap: 8px;">
+                    <button type="button" id="hub-auto-btn" class="btn">● Flow &amp; Cycle: Auto</button>
+                </div>
+            </div>
+
+            <div class="hub-grid">
+                <!-- Left Column: Radial 9-Spoke Mechanical Gear Diagram -->
+                <div class="card hub-svg-box">
+                    <div class="mono dim" style="width: 100%; display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px;">
+                        <span>enterprise-transformation-gear.svg (9 unique spokes · 40° radial symmetry)</span>
+                        <span class="secondary">click any hexagon node</span>
+                    </div>
+                    <svg id="hub-svg" viewBox="0 0 820 720" style="width: 100%; max-height: 550px; height: auto;" role="img" aria-label="Digital and Agentic Transformation for Enterprises 9-Spoke Gear Diagram">
+                        <defs>
+                            <marker id="arrow-muted" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="var(--border-strong)"/>
+                            </marker>
+                            <marker id="arrow-active" viewBox="0 0 10 10" refX="7.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                                <path d="M 1 1.5 L 8.5 5 L 1 8.5 z" fill="var(--accent-primary)"/>
+                            </marker>
+                            <filter id="spoke-glow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feGaussianBlur stdDeviation="2.8" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Dynamically populated 9 flowing bidirectional arrow spokes -->
+                        <g id="hub-lines"></g>
+
+                        <!-- Center Rotating 24-Tooth Mechanical Gear & Stationary Core Label -->
+                        <g id="hub-center" style="cursor: pointer;">
+                            <g id="hub-gear-ring" class="gear-outer-ring">
+                                <path id="hub-gear-path" fill="var(--bg-elevated)" stroke="var(--border-strong)" stroke-width="2.4"/>
+                                <circle cx="410" cy="360" r="106" fill="none" stroke="var(--accent-primary-border)" stroke-width="1.4" stroke-dasharray="5 6"/>
+                            </g>
+                            <circle id="hub-inner-orbit" class="gear-inner-orbit" cx="410" cy="360" r="95" fill="var(--bg-surface)" stroke="var(--accent-primary)" stroke-width="1.8" stroke-dasharray="10 6" opacity="0.9"/>
+                            <circle cx="410" cy="360" r="87" fill="var(--bg-input)" stroke="var(--border-strong)" stroke-width="2"/>
+                            <text x="410" y="328" text-anchor="middle" fill="var(--text-primary)" font-weight="800" font-size="12">DIGITAL &amp; AGENTIC</text>
+                            <text x="410" y="346" text-anchor="middle" fill="var(--accent-primary)" font-weight="800" font-size="12">TRANSFORMATION</text>
+                            <text x="410" y="364" text-anchor="middle" fill="var(--text-primary)" font-weight="800" font-size="12">FOR</text>
+                            <text x="410" y="382" text-anchor="middle" fill="var(--text-primary)" font-weight="800" font-size="12">ENTERPRISES</text>
+                            <text x="410" y="402" text-anchor="middle" fill="var(--text-muted)" font-family="monospace" font-size="9">[click core: 9-pillar overview]</text>
+                        </g>
+
+                        <!-- Dynamically populated 9 unique hexagon nodes -->
+                        <g id="hub-spokes"></g>
+                    </svg>
+                </div>
+
+                <!-- Right Column: Compact A·A·M·E Core Identity Selector + Live 9-Spoke Architectural Inspector -->
+                <div class="card hub-inspector">
+                    <div>
+                        <div class="mono dim" style="display: flex; justify-content: space-between; font-size: 10.5px; margin-bottom: 6px;">
+                            <span>CORE IDENTITY PILLARS (A · A · M · E)</span>
+                            <span id="identity-active-label" class="accent font-bold">A → AI Architect</span>
+                        </div>
+                        <div id="identity-bar" class="identity-bar mono"></div>
+                    </div>
+
+                    <div style="height: 1px; background: var(--border-hairline);"></div>
+
+                    <div id="hub-inspector-body" style="flex: 1;"></div>
+
+                    <div class="mono" style="display: flex; align-items: center; justify-content: space-between; padding-top: 10px; border-top: 1px solid var(--border-hairline); font-size: 12px;">
+                        <div style="display: flex; gap: 6px;">
+                            <button type="button" id="hub-prev-btn" class="btn">← Prev</button>
+                            <button type="button" id="hub-next-btn" class="btn">Next →</button>
+                        </div>
+                        <span id="hub-counter" class="dim">Spoke 08 / 09</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All 9 Quick-Select Spoke Pills -->
+            <div id="hub-pills" class="hub-pills mono"></div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 03: CNCF AI-NATIVE LANDSCAPE & 5-LAYER STACK (#ai-native-stack)
+        ===================================================================== -->
+        <section id="ai-native-stack" class="section-block">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker mono">(03) LS STACK/ — CNCF AI-NATIVE LANDSCAPE REFERENCE (landscape.cncf.io/?group=ai-native)</div>
+                    <h2 class="section-title">5 Layers of Cloud-Native &amp; Agentic AI Development</h2>
+                </div>
+                <span class="mono dim" style="font-size: 12px;">filter by layer or click any project card</span>
+            </div>
+
+            <div id="cncf-filter-bar" class="filter-bar mono"></div>
+            <div id="cncf-grid" class="grid-3"></div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 04: JOURNAL — ARCHITECTURAL MONOGRAPHS (#journal)
+        ===================================================================== -->
+        <section id="journal" class="section-block">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker mono">(04) LS POSTS/ — FIELD MONOGRAPHS &amp; ARCHITECTURE NOTES</div>
+                    <h2 class="section-title">Journal &amp; Technical Writing</h2>
+                </div>
+                <span class="mono dim" style="font-size: 12px;">click any entry to open Markdown reader</span>
+            </div>
+
+            <div id="journal-grid" class="grid-2"></div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 05: LAB BENCH & REFERENCE REPOSITORIES (#lab)
+        ===================================================================== -->
+        <section id="lab" class="section-block">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker mono">(05) LS LAB/ — REFERENCE BLUEPRINTS &amp; SANDBOX REPOSITORIES</div>
+                    <h2 class="section-title">Architecture Lab Bench</h2>
+                </div>
+                <span class="mono dim" style="font-size: 12px;">click any repository to inspect topology</span>
+            </div>
+
+            <div id="lab-grid" class="grid-2"></div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 06: INTERACTIVE ARCHITECT & FINOPS MICRO-TOOLS (#tools)
+        ===================================================================== -->
+        <section id="tools" class="section-block">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker mono">(06) LS TOOLS/ — INTERACTIVE ARCHITECT &amp; FINOPS UTILITIES</div>
+                    <h2 class="section-title">Interactive Architecture &amp; FinOps Micro-Tools</h2>
+                </div>
+                <span class="mono dim" style="font-size: 12px;">client-side · zero-telemetry · instant export</span>
+            </div>
+
+            <div class="grid-3">
+                <div class="card" style="padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px;">
+                    <div>
+                        <div class="mono accent" style="font-size: 11.5px; font-weight: 700;">01 · tco calc</div>
+                        <h3 style="font-size: 16px; font-weight: 700; margin: 4px 0;">API &amp; AI Gateway TCO Estimator</h3>
+                        <p class="sub" style="font-size: 12.5px;">Compare Kong, Envoy AI Gateway, and iPaaS (Boomi &amp; MuleSoft) monthly throughput and semantic caching savings.</p>
+                    </div>
+                    <button type="button" class="btn tool-launch-btn" data-tool="tco">Launch Calculator →</button>
+                </div>
+
+                <div class="card" style="padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px;">
+                    <div>
+                        <div class="mono accent" style="font-size: 11.5px; font-weight: 700;">02 · token est</div>
+                        <h3 style="font-size: 16px; font-weight: 700; margin: 4px 0;">LLM Token &amp; Inference Cost Calculator</h3>
+                        <p class="sub" style="font-size: 12.5px;">Model input and output token spend across Claude, Gemini, and self-hosted vLLM GPU clusters.</p>
+                    </div>
+                    <button type="button" class="btn tool-launch-btn" data-tool="tokens">Launch Estimator →</button>
+                </div>
+
+                <div class="card" style="padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px;">
+                    <div>
+                        <div class="mono accent" style="font-size: 11.5px; font-weight: 700;">03 · adr gen</div>
+                        <h3 style="font-size: 16px; font-weight: 700; margin: 4px 0;">ADR Markdown Builder</h3>
+                        <p class="sub" style="font-size: 12.5px;">Generate structured Architecture Decision Records with context, trade-offs, and AI-DLC guardrails.</p>
+                    </div>
+                    <button type="button" class="btn tool-launch-btn" data-tool="adr">Launch ADR Builder →</button>
+                </div>
+
+                <div class="card" style="padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px;">
+                    <div>
+                        <div class="mono accent" style="font-size: 11.5px; font-weight: 700;">04 · qr make</div>
+                        <h3 style="font-size: 16px; font-weight: 700; margin: 4px 0;">QR &amp; vCard Generator</h3>
+                        <p class="sub" style="font-size: 12.5px;">Generate a scannable SVG matrix badge and downloadable .vcf contact card for executive networking.</p>
+                    </div>
+                    <button type="button" class="btn tool-launch-btn" data-tool="qr">Generate Badge →</button>
+                </div>
+
+                <div class="card" style="padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px;">
+                    <div>
+                        <div class="mono accent" style="font-size: 11.5px; font-weight: 700;">05 · make ics</div>
+                        <h3 style="font-size: 16px; font-weight: 700; margin: 4px 0;">Executive Briefing .ics Calendar File</h3>
+                        <p class="sub" style="font-size: 12.5px;">Create and download a standardised RFC-5545 calendar invite for architecture review sessions.</p>
+                    </div>
+                    <button type="button" class="btn tool-launch-btn" data-tool="ics">Create .ics Invite →</button>
+                </div>
+
+                <div class="card" style="padding: 16px; display: flex; flex-direction: column; justify-content: space-between; gap: 10px;">
+                    <div>
+                        <div class="mono accent" style="font-size: 11.5px; font-weight: 700;">06 · cron parse</div>
+                        <h3 style="font-size: 16px; font-weight: 700; margin: 4px 0;">Cron &amp; SLA Error-Budget Calculator</h3>
+                        <p class="sub" style="font-size: 12.5px;">Calculate monthly and annual downtime budgets (99.9% to 99.999%) and validate Kubernetes CronJobs.</p>
+                    </div>
+                    <button type="button" class="btn tool-launch-btn" data-tool="cron">Open SLA Helper →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 07: EDITORIAL RESUME & ABOUT DOSSIER (#about)
+        ===================================================================== -->
+        <section id="about" class="section-block">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker mono">(07) CAT RESUME.MD — pankaj@architect / ABOUT &amp; CAREER LEDGER</div>
+                    <h2 class="section-title">Penthouse Strategy to Engine-Room Execution</h2>
+                </div>
+                <span class="mono dim" style="font-size: 12px;">London, UK · 20+ Years Architecture Leadership</span>
+            </div>
+
+            <div class="grid-2" style="margin-bottom: 16px;">
+                <div class="card" style="padding: 18px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
+                    <div style="display: flex; flex-direction: column; gap: 11px;">
+                        <p style="font-size: 14px; line-height: 1.65;">
+                            I am <strong>Pankaj Kumar Pandey</strong>, a London-based Principal Solutions &amp; Agentic AI Architect who operates fluently between executive investment committees (<em>The Penthouse</em>) and production Kubernetes clusters, integration fabrics, and agentic codebases (<em>The Engine Room</em>).
+                        </p>
+                        <p class="sub" style="font-size: 13.5px; line-height: 1.6;">
+                            Across financial markets (LSEG, Thomson Reuters), global payments (Paysafe Group), and international assessment &amp; commerce (Trinity College London), I have led post-merger consolidations of 245+ systems, modernised Oracle Fusion Middleware (OSB/BPEL) and MuleSoft/Boomi estates, and architected $290M+ digital transformations.
+                        </p>
+                        <div class="elevated" style="padding: 12px; border-left: 3px solid var(--accent-secondary);">
+                            <div class="mono secondary" style="font-size: 11px; font-weight: 700; margin-bottom: 3px;">// CURRENT ARCHITECTURAL FOCUS</div>
+                            <div style="font-size: 13px;">Replacing brittle prompt-chaining with specification-driven <strong>AI-DLC</strong>, wrapping legacy Boomi, MuleSoft, and Oracle MW services into governed <strong>MCP Servers</strong>, and enabling cryptographic <strong>Agentic Commerce (UCP/ACP/AP2)</strong>.</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="mono dim" style="font-size: 10.5px; margin-bottom: 6px;">DOMAIN TAGS (CLICK TO HIGHLIGHT STACK MATRIX)</div>
+                        <div id="about-tags" class="mono" style="display: flex; flex-wrap: wrap; gap: 5px;"></div>
+                    </div>
+                </div>
+
+                <div id="about-matrix" class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 9px;">
+                    <div class="mono accent" style="font-size: 11.5px; font-weight: 700;">// 5-PILLAR CORE ARCHITECTURE &amp; ENGINEERING MATRIX</div>
+                    <div class="elevated matrix-row" data-tags="agentic mcp ai-dlc" style="padding: 9px 12px;">
+                        <div class="mono dim" style="font-size: 10.5px;">01. AGENTIC AI &amp; COMMERCE PROTOCOLS</div>
+                        <div class="mono" style="font-size: 12px; margin-top: 2px;">MCP · A2A · UCP · ACP · AP2 · Google ADK · LangGraph · Bedrock AgentCore</div>
+                    </div>
+                    <div class="elevated matrix-row" data-tags="multicloud k8s wasm" style="padding: 9px 12px;">
+                        <div class="mono dim" style="font-size: 10.5px;">02. MULTICLOUD, KUBERNETES &amp; WASM</div>
+                        <div class="mono" style="font-size: 12px; margin-top: 2px;">AWS (EKS) · Azure (AKS) · GCP (GKE) · OCI · Istio · Crossplane · Wasm/SpinKube</div>
+                    </div>
+                    <div class="elevated matrix-row" data-tags="integration gateway" style="padding: 9px 12px;">
+                        <div class="mono dim" style="font-size: 10.5px;">03. ENTERPRISE INTEGRATION (IPAAS &amp; ESB/BPEL)</div>
+                        <div class="mono" style="font-size: 12px; margin-top: 2px;">Dell Boomi · MuleSoft Anypoint · Oracle Fusion MW (OSB/BPEL) · Event-Driven EDA</div>
+                    </div>
+                    <div class="elevated matrix-row" data-tags="gateway security ai-dlc" style="padding: 9px 12px;">
+                        <div class="mono dim" style="font-size: 10.5px;">04. AI GATEWAYS &amp; ZERO-TRUST GOVERNANCE</div>
+                        <div class="mono" style="font-size: 12px; margin-top: 2px;">Kong AI Gateway · Envoy AI Gateway · LiteLLM · SPIFFE/SPIRE · OPA Policy-as-Code</div>
+                    </div>
+                    <div class="elevated matrix-row" data-tags="inference data observability" style="padding: 9px 12px;">
+                        <div class="mono dim" style="font-size: 10.5px;">05. INFERENCE, VECTOR DATA &amp; OBSERVABILITY</div>
+                        <div class="mono" style="font-size: 12px; margin-top: 2px;">vLLM · KServe · Qdrant · pgvector · Apache Iceberg · OpenTelemetry · Langfuse</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 Credentials & Recognition Cards -->
+            <div class="grid-4 mono" style="margin-bottom: 16px;">
+                <div class="card" style="padding: 14px;">
+                    <div class="accent" style="font-size: 11px; font-weight: 700;">CREDENTIAL 01</div>
+                    <div style="font-size: 13px; font-weight: 700; margin-top: 4px;">AWS Partner FDE</div>
+                    <div class="sub" style="font-size: 11.5px; margin-top: 3px;">Forward Deployed Engineer · GenAI &amp; Agentic Systems</div>
+                </div>
+                <div class="card" style="padding: 14px;">
+                    <div class="accent" style="font-size: 11px; font-weight: 700;">CREDENTIAL 02</div>
+                    <div style="font-size: 13px; font-weight: 700; margin-top: 4px;">Multicloud Architect</div>
+                    <div class="sub" style="font-size: 11.5px; margin-top: 3px;">AWS · Azure · GCP · OCI Certified Enterprise Design</div>
+                </div>
+                <div class="card" style="padding: 14px;">
+                    <div class="accent" style="font-size: 11px; font-weight: 700;">PUBLICATIONS</div>
+                    <div style="font-size: 13px; font-weight: 700; margin-top: 4px;">Head First AI-DLC</div>
+                    <div class="sub" style="font-size: 11.5px; margin-top: 3px;">Author on AI-Driven Development &amp; Platform Engineering</div>
+                </div>
+                <div class="card" style="padding: 14px;">
+                    <div class="accent" style="font-size: 11px; font-weight: 700;">SCALE IMPACT</div>
+                    <div style="font-size: 13px; font-weight: 700; margin-top: 4px;">$290M+ &amp; 245+ Apps</div>
+                    <div class="sub" style="font-size: 11.5px; margin-top: 3px;">Global M&amp;A Rationalisation &amp; Payments Modernisation</div>
+                </div>
+            </div>
+
+            <!-- Executive Career Ledger -->
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div class="mono dim" style="font-size: 11.5px;">// EXECUTIVE CAREER LEDGER</div>
+                <div class="card" style="padding: 15px 18px;">
+                    <div class="mono" style="display: flex; flex-wrap: wrap; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                        <strong>Paysafe Group — Principal Solutions Architect</strong>
+                        <span class="accent">Global Payments · API &amp; AI Gateways · MuleSoft/ESB</span>
+                    </div>
+                    <p class="sub" style="font-size: 13px;">Led enterprise architecture across global payment-processing corridors, high-throughput API gateway modernisation, MuleSoft and ESB integration fabrics, and multicloud PCI-DSS-compliant platforms.</p>
+                </div>
+
+                <div class="card" style="padding: 15px 18px;">
+                    <div class="mono" style="display: flex; flex-wrap: wrap; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                        <strong>London Stock Exchange Group (LSEG) &amp; Thomson Reuters — Lead Enterprise &amp; Integration Architect</strong>
+                        <span class="accent">Financial Markets · Oracle Fusion MW (OSB/BPEL) · M&amp;A</span>
+                    </div>
+                    <p class="sub" style="font-size: 13px;">Architected mission-critical financial data distribution, Oracle Fusion Middleware (OSB/BPEL) and iPaaS bridges, and post-merger consolidation spanning 245+ global enterprise systems.</p>
+                </div>
+
+                <div class="card" style="padding: 15px 18px;">
+                    <div class="mono" style="display: flex; flex-wrap: wrap; justify-content: space-between; font-size: 12px; margin-bottom: 4px;">
+                        <strong>Trinity College London — Head of Enterprise &amp; Digital Architecture</strong>
+                        <span class="accent">Cloud-Native Transformation · Boomi iPaaS · Digital Commerce</span>
+                    </div>
+                    <p class="sub" style="font-size: 13px;">Directed cloud-native digital assessment transformation, Dell Boomi AtomSphere ERP/CRM orchestration, composable global e-commerce, and unified candidate identity across 60+ countries.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================================
+             SECTION 08: PING ME — EXECUTIVE BRIEFING DISPATCH (#contact)
+        ===================================================================== -->
+        <section id="contact" class="section-block" style="padding-bottom: 36px;">
+            <div class="section-head">
+                <div>
+                    <div class="section-kicker mono">(08) PING ME — INITIATE AN ARCHITECTURE BRIEFING</div>
+                    <h2 class="section-title">Book a Conversation</h2>
+                </div>
+                <span class="mono dim" style="font-size: 12px;">Advisory · Principal Roles · Keynotes &amp; Workshops</span>
+            </div>
+
+            <div class="grid-2">
+                <div class="card" style="padding: 18px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px;">
+                    <div>
+                        <p style="font-size: 14px; line-height: 1.6; margin-bottom: 12px;">
+                            Available for Principal or Chief Architect leadership opportunities, board-level Agentic AI &amp; Multicloud advisory, Enterprise Integration modernisation (Boomi, MuleSoft, Oracle MW), and technical workshops.
+                        </p>
+                        <div class="mono" style="display: flex; flex-direction: column; gap: 8px; font-size: 12.5px;">
+                            <div class="elevated" style="padding: 9px 12px; display: flex; justify-content: space-between; align-items: center;">
+                                <span><span class="dim">EMAIL:</span> <strong id="email-text">pankajpandey.architect@gmail.com</strong></span>
+                                <button type="button" id="copy-email-btn" class="btn" style="padding: 3px 8px; font-size: 11px;">Copy</button>
+                            </div>
+                            <div class="elevated" style="padding: 9px 12px;"><span class="dim">LOCATION:</span> London, United Kingdom (Hybrid / Global)</div>
+                            <div class="elevated" style="padding: 9px 12px;"><span class="dim">DOMAINS:</span> Agentic AI · Multicloud · iPaaS · FinTech</div>
+                        </div>
+                    </div>
+                    <div class="mono dim" style="font-size: 11px;">Tip: Press ⌘K anywhere to jump to any section, switch IDE themes, or launch a tool.</div>
+                </div>
+
+                <form id="contact-form" class="card" style="padding: 18px; display: flex; flex-direction: column; gap: 10px;">
+                    <div class="mono accent" style="font-size: 11.5px; font-weight: 700;">// DISPATCH BRIEFING PACKET</div>
+                    <input type="text" id="cf-name" class="field" placeholder="Your Name &amp; Organisation" required>
+                    <input type="email" id="cf-email" class="field" placeholder="Work Email Address" required>
+                    <select id="cf-topic" class="field">
+                        <option value="Agentic AI &amp; Enterprise Architecture">Topic: Agentic AI &amp; Enterprise Architecture</option>
+                        <option value="Agentic Commerce (UCP / ACP / AP2)">Topic: Agentic Commerce (UCP / ACP / AP2)</option>
+                        <option value="Enterprise Integration (Boomi / MuleSoft / Oracle MW)">Topic: Enterprise Integration (Boomi / MuleSoft / Oracle MW)</option>
+                        <option value="Multicloud &amp; Kubernetes Platform Engineering">Topic: Multicloud &amp; Kubernetes Platform Engineering</option>
+                        <option value="Executive Advisory / Principal Role">Topic: Executive Advisory / Principal Role</option>
+                    </select>
+                    <textarea id="cf-msg" class="field" rows="3" placeholder="Brief summary of your architectural goals or timeline..." required></textarea>
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                        <span id="cf-status" class="mono secondary" style="font-size: 11.5px;"></span>
+                        <button type="submit" class="btn btn-accent">Transmit Packet →</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- =========================================================================
+         UNIVERSAL INSPECTOR / TOOL / JOURNAL MODAL
+    ========================================================================= -->
+    <div id="universal-modal" class="modal-backdrop" role="dialog" aria-modal="true">
+        <div class="modal-box">
+            <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; margin-bottom: 14px; border-bottom: 1px solid var(--border-hairline);">
+                <span id="modal-kicker" class="mono accent" style="font-size: 12px; font-weight: 700;">// INSPECTOR</span>
+                <button type="button" id="modal-close-btn" class="btn" style="padding: 4px 9px;">✕ Esc</button>
+            </div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         ⌘K COMMAND PALETTE MODAL
+    ========================================================================= -->
+    <div id="cmd-modal" class="modal-backdrop" role="dialog" aria-modal="true">
+        <div class="modal-box" style="max-width: 540px;">
+            <div class="mono" style="display: flex; align-items: center; gap: 8px; padding-bottom: 10px; border-bottom: 1px solid var(--border-hairline);">
+                <span class="accent font-bold">⌘K</span>
+                <input type="text" id="cmd-search" class="cli-input" placeholder="Search commands, 9 spokes, CNCF stack, tools, or themes..." autocomplete="off">
+                <button type="button" id="cmd-close-btn" class="btn" style="padding: 3px 8px; font-size: 11px;">Esc</button>
+            </div>
+            <div id="cmd-list" class="mono" style="margin-top: 10px; display: flex; flex-direction: column; gap: 5px; max-height: 320px; overflow-y: auto;"></div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         PERSISTENT BOTTOM VIM / IDE STATUS BAR
+    ========================================================================= -->
+    <footer class="statusbar mono">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span>developed by <strong style="color:var(--text-primary);">pankaj kumar pandey</strong></span>
+            <span class="dim">|</span>
+            <span id="status-time">--:--</span>
+            <span><span class="online-dot"></span>online</span>
+            <span class="dim">|</span>
+            <span id="status-theme" class="accent">[claude-code]</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <span id="status-scroll" class="dim">Ln 1, Col 1 · 0%</span>
+            <button type="button" id="status-help-btn" class="accent" style="background:none;border:none;cursor:pointer;font-size:11px;font-weight:700;">:help for commands</button>
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         FLOATING AI ARCHITECT ASSISTANT BOT (BOTTOM-RIGHT ABOVE STATUS BAR)
+    ========================================================================= -->
+    <button type="button" id="bot-launcher" class="bot-launcher mono" aria-expanded="false" aria-controls="bot-drawer">
+        <span class="bot-pulse-dot" aria-hidden="true"></span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="8" width="18" height="11" rx="3"/>
+            <path d="M12 2v6"/>
+            <circle cx="12" cy="2" r="1.5"/>
+            <circle cx="8.5" cy="13.5" r="1.3" fill="var(--accent-primary)"/>
+            <circle cx="15.5" cy="13.5" r="1.3" fill="var(--accent-primary)"/>
+            <path d="M9.5 16.5h5"/>
+        </svg>
+        <span style="font-size: 12px; font-weight: 700;">Ask Architect Bot</span>
+        <span class="elevated dim" style="padding: 1px 6px; font-size: 10px;">Ctrl+/</span>
+    </button>
+
+    <aside id="bot-drawer" class="bot-drawer" aria-label="Ask Pankaj AI Architect Assistant">
+        <div class="bot-head mono">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="bot-pulse-dot"></span>
+                <div>
+                    <div style="font-size: 12px; font-weight: 800;">architect-bot <span class="accent">// Ask Pankaj AI</span></div>
+                    <div class="dim" style="font-size: 10px;">Grounded on 9-Spoke Hub, CNCF Stack &amp; Career</div>
+                </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 5px;">
+                <button type="button" id="bot-clear-btn" class="btn" style="padding: 3px 7px; font-size: 10.5px;" title="Clear conversation">Clear</button>
+                <button type="button" id="bot-close-btn" class="btn" style="padding: 3px 7px; font-size: 10.5px;" title="Close (Esc)">✕</button>
+            </div>
+        </div>
+
+        <div id="bot-messages" class="bot-messages"></div>
+
+        <div class="bot-chips mono">
+            <button type="button" class="bot-chip" data-q="Tell me about the 9-Spoke Hub">9-Spoke Hub</button>
+            <button type="button" class="bot-chip" data-q="Explain the Integration Stack (Boomi, MuleSoft, Oracle MW)">Integration Stack</button>
+            <button type="button" class="bot-chip" data-q="How does Agentic Commerce work?">Agentic Commerce</button>
+            <button type="button" class="bot-chip" data-q="Show CNCF AI Stack layers">CNCF AI Stack</button>
+            <button type="button" class="bot-chip" data-q="Summarise Pankaj's Career & Impact">Career &amp; Impact</button>
+            <button type="button" class="bot-chip" data-q="Launch TCO Tool">Launch TCO Tool</button>
+        </div>
+
+        <form id="bot-form" class="bot-input-row mono">
+            <input type="text" id="bot-input" class="cli-input" placeholder="Ask about AI-DLC, Boomi/MuleSoft, UCP, or CNCF..." autocomplete="off">
+            <button type="submit" class="btn btn-accent" style="padding: 5px 10px; font-size: 11.5px;">Send</button>
+        </form>
+    </aside>
+
+    <!-- =========================================================================
+         SELF-CONTAINED APPLICATION LOGIC (ZERO EXTERNAL DEPENDENCIES)
+    ========================================================================= -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function $(id) { return document.getElementById(id); }
+
+        /* -----------------------------------------------------------------
+           1. 6-THEME ENGINE (FULL INLINE CSS VARIABLE APPLICATION)
+        ----------------------------------------------------------------- */
+        var THEMES = [
+            {
+                id: 'claude-code',
+                label: 'claude-code',
+                desc: 'Warm Obsidian & Terracotta',
+                swatch: '#d97757',
+                vars: {
+                    '--bg-canvas': '#0b0b0a',
+                    '--bg-surface': '#141311',
+                    '--bg-elevated': '#1e1c19',
+                    '--bg-input': '#080807',
+                    '--border-hairline': '#282621',
+                    '--border-strong': '#3f3b33',
+                    '--text-primary': '#f4f1ea',
+                    '--text-secondary': '#a8a196',
+                    '--text-muted': '#6e685f',
+                    '--accent-primary': '#d97757',
+                    '--accent-primary-soft': 'rgba(217, 119, 87, 0.14)',
+                    '--accent-primary-border': 'rgba(217, 119, 87, 0.44)',
+                    '--accent-secondary': '#27c93f',
+                    '--accent-warn': '#ffbd2e'
+                }
+            },
+            {
+                id: 'cursor',
+                label: 'cursor',
+                desc: 'Editor Slate & Electric Blue',
+                swatch: '#3794ff',
+                vars: {
+                    '--bg-canvas': '#0f1012',
+                    '--bg-surface': '#18191c',
+                    '--bg-elevated': '#222429',
+                    '--bg-input': '#0a0b0d',
+                    '--border-hairline': '#2b2d33',
+                    '--border-strong': '#42464f',
+                    '--text-primary': '#ebebed',
+                    '--text-secondary': '#9fa3ad',
+                    '--text-muted': '#696d77',
+                    '--accent-primary': '#3794ff',
+                    '--accent-primary-soft': 'rgba(55, 148, 255, 0.15)',
+                    '--accent-primary-border': 'rgba(55, 148, 255, 0.44)',
+                    '--accent-secondary': '#4ec9b0',
+                    '--accent-warn': '#dcdcaa'
+                }
+            },
+            {
+                id: 'codex',
+                label: 'codex',
+                desc: 'OpenAI Carbon & Emerald Mint',
+                swatch: '#10a37f',
+                vars: {
+                    '--bg-canvas': '#0a0d0c',
+                    '--bg-surface': '#121715',
+                    '--bg-elevated': '#1b221f',
+                    '--bg-input': '#070908',
+                    '--border-hairline': '#232d29',
+                    '--border-strong': '#36453f',
+                    '--text-primary': '#edf3f0',
+                    '--text-secondary': '#9cb0a7',
+                    '--text-muted': '#63756d',
+                    '--accent-primary': '#10a37f',
+                    '--accent-primary-soft': 'rgba(16, 163, 127, 0.15)',
+                    '--accent-primary-border': 'rgba(16, 163, 127, 0.44)',
+                    '--accent-secondary': '#34d399',
+                    '--accent-warn': '#fbbf24'
+                }
+            },
+            {
+                id: 'google-antigravity',
+                label: 'google-antigravity',
+                desc: 'Cosmic Void & Gemini Violet',
+                swatch: '#8b5cf6',
+                vars: {
+                    '--bg-canvas': '#090b12',
+                    '--bg-surface': '#111420',
+                    '--bg-elevated': '#191e2e',
+                    '--bg-input': '#06070c',
+                    '--border-hairline': '#23293e',
+                    '--border-strong': '#363f5e',
+                    '--text-primary': '#eef2ff',
+                    '--text-secondary': '#a2add4',
+                    '--text-muted': '#667299',
+                    '--accent-primary': '#8b5cf6',
+                    '--accent-primary-soft': 'rgba(139, 92, 246, 0.16)',
+                    '--accent-primary-border': 'rgba(139, 92, 246, 0.46)',
+                    '--accent-secondary': '#38bdf8',
+                    '--accent-warn': '#f472b6'
+                }
+            },
+            {
+                id: 'grok-code',
+                label: 'grok-code',
+                desc: 'xAI Pitch & Signal Orange',
+                swatch: '#f97316',
+                vars: {
+                    '--bg-canvas': '#060606',
+                    '--bg-surface': '#101010',
+                    '--bg-elevated': '#1b1b1b',
+                    '--bg-input': '#030303',
+                    '--border-hairline': '#242424',
+                    '--border-strong': '#3a3a3a',
+                    '--text-primary': '#f5f5f5',
+                    '--text-secondary': '#a1a1a1',
+                    '--text-muted': '#666666',
+                    '--accent-primary': '#f97316',
+                    '--accent-primary-soft': 'rgba(249, 115, 22, 0.16)',
+                    '--accent-primary-border': 'rgba(249, 115, 22, 0.45)',
+                    '--accent-secondary': '#27c93f',
+                    '--accent-warn': '#facc15'
+                }
+            },
+            {
+                id: 'meta-code',
+                label: 'meta-code',
+                desc: 'Deep Midnight & Meta Cyan',
+                swatch: '#0ea5e9',
+                vars: {
+                    '--bg-canvas': '#080d14',
+                    '--bg-surface': '#101826',
+                    '--bg-elevated': '#182336',
+                    '--bg-input': '#05090e',
+                    '--border-hairline': '#1f2e45',
+                    '--border-strong': '#31486b',
+                    '--text-primary': '#edf4fc',
+                    '--text-secondary': '#98aec9',
+                    '--text-muted': '#5f7796',
+                    '--accent-primary': '#0ea5e9',
+                    '--accent-primary-soft': 'rgba(14, 165, 233, 0.15)',
+                    '--accent-primary-border': 'rgba(14, 165, 233, 0.45)',
+                    '--accent-secondary': '#34d399',
+                    '--accent-warn': '#fbbf24'
+                }
+            }
+        ];
+
+        var currentTheme = 'claude-code';
+
+        function applyTheme(themeId) {
+            var found = THEMES.find(function (t) { return t.id === themeId; });
+            if (!found) return false;
+            currentTheme = found.id;
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            document.body.setAttribute('data-theme', currentTheme);
+            Object.keys(found.vars).forEach(function (k) {
+                document.documentElement.style.setProperty(k, found.vars[k]);
+            });
+            if ($('theme-btn-label')) $('theme-btn-label').textContent = 'themes: ' + currentTheme;
+            if ($('status-theme')) $('status-theme').textContent = '[' + currentTheme + ']';
+            renderThemeMenu();
+            return true;
+        }
+
+        function renderThemeMenu() {
+            var menu = $('theme-menu');
+            if (!menu) return;
+            menu.innerHTML = THEMES.map(function (t) {
+                var active = t.id === currentTheme;
+                return '<button type="button" class="theme-opt mono' + (active ? ' active' : '') + '" data-theme-id="' + t.id + '">' +
+                    '<span style="display:flex;align-items:center;gap:8px;">' +
+                        '<span style="width:9px;height:9px;border-radius:50%;background:' + t.swatch + ';flex-shrink:0;"></span>' +
+                        '<span><strong>' + t.label + '</strong><br><span class="dim" style="font-size:10px;">' + t.desc + '</span></span>' +
+                    '</span>' +
+                    '<span>' + (active ? '✓' : '') + '</span>' +
+                '</button>';
+            }).join('');
+        }
+
+        renderThemeMenu();
+
+        if ($('theme-toggle-btn')) {
+            $('theme-toggle-btn').addEventListener('click', function (e) {
+                e.stopPropagation();
+                $('theme-menu').classList.toggle('open');
+            });
+        }
+
+        if ($('theme-menu')) {
+            $('theme-menu').addEventListener('click', function (e) {
+                var btn = e.target.closest('[data-theme-id]');
+                if (!btn) return;
+                applyTheme(btn.getAttribute('data-theme-id'));
+                $('theme-menu').classList.remove('open');
+            });
+        }
+
+        document.addEventListener('click', function () {
+            if ($('theme-menu')) $('theme-menu').classList.remove('open');
+        });
+
+        /* -----------------------------------------------------------------
+           2. WHOLE-CHARACTER ANIMATED BRAND + HERO SHELL PROMPT + A·A·M·E
+        ----------------------------------------------------------------- */
+        var FULL_NAME = 'Pankaj Kumar Pandey';
+        var IDENTITY_PILLARS = [
+            {
+                charIndex: 1, // 'a' in Pankaj
+                letter: 'A',
+                shortName: 'AI Architect',
+                shortPill: 'A → AI Architect',
+                spokeIndex: 3
+            },
+            {
+                charIndex: 10, // 'a' in Kumar
+                letter: 'A',
+                shortName: 'Agentic AI',
+                shortPill: 'A → Agentic AI Architect',
+                spokeIndex: 6
+            },
+            {
+                charIndex: 9, // 'm' in Kumar
+                letter: 'M',
+                shortName: 'Multicloud',
+                shortPill: 'M → Multicloud & Cloud-Native Architecture',
+                spokeIndex: 8
+            },
+            {
+                charIndex: 17, // 'e' in Pandey
+                letter: 'E',
+                shortName: 'Enterprise',
+                shortPill: 'E → Enterprise Architecture',
+                spokeIndex: 0
+            }
+        ];
+
+        var identityIdx = 0;
+
+        function buildPerCharMarkup(spaceWidth) {
+            return FULL_NAME.split('').map(function (ch, idx) {
+                if (ch === ' ') return '<span style="display:inline-block;width:' + spaceWidth + 'px;"></span>';
+                return '<span class="brand-char" data-bidx="' + idx + '" style="--ci:' + idx + ';">' + ch + '</span>';
+            }).join('');
+        }
+
+        function initBrandChars() {
+            if ($('animated-brand')) $('animated-brand').innerHTML = buildPerCharMarkup(5);
+            if ($('hero-animated-name')) $('hero-animated-name').innerHTML = buildPerCharMarkup(7);
+        }
+
+        function renderIdentityBar() {
+            var bar = $('identity-bar');
+            if (!bar) return;
+            bar.innerHTML = IDENTITY_PILLARS.map(function (p, i) {
+                return '<button type="button" class="identity-pill' + (i === identityIdx ? ' active' : '') + '" data-iidx="' + i + '">' +
+                    '<div style="font-size:15px;font-weight:900;">' + p.letter + '</div>' +
+                    '<div style="font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + p.shortName + '</div>' +
+                '</button>';
+            }).join('');
+        }
+
+        function setIdentityPillar(idx, syncHub) {
+            identityIdx = (idx + IDENTITY_PILLARS.length) % IDENTITY_PILLARS.length;
+            var p = IDENTITY_PILLARS[identityIdx];
+            if ($('brand-pillar-pill')) $('brand-pillar-pill').textContent = p.shortPill;
+            if ($('hero-pillar-badge')) $('hero-pillar-badge').textContent = p.shortPill;
+            if ($('identity-active-label')) $('identity-active-label').textContent = p.shortPill;
+
+            document.querySelectorAll('.brand-char').forEach(function (span) {
+                var bi = parseInt(span.getAttribute('data-bidx'), 10);
+                span.classList.toggle('is-anchor', bi === p.charIndex);
+            });
+            renderIdentityBar();
+
+            if (syncHub && typeof p.spokeIndex === 'number') {
+                hubIdx = p.spokeIndex;
+                renderHubInspector(hubIdx);
+            }
+        }
+
+        initBrandChars();
+        setIdentityPillar(0, false);
+
+        if ($('identity-bar')) {
+            $('identity-bar').addEventListener('click', function (e) {
+                var btn = e.target.closest('[data-iidx]');
+                if (!btn) return;
+                setHubAuto(false);
+                setIdentityPillar(parseInt(btn.getAttribute('data-iidx'), 10), true);
+            });
+        }
+
+        /* -----------------------------------------------------------------
+           3. 9-SPOKE ENTERPRISE TRANSFORMATION GEAR (STRICTLY 9 UNIQUE SPOKES)
+        ----------------------------------------------------------------- */
+        var HUB_CX = 410;
+        var HUB_CY = 360;
+        var HUB_R = 212;
+
+        var HUB_SPOKES = [
+            {
+                id: 'ea',
+                short: 'Enterprise Architecture',
+                title: 'Enterprise Architecture',
+                color: '#0d9488',
+                lines: ['Enterprise', 'Architecture'],
+                mandate: 'Aligning boardroom capital allocation, M&A rationalisation, and target operating models with modular domain boundaries.',
+                tech: ['TOGAF / C4 Model', 'Domain-Driven Design', 'Capability Maps', 'Platform Governance'],
+                proof: 'Consolidated 245+ legacy post-merger platforms and steered $290M+ global transformation roadmaps.',
+                jump: '#about',
+                jumpLabel: 'View Executive Pedigree →'
+            },
+            {
+                id: 'cloud',
+                short: 'Cloud-Native',
+                title: 'Cloud-Native Architecture',
+                color: '#e11d48',
+                lines: ['Cloud-Native'],
+                mandate: 'Building self-healing, immutable microservices platforms with zero-trust mTLS service meshes and GitOps continuous delivery.',
+                tech: ['Kubernetes (EKS/AKS/GKE)', 'Istio Service Mesh', 'ArgoCD', 'Crossplane & kro'],
+                proof: 'Operated regulated multi-tenant Kubernetes estates with progressive canary rollouts and a 99.99% SLA.',
+                jump: '#ai-native-stack',
+                jumpLabel: 'Explore CNCF Stack →'
+            },
+            {
+                id: 'wasm',
+                short: 'Wasm',
+                title: 'Wasm (WebAssembly)',
+                color: '#0284c7',
+                lines: ['Wasm', '(WebAssembly)'],
+                mandate: 'Sub-millisecond sandboxed compute at the edge and inside Envoy or Kong gateways—enabling polyglot plugins and isolated AI tool execution.',
+                tech: ['Spin & SpinKube', 'WasmCloud', 'Envoy Wasm Filters', 'Edge Sandboxing'],
+                proof: 'High-density gateway policy enforcement and deterministic sandbox isolation for untrusted agent tools.',
+                jump: '#ai-native-stack',
+                jumpLabel: 'Inspect Runtime Layer →'
+            },
+            {
+                id: 'ai-native',
+                short: 'AI-Native',
+                title: 'AI-Native Architecture',
+                color: '#7c3aed',
+                lines: ['AI-Native'],
+                mandate: 'Designing systems from the ground up around foundation models, hybrid vector-graph memory, semantic gateways, and continuous trajectory evals.',
+                tech: ['MCP & A2A', 'Google ADK & LangGraph', 'vLLM & KServe', 'Envoy / Kong AI Gateway'],
+                proof: '35%+ inference FinOps reduction via semantic caching and token-aware multi-model routing.',
+                jump: '#ai-native-stack',
+                jumpLabel: 'Explore 5 AI-Native Layers →'
+            },
+            {
+                id: 'genai',
+                short: 'Gen AI',
+                title: 'Generative AI Systems',
+                color: '#16a34a',
+                lines: ['Gen AI'],
+                mandate: 'Production-grade foundation model orchestration, governed enterprise RAG, multimodal synthesis, and brain-friendly developer enablement.',
+                tech: ['Enterprise RAG', 'LlamaIndex', 'AWS Bedrock & Azure OpenAI', 'Guardrails & Evals'],
+                proof: 'Author of Head First AI-DLC and multi-agent publishing & engineering synthesis pipelines.',
+                jump: '#journal',
+                jumpLabel: 'Read AI-DLC Notes →'
+            },
+            {
+                id: 'agentic-com',
+                short: 'Agentic Commerce',
+                title: 'Agentic Commerce (UCP · ACP · AP2 · MCP · A2A)',
+                color: '#be123c',
+                lines: ['Agentic', 'Commerce'],
+                mandate: 'Machine-native storefront discovery, autonomous price and inventory negotiation, and verifiable cryptographic agent checkout.',
+                tech: ['UCP (Universal Commerce)', 'ACP (Agentic Commerce)', 'AP2 (Agent Payments)', 'MCP Merchant Catalogues', 'A2A Fulfilment'],
+                proof: 'Bridging global payments (Paysafe) and $290M+ digital commerce transformation into autonomous agent channels.',
+                jump: '#journal',
+                jumpLabel: 'Read Commerce Monograph →'
+            },
+            {
+                id: 'agentic-ent',
+                short: 'Agentic Enterprise',
+                title: 'Agentic Enterprise (Zero-Trust SPIFFE · OPA · AI Gateway)',
+                color: '#ea580c',
+                lines: ['Agentic', 'Enterprise'],
+                mandate: 'Transforming legacy workflows into governed multi-agent workforces collaborating over A2A and MCP with Policy-as-Code guardrails.',
+                tech: ['Multi-Agent Orchestration', 'SPIFFE / SPIRE Workload ID', 'OPA Policy-as-Code', 'Kong / Envoy AI Gateway'],
+                proof: 'Specification-driven AI-DLC pipelines turning ADRs into executable guardrails for coding and operations agents.',
+                jump: '#ai-native-stack',
+                jumpLabel: 'Explore Agent Stack →'
+            },
+            {
+                id: 'integration',
+                short: 'Enterprise Integration',
+                title: 'Enterprise Integration Architecture (Boomi, MuleSoft & Oracle Fusion MW OSB/BPEL)',
+                color: '#6366f1',
+                lines: ['Enterprise Integration', '(Boomi · MuleSoft · Oracle MW)'],
+                mandate: 'Connecting cloud SaaS, core ERPs, and legacy estates via API-led iPaaS connectivity and strangler-fig modernisation of Oracle Fusion Middleware (OSB/BPEL) into event-driven and MCP-ready APIs.',
+                tech: ['Boomi iPaaS', 'MuleSoft Anypoint', 'Oracle Fusion MW (OSB/BPEL)', 'Event-Driven EDA'],
+                proof: 'Modernised monolithic ESB/BPEL orchestrations into composable Boomi and MuleSoft API fabrics with zero-downtime cutovers.',
+                jump: '#tools',
+                jumpLabel: 'Launch Gateway TCO Calc →'
+            },
+            {
+                id: 'multicloud',
+                short: 'Multicloud',
+                title: 'Multicloud Architecture (AWS, GCP, Azure & OCI)',
+                color: '#ca8a04',
+                lines: ['Multicloud', '(AWS, GCP, Azure & OCI)'],
+                mandate: 'Portable control planes, sovereign data residency, and cross-cloud workload federation across AWS, GCP, Azure, and OCI.',
+                tech: ['Polycloud Landing Zones', 'Terraform IaC', 'FinOps Governance', 'Active-Active DR'],
+                proof: 'Architected cross-cloud financial and payment corridors avoiding single-vendor lock-in.',
+                jump: '#ai-native-stack',
+                jumpLabel: 'Inspect Infra Layer →'
+            }
+        ];
+
+        var HUB_CENTER_INFO = {
+            title: 'Unified 9-Pillar Enterprise Transformation Operating Model',
+            color: 'var(--accent-primary)',
+            mandate: 'True enterprise transformation happens when all nine gears mesh together—uniting boardroom Enterprise Architecture, Cloud-Native and Multicloud foundations, Wasm sandboxes, Enterprise Integration (Boomi, MuleSoft & Oracle Fusion MW OSB/BPEL), and Gen AI / AI-Native platforms into Agentic Commerce and the Agentic Enterprise.',
+            tech: ['Penthouse Strategy ↔ Engine-Room Execution', 'iPaaS & ESB-to-API Modernisation', 'Zero-Trust Governance & FinOps', 'Protocol-First Interoperability'],
+            proof: 'Click any of the nine surrounding hexagons on the diagram (or select a chip below) to inspect its architectural blueprint and proof points.',
+            jump: '#ai-native-stack',
+            jumpLabel: 'Explore CNCF AI-Native Stack →'
+        };
+
+        var hubIdx = 7;
+        var hubAuto = true;
+
+        function buildGearPath(cx, cy, outerR, innerR, teeth) {
+            var pts = [];
+            var step = (Math.PI * 2) / teeth;
+            for (var i = 0; i < teeth; i++) {
+                var a0 = i * step;
+                var a1 = a0 + step * 0.22;
+                var a2 = a0 + step * 0.48;
+                var a3 = a0 + step * 0.70;
+                pts.push((i === 0 ? 'M' : 'L') + (cx + innerR * Math.cos(a0)).toFixed(1) + ',' + (cy + innerR * Math.sin(a0)).toFixed(1));
+                pts.push('L' + (cx + outerR * Math.cos(a1)).toFixed(1) + ',' + (cy + outerR * Math.sin(a1)).toFixed(1));
+                pts.push('L' + (cx + outerR * Math.cos(a2)).toFixed(1) + ',' + (cy + outerR * Math.sin(a2)).toFixed(1));
+                pts.push('L' + (cx + innerR * Math.cos(a3)).toFixed(1) + ',' + (cy + innerR * Math.sin(a3)).toFixed(1));
+            }
+            return pts.join(' ') + ' Z';
+        }
+
+        function hexPoints(cx, cy, r) {
+            var out = [];
+            for (var i = 0; i < 6; i++) {
+                var a = (Math.PI / 180) * (60 * i - 30);
+                out.push((cx + r * Math.cos(a)).toFixed(1) + ',' + (cy + r * Math.sin(a)).toFixed(1));
+            }
+            return out.join(' ');
+        }
+
+        function spokeIcon(id, cx, cy) {
+            var t = 'translate(' + (cx - 12) + ',' + (cy - 12) + ')';
+            var icons = {
+                'ea': '<rect x="9" y="2" width="6" height="4" rx="1"/><path d="M12 6v4M5 10h14M5 10v4M12 10v4M19 10v4"/><rect x="2" y="14" width="6" height="4" rx="1"/><rect x="9" y="14" width="6" height="4" rx="1"/><rect x="16" y="14" width="6" height="4" rx="1"/>',
+                'cloud': '<polygon points="12,2 21,7 21,17 12,22 3,17 3,7"/><polyline points="3,7 12,12 21,7"/><line x1="12" y1="12" x2="12" y2="22"/>',
+                'wasm': '<rect x="3" y="4" width="18" height="16" rx="2"/><text x="12" y="15" text-anchor="middle" fill="#fff" stroke="none" font-family="monospace" font-weight="700" font-size="7">WASM</text>',
+                'ai-native': '<circle cx="8.5" cy="9.5" r="2"/><circle cx="15.5" cy="9.5" r="2"/><circle cx="8.5" cy="15.5" r="2"/><circle cx="15.5" cy="15.5" r="2"/><path d="M10.5 9.5h3M10.5 15.5h3M8.5 11.5v2M15.5 11.5v2"/>',
+                'genai': '<circle cx="12" cy="12" r="4.5"/><text x="12" y="14.5" text-anchor="middle" fill="#fff" stroke="none" font-family="monospace" font-weight="700" font-size="7">AI</text><path d="M12 2v5M12 17v5M2 12h5M17 12h5"/>',
+                'agentic-com': '<circle cx="9.5" cy="19" r="1.4" fill="#fff"/><circle cx="17.5" cy="19" r="1.4" fill="#fff"/><path d="M3 5h2.5l2 9.5h9.5l1.8-6.5H7.2"/>',
+                'agentic-ent': '<rect x="3" y="4" width="18" height="16" rx="2"/><line x1="3" y1="8.5" x2="21" y2="8.5"/><circle cx="8" cy="14" r="2.2"/><path d="M13 12h5M13 16h4"/>',
+                'integration': '<circle cx="5" cy="6" r="2.2"/><circle cx="19" cy="6" r="2.2"/><circle cx="5" cy="18" r="2.2"/><circle cx="19" cy="18" r="2.2"/><circle cx="12" cy="12" r="2.8"/><path d="M7 7.5l3 3M17 7.5l-3 3M7 16.5l3-3M17 16.5l-3-3"/>',
+                'multicloud': '<path d="M7 18h10a4 4 0 0 0 .6-7.95A5.5 5.5 0 0 0 7.1 8.5 4 4 0 0 0 7 18z"/>'
+            };
+            return '<g transform="' + t + '" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">' + (icons[id] || '') + '</g>';
+        }
+
+        function buildHub() {
+            var linesEl = $('hub-lines');
+            var spokesEl = $('hub-spokes');
+            var pillsEl = $('hub-pills');
+            var gearPathEl = $('hub-gear-path');
+            if (!linesEl || !spokesEl || !pillsEl) return;
+
+            linesEl.innerHTML = '';
+            spokesEl.innerHTML = '';
+            pillsEl.innerHTML = '';
+
+            if (gearPathEl) {
+                gearPathEl.setAttribute('d', buildGearPath(HUB_CX, HUB_CY, 124, 110, 24));
+            }
+
+            linesEl.innerHTML = HUB_SPOKES.map(function (s, i) {
+                var angleDeg = -90 + (i * 40);
+                var rad = (Math.PI / 180) * angleDeg;
+                var x1 = HUB_CX + 114 * Math.cos(rad);
+                var y1 = HUB_CY + 114 * Math.sin(rad);
+                var x2 = HUB_CX + (HUB_R - 36) * Math.cos(rad);
+                var y2 = HUB_CY + (HUB_R - 36) * Math.sin(rad);
+                var pathD = 'M' + x1.toFixed(1) + ',' + y1.toFixed(1) + ' L' + x2.toFixed(1) + ',' + y2.toFixed(1);
+                var dur = (1.5 + (i % 3) * 0.25).toFixed(2) + 's';
+
+                return '<g>' +
+                    '<line x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '" stroke="var(--border-hairline)" stroke-width="4" opacity="0.5"/>' +
+                    '<line id="hline-' + i + '" class="spoke-flow-stream" x1="' + x1.toFixed(1) + '" y1="' + y1.toFixed(1) + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '" stroke="' + s.color + '" stroke-width="2.2" marker-start="url(#arrow-muted)" marker-end="url(#arrow-muted)" opacity="0.85"/>' +
+                    '<circle id="hpulse-' + i + '" r="3.6" fill="' + s.color + '" filter="url(#spoke-glow)">' +
+                        '<animateMotion dur="' + dur + '" repeatCount="indefinite" path="' + pathD + '"/>' +
+                    '</circle>' +
+                '</g>';
+            }).join('');
+
+            spokesEl.innerHTML = HUB_SPOKES.map(function (s, i) {
+                var angleDeg = -90 + (i * 40);
+                var rad = (Math.PI / 180) * angleDeg;
+                var sx = HUB_CX + HUB_R * Math.cos(rad);
+                var sy = HUB_CY + HUB_R * Math.sin(rad);
+                var cosA = Math.cos(rad);
+                var sinA = Math.sin(rad);
+
+                var anchor = 'middle';
+                var lx = sx;
+                var ly = sy;
+                if (Math.abs(cosA) < 0.2) {
+                    anchor = 'middle';
+                    lx = sx;
+                    ly = sinA > 0 ? sy + 48 : sy - 46;
+                } else if (cosA < 0) {
+                    anchor = 'end';
+                    lx = sx - 40;
+                    ly = s.lines.length > 1 ? sy - 4 : sy + 4;
+                } else {
+                    anchor = 'start';
+                    lx = sx + 40;
+                    ly = s.lines.length > 1 ? sy - 4 : sy + 4;
+                }
+
+                var tspans = s.lines.map(function (line, li) {
+                    var isSub = li > 0;
+                    return '<tspan x="' + lx.toFixed(1) + '" dy="' + (li === 0 ? 0 : 14) + '" font-size="' + (isSub ? '10' : '11.5') + '" fill="' + (isSub ? 'var(--text-secondary)' : 'var(--text-primary)') + '" font-weight="' + (isSub ? '500' : '700') + '">' + line + '</tspan>';
+                }).join('');
+
+                return '<g class="hub-spoke-g" id="hspoke-' + i + '" data-spoke="' + i + '">' +
+                    '<polygon class="hex-shape" points="' + hexPoints(sx, sy, 32) + '" fill="' + s.color + '" stroke="rgba(255,255,255,0.32)" stroke-width="1.5"/>' +
+                    spokeIcon(s.id, sx, sy) +
+                    '<text x="' + lx.toFixed(1) + '" y="' + ly.toFixed(1) + '" text-anchor="' + anchor + '">' + tspans + '</text>' +
+                '</g>';
+            }).join('');
+
+            pillsEl.innerHTML = HUB_SPOKES.map(function (s, i) {
+                return '<button type="button" class="hub-pill" id="hpill-' + i + '" data-spoke="' + i + '">' +
+                    '<span style="width:8px;height:8px;border-radius:50%;background:' + s.color + ';flex-shrink:0;"></span>' +
+                    '<span>0' + (i + 1) + '. ' + s.short + '</span>' +
+                '</button>';
+            }).join('');
+
+            renderHubInspector(hubIdx);
+        }
+
+        function renderHubInspector(idx) {
+            var body = $('hub-inspector-body');
+            if (!body) return;
+
+            HUB_SPOKES.forEach(function (s, i) {
+                var act = (i === idx);
+                var g = $('hspoke-' + i);
+                var l = $('hline-' + i);
+                var pulse = $('hpulse-' + i);
+                var p = $('hpill-' + i);
+                if (g) g.classList.toggle('active', act);
+                if (l) {
+                    l.classList.toggle('is-active', act);
+                    l.setAttribute('stroke-width', act ? '3.5' : '2.1');
+                    l.setAttribute('marker-start', act ? 'url(#arrow-active)' : 'url(#arrow-muted)');
+                    l.setAttribute('marker-end', act ? 'url(#arrow-active)' : 'url(#arrow-muted)');
+                    l.setAttribute('opacity', act ? '1' : '0.8');
+                }
+                if (pulse) pulse.setAttribute('r', act ? '5.2' : '3.4');
+                if (p) {
+                    p.classList.toggle('active', act);
+                    p.style.borderColor = act ? s.color : '';
+                }
+            });
+
+            var item = (idx === -1) ? HUB_CENTER_INFO : HUB_SPOKES[idx];
+            if ($('hub-counter')) {
+                $('hub-counter').textContent = (idx === -1) ? 'Center Gear Overview' : ('Spoke 0' + (idx + 1) + ' / 09');
+            }
+
+            body.innerHTML =
+                '<div style="display:flex;flex-direction:column;gap:11px;">' +
+                    '<div class="mono" style="display:flex;justify-content:space-between;align-items:center;font-size:11.5px;">' +
+                        '<span class="elevated" style="padding:3px 9px;display:inline-flex;align-items:center;gap:6px;font-weight:700;">' +
+                            '<span style="width:9px;height:9px;border-radius:50%;background:' + item.color + ';"></span>' +
+                            (idx === -1 ? 'CORE GEAR (9 PILLARS)' : 'PILLAR 0' + (idx + 1)) +
+                        '</span>' +
+                        '<a href="' + item.jump + '" class="accent" style="font-weight:700;">' + item.jumpLabel + '</a>' +
+                    '</div>' +
+                    '<h3 style="font-size:17.5px;font-weight:800;line-height:1.25;">' + item.title + '</h3>' +
+                    '<p class="sub" style="font-size:13px;line-height:1.55;">' + item.mandate + '</p>' +
+                    '<div>' +
+                        '<div class="mono dim" style="font-size:10.5px;margin-bottom:5px;">KEY TECHNOLOGIES &amp; STANDARDS</div>' +
+                        '<div class="mono" style="display:flex;flex-wrap:wrap;gap:5px;font-size:11px;">' +
+                            item.tech.map(function (t) { return '<span class="elevated" style="padding:3px 8px;">' + t + '</span>'; }).join('') +
+                        '</div>' +
+                    '</div>' +
+                    '<div class="elevated" style="padding:10px 12px;border-left:3px solid ' + item.color + ';font-size:12.5px;">' +
+                        '<div class="mono dim" style="font-size:10px;margin-bottom:2px;">// ENTERPRISE PROOF POINT</div>' +
+                        '<div>' + item.proof + '</div>' +
+                    '</div>' +
+                '</div>';
+        }
+
+        function setHubAuto(state) {
+            hubAuto = state;
+            if ($('hub-auto-btn')) $('hub-auto-btn').textContent = hubAuto ? '● Flow & Cycle: Auto' : '❚❚ Flow & Cycle: Paused';
+            if ($('hub-gear-ring')) $('hub-gear-ring').classList.toggle('paused', !hubAuto);
+            if ($('hub-inner-orbit')) $('hub-inner-orbit').classList.toggle('paused', !hubAuto);
+        }
+
+        buildHub();
+
+        if ($('hub-svg')) {
+            $('hub-svg').addEventListener('click', function (e) {
+                var spokeEl = e.target.closest('[data-spoke]');
+                if (spokeEl) {
+                    hubIdx = parseInt(spokeEl.getAttribute('data-spoke'), 10);
+                    renderHubInspector(hubIdx);
+                    setHubAuto(false);
+                    return;
+                }
+                if (e.target.closest('#hub-center')) {
+                    hubIdx = -1;
+                    renderHubInspector(-1);
+                    setHubAuto(false);
+                }
+            });
+        }
+
+        if ($('hub-pills')) {
+            $('hub-pills').addEventListener('click', function (e) {
+                var pill = e.target.closest('[data-spoke]');
+                if (!pill) return;
+                hubIdx = parseInt(pill.getAttribute('data-spoke'), 10);
+                renderHubInspector(hubIdx);
+                setHubAuto(false);
+            });
+        }
+
+        if ($('hub-prev-btn')) {
+            $('hub-prev-btn').addEventListener('click', function () {
+                hubIdx = hubIdx <= 0 ? HUB_SPOKES.length - 1 : hubIdx - 1;
+                renderHubInspector(hubIdx);
+                setHubAuto(false);
+            });
+        }
+
+        if ($('hub-next-btn')) {
+            $('hub-next-btn').addEventListener('click', function () {
+                hubIdx = (hubIdx + 1) % HUB_SPOKES.length;
+                renderHubInspector(hubIdx);
+                setHubAuto(false);
+            });
+        }
+
+        if ($('hub-auto-btn')) {
+            $('hub-auto-btn').addEventListener('click', function () {
+                setHubAuto(!hubAuto);
+            });
+        }
+
+        /* -----------------------------------------------------------------
+           4. CNCF AI-NATIVE 5-LAYER LANDSCAPE (ALL POPULAR PROJECTS)
+        ----------------------------------------------------------------- */
+        var CNCF_PROJECTS = [
+            { id: 'mcp-a2a', layer: 'agents', layerLabel: 'Layer 01 · AI Agents', name: 'MCP & A2A Protocols', role: 'Agent-to-Tool & Agent-to-Agent Standards', desc: 'Model Context Protocol for typed tool/resource binding and Agent-to-Agent (A2A) protocol for cross-vendor agent delegation.', pattern: 'Expose Boomi, MuleSoft, and Oracle Fusion MW APIs behind an Envoy/Kong AI Gateway as schema-validated MCP tools with SPIFFE identity.' },
+            { id: 'adk-langgraph', layer: 'agents', layerLabel: 'Layer 01 · AI Agents', name: 'Google ADK, LangGraph, CrewAI, AutoGen & Strands Agents', role: 'Multi-Agent Orchestration Frameworks', desc: 'Deterministic state-machine graphs, hierarchical multi-agent teams, AutoGen, and AWS Strands Agents for bounded autonomous workflows.', pattern: 'Use bounded supervisor-worker graphs with explicit OPA policy checkpoints before any state-mutating API call.' },
+            { id: 'temporal-mem0', layer: 'agents', layerLabel: 'Layer 01 · AI Agents', name: 'Temporal, Dapr, Mem0, Letta & OpenShell', role: 'Durable State, Memory & Sandboxes', desc: 'Crash-proof durable workflow execution, long-term episodic memory (Mem0, Letta), and OpenShell isolated execution sandboxes.', pattern: 'Wrap multi-step settlement and procurement agent sagas in durable replayable workflows with idempotency keys.' },
+            { id: 'vllm-sglang', layer: 'inference', layerLabel: 'Layer 02 · Inference', name: 'vLLM, SGLang & Triton Inference Server', role: 'High-Throughput Serving Runtimes', desc: 'PagedAttention, continuous batching, RadixAttention KV-cache reuse, and NVIDIA Triton Inference Server for low-latency serving.', pattern: 'Deploy open-weight models on GPU node pools with prefix-caching enabled for shared system prompts and RAG contexts.' },
+            { id: 'kserve-llmd', layer: 'inference', layerLabel: 'Layer 02 · Inference', name: 'KServe, llm-d, Ollama & Ray Serve', role: 'Distributed Kubernetes Inference', desc: 'Cloud-native serverless model deployment, KV-cache-aware distributed routing (llm-d), and Ray Serve autoscaling.', pattern: 'Route high-priority interactive agent turns to dedicated KV-warm pods while batching asynchronous summarisation jobs.' },
+            { id: 'kubeflow-ray', layer: 'training', layerLabel: 'Layer 03 · Training', name: 'Kubeflow, Katib, Ray Train & PyTorchJob', role: 'Distributed Training & AutoML', desc: 'Multi-node PyTorchJob orchestration, Kubeflow pipelines, Katib hyperparameter tuning, and Ray Train cluster scaling.', pattern: 'Automate reproducible LoRA/QLoRA fine-tuning pipelines triggered by curated evaluation regressions.' },
+            { id: 'deepspeed-axolotl', layer: 'training', layerLabel: 'Layer 03 · Training', name: 'DeepSpeed & Axolotl', role: 'Domain Adaptation & Alignment', desc: 'ZeRO memory optimisation, supervised fine-tuning (SFT), and DPO/GRPO preference alignment for specialist enterprise models.', pattern: 'Fine-tune compact task-specific specialist adapters from PII-scrubbed production trajectory datasets.' },
+            { id: 'qdrant-milvus', layer: 'data', layerLabel: 'Layer 04 · Data', name: 'Qdrant, Milvus, Weaviate & pgvector', role: 'Hybrid Vector & Metadata Retrieval', desc: 'High-recall dense/sparse HNSW vector indexing with strict tenant-level RBAC payload filtering for governed Enterprise RAG.', pattern: 'Enforce mandatory tenant_id and clearance_level metadata filters at query time before returning chunks to the LLM.' },
+            { id: 'iceberg-feast', layer: 'data', layerLabel: 'Layer 04 · Data', name: 'Apache Iceberg, Feast, Ray Data & DuckDB', role: 'Open Lakehouse & Feature Stores', desc: 'ACID-compliant open table formats and low-latency feature stores feeding deterministic point-in-time context to agents.', pattern: 'Unify batch and streaming enterprise truth in Iceberg tables so agents reason over auditable, versioned snapshots.' },
+            { id: 'ai-gateway', layer: 'infra', layerLabel: 'Layer 05 · AI-Native Infra', name: 'Envoy AI Gateway, Kong AI Gateway & LiteLLM', role: 'Semantic Routing & Guardrails', desc: 'Token rate-limiting, semantic caching, PII redaction, and multi-provider failover across Bedrock, Vertex AI, and Claude.', pattern: 'Centralise API keys, enforce per-team token budgets, and achieve 35%+ cost savings via vector semantic response caching.' },
+            { id: 'kueue-hami', layer: 'infra', layerLabel: 'Layer 05 · AI-Native Infra', name: 'Kubernetes, Kueue, Volcano, HAMi & KAITO', role: 'GPU Scheduling & AI Operators', desc: 'Multi-tenant GPU quota batch scheduling (Kueue, Volcano), fractional GPU sharing (HAMi), and KAITO automated model operators.', pattern: 'Maximise GPU cluster utilisation across interactive inference and nightly batch evaluation workloads.' },
+            { id: 'otel-langfuse', layer: 'infra', layerLabel: 'Layer 05 · AI-Native Infra', name: 'OpenTelemetry, OpenLLMetry, Phoenix & Langfuse', role: 'Trajectory Tracing & Evals', desc: 'Standardised GenAI semantic spans across every MCP tool hop, token latency tracking, and continuous LLM-as-a-Judge evals.', pattern: 'Emit OpenTelemetry GenAI traces across every agent turn and gateway hop for end-to-end regulatory auditability.' }
+        ];
+
+        var activeCncfLayer = 'all';
+
+        function renderCncf() {
+            var filters = [
+                { id: 'all', label: 'All 5 Layers (12)' },
+                { id: 'agents', label: '01. AI Agents' },
+                { id: 'inference', label: '02. Inference' },
+                { id: 'training', label: '03. Training' },
+                { id: 'data', label: '04. Data' },
+                { id: 'infra', label: '05. AI-Native Infra' }
+            ];
+            if ($('cncf-filter-bar')) {
+                $('cncf-filter-bar').innerHTML = filters.map(function (f) {
+                    return '<button type="button" class="filter-btn' + (activeCncfLayer === f.id ? ' active' : '') + '" data-layer="' + f.id + '">' + f.label + '</button>';
+                }).join('');
+            }
+            if ($('cncf-grid')) {
+                var list = CNCF_PROJECTS.filter(function (p) { return activeCncfLayer === 'all' || p.layer === activeCncfLayer; });
+                $('cncf-grid').innerHTML = list.map(function (p) {
+                    return '<div class="card" style="padding:15px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;">' +
+                        '<div>' +
+                            '<div class="mono accent" style="font-size:10.5px;font-weight:700;">' + p.layerLabel + '</div>' +
+                            '<h3 style="font-size:15.5px;font-weight:700;margin:3px 0;">' + p.name + '</h3>' +
+                            '<div class="mono dim" style="font-size:11px;margin-bottom:6px;">' + p.role + '</div>' +
+                            '<p class="sub" style="font-size:12.5px;">' + p.desc + '</p>' +
+                        '</div>' +
+                        '<button type="button" class="btn cncf-detail-btn" data-pid="' + p.id + '" style="font-size:11.5px;">Inspect Reference Pattern →</button>' +
+                    '</div>';
+                }).join('');
+            }
+        }
+
+        renderCncf();
+        if ($('cncf-filter-bar')) {
+            $('cncf-filter-bar').addEventListener('click', function (e) {
+                var btn = e.target.closest('[data-layer]');
+                if (!btn) return;
+                activeCncfLayer = btn.getAttribute('data-layer');
+                renderCncf();
+            });
+        }
+
+        /* -----------------------------------------------------------------
+           5. ABOUT INTERACTIVE DOMAIN TAGS, 4 JOURNAL ENTRIES & 4 LAB REPOS
+        ----------------------------------------------------------------- */
+        var ABOUT_TAGS = [
+            { id: 'all', label: '#all-pillars' },
+            { id: 'agentic', label: '#agentic-ai' },
+            { id: 'ai-dlc', label: '#ai-dlc' },
+            { id: 'multicloud', label: '#multicloud' },
+            { id: 'integration', label: '#boomi-mulesoft-osb' },
+            { id: 'gateway', label: '#ai-gateway' },
+            { id: 'security', label: '#spiffe-opa' }
+        ];
+        var activeAboutTag = 'all';
+
+        function renderAboutTags() {
+            var box = $('about-tags');
+            if (!box) return;
+            box.innerHTML = ABOUT_TAGS.map(function (t) {
+                return '<button type="button" class="tag-pill' + (activeAboutTag === t.id ? ' active' : '') + '" data-atag="' + t.id + '">' + t.label + '</button>';
+            }).join('');
+
+            document.querySelectorAll('#about-matrix .matrix-row').forEach(function (row) {
+                var tags = row.getAttribute('data-tags') || '';
+                var match = (activeAboutTag === 'all') || (tags.indexOf(activeAboutTag) !== -1);
+                row.style.borderColor = (activeAboutTag !== 'all' && match) ? 'var(--accent-primary)' : '';
+                row.style.opacity = match ? '1' : '0.45';
+            });
+        }
+
+        renderAboutTags();
+        if ($('about-tags')) {
+            $('about-tags').addEventListener('click', function (e) {
+                var btn = e.target.closest('[data-atag]');
+                if (!btn) return;
+                activeAboutTag = btn.getAttribute('data-atag');
+                renderAboutTags();
+            });
+        }
+
+        var JOURNAL_ENTRIES = [
+            {
+                id: 'aidlc',
+                date: '2026-10',
+                tag: 'AI-DLC',
+                title: 'Specification-Driven AI-DLC: Turning ADRs into Agent Guardrails',
+                summary: 'Why unstructured vibe-coding fails in regulated enterprises and how machine-readable ADRs govern coding agents.',
+                body: '<p class="sub" style="margin-bottom:10px;">In regulated financial and payment platforms, generating code without architectural invariants creates hidden operational debt. In <strong>Head First AI-DLC</strong>, we treat Architecture Decision Records (ADRs) as executable contracts.</p><p class="sub">Every agent task begins with a bounded context spec, Open Policy Agent (OPA) security assertions, and OpenTelemetry trace requirements—ensuring Claude Code, Cursor, or Codex agents ship production-ready artefacts.</p>'
+            },
+            {
+                id: 'ipaas-mcp',
+                date: '2026-08',
+                tag: 'INTEGRATION',
+                title: 'Strangling Oracle OSB/BPEL & Boomi Flows into Governed MCP Servers',
+                summary: 'Exposing decades of battle-tested enterprise integration logic safely to autonomous AI agents.',
+                body: '<p class="sub" style="margin-bottom:10px;">Enterprises have invested hundreds of millions in Dell Boomi, MuleSoft Anypoint, and Oracle Fusion Middleware (OSB/BPEL). Ripping them out before adopting Agentic AI is unnecessary.</p><p class="sub">By placing an Envoy or Kong AI Gateway in front of typed MCP adapters with SPIFFE workload identities and idempotency keys, agents can safely invoke ERP and payment orchestrations with full auditability.</p>'
+            },
+            {
+                id: 'agentic-pay',
+                date: '2026-06',
+                tag: 'COMMERCE',
+                title: 'From Checkout Buttons to UCP, ACP & AP2 Cryptographic Mandates',
+                summary: 'Designing payment corridors when autonomous agents negotiate and settle transactions on behalf of humans.',
+                body: '<p class="sub" style="margin-bottom:10px;">Traditional e-commerce assumes a human clicking through HTML forms. Agentic Commerce replaces UI scraping with machine-verifiable protocols: <strong>UCP</strong> for discovery and negotiation, <strong>ACP</strong> for checkout orchestration, and <strong>AP2</strong> for cryptographic user spending mandates.</p><p class="sub">Payment gateways must now verify both human intent proofs and agent attestation tokens in sub-100ms.</p>'
+            },
+            {
+                id: 'penthouse-engine',
+                date: '2026-04',
+                tag: 'LEADERSHIP',
+                title: 'Penthouse to Engine Room: Governing $290M+ Post-Merger Rationalisations',
+                summary: 'How executive capital governance and platform engineering invariants keep multi-year M&A consolidations on track.',
+                body: '<p class="sub" style="margin-bottom:10px;">Large-scale post-merger transformations fail when boardroom business cases disconnect from engineering reality. Consolidating 245+ legacy applications requires clear domain boundaries, strangler-fig API gateways, and automated FinOps telemetry.</p><p class="sub">By translating architectural trade-offs into board-ready risk and ROI metrics, technology teams and executive leaders make faster, confident decisions.</p>'
+            }
+        ];
+
+        if ($('journal-grid')) {
+            $('journal-grid').innerHTML = JOURNAL_ENTRIES.map(function (j) {
+                return '<div class="card" style="padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;">' +
+                    '<div>' +
+                        '<div class="mono" style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:4px;">' +
+                            '<span class="accent font-bold">' + j.tag + '</span><span class="dim">' + j.date + '</span>' +
+                        '</div>' +
+                        '<h3 style="font-size:15.5px;font-weight:700;margin-bottom:6px;">' + j.title + '</h3>' +
+                        '<p class="sub" style="font-size:12.5px;">' + j.summary + '</p>' +
+                    '</div>' +
+                    '<button type="button" class="btn journal-read-btn" data-jid="' + j.id + '">Read Note →</button>' +
+                '</div>';
+            }).join('');
+        }
+
+        var LAB_REPOS = [
+            {
+                id: 'ucp-mesh',
+                tag: 'REPO 01 · AGENTIC COMMERCE',
+                name: 'ucp-acp-ap2-checkout-mesh',
+                summary: 'Reference implementation bridging MCP product catalogues with UCP negotiation and AP2 signed payment mandates.',
+                stack: 'TypeScript · MCP · A2A · Envoy Wasm',
+                arch: '[Shopping Agent] ──(MCP Feed)──▶ [Catalogue Server]\n[Shopping Agent] ◀─(UCP Quote)── [Dynamic Pricing]\n[Shopping Agent] ──(ACP + AP2)──▶ [PCI Payment Gateway]'
+            },
+            {
+                id: 'esb-mcp',
+                tag: 'REPO 02 · INTEGRATION BRIDGE',
+                name: 'esb-bpel-to-mcp-strangler',
+                summary: 'Adapter pattern exposing legacy Oracle OSB/BPEL & Boomi/MuleSoft flows as policy-governed MCP tools.',
+                stack: 'Python · FastMCP · OPA · OpenTelemetry',
+                arch: '[Enterprise Agent] ──(MCP Tool Call)──▶ [FastMCP Adapter]\n[FastMCP Adapter]  ──(OPA Policy Gate)─▶ [MuleSoft / Boomi API]\n[MuleSoft / Boomi] ──(SOAP/JMS Bridge)─▶ [Oracle OSB / BPEL]'
+            },
+            {
+                id: 'k8s-vllm',
+                tag: 'REPO 03 · CNCF AI PLATFORM',
+                name: 'k8s-ai-gateway-vllm-stack',
+                summary: 'GitOps Terraform + Crossplane blueprint for multi-tenant vLLM inference behind Envoy AI Gateway & Kueue.',
+                stack: 'Kubernetes · vLLM · Kueue · Langfuse',
+                arch: '[Agent / App] ──▶ [Envoy AI Gateway (Semantic Cache + Rate Limit)]\n                    ├──▶ [AWS Bedrock / Vertex AI (Frontier Tier)]\n                    └──▶ [vLLM GPU Pool + Kueue (Open-Weight Tier)]'
+            },
+            {
+                id: 'spiffe-opa-mesh',
+                tag: 'REPO 04 · ZERO-TRUST AGENTS',
+                name: 'spiffe-opa-agent-guardrails',
+                summary: 'Cryptographic workload identity and Policy-as-Code enforcement for multi-agent A2A delegation pipelines.',
+                stack: 'SPIFFE/SPIRE · OPA Rego · Istio · Go',
+                arch: '[Orchestrator Agent] ──(SVID mTLS)──▶ [Istio Sidecar Proxy]\n[Istio Sidecar Proxy] ──(AuthZ Check)─▶ [OPA Policy Engine]\n[OPA Policy Engine]   ──(Allow/Deny)──▶ [Downstream ERP / MCP]'
+            }
+        ];
+
+        if ($('lab-grid')) {
+            $('lab-grid').innerHTML = LAB_REPOS.map(function (r) {
+                return '<div class="card" style="padding:16px;display:flex;flex-direction:column;justify-content:space-between;gap:10px;">' +
+                    '<div>' +
+                        '<div class="mono accent" style="font-size:11px;font-weight:700;">' + r.tag + '</div>' +
+                        '<h3 style="font-size:15.5px;font-weight:700;margin:4px 0;">' + r.name + '</h3>' +
+                        '<p class="sub" style="font-size:12.5px;margin-bottom:8px;">' + r.summary + '</p>' +
+                        '<div class="mono dim" style="font-size:11px;">' + r.stack + '</div>' +
+                    '</div>' +
+                    '<button type="button" class="btn lab-inspect-btn" data-rid="' + r.id + '">Inspect Repository →</button>' +
+                '</div>';
+            }).join('');
+        }
+
+        function openModal(kicker, html) {
+            if ($('modal-kicker')) $('modal-kicker').textContent = kicker;
+            if ($('modal-body')) $('modal-body').innerHTML = html;
+            if ($('universal-modal')) $('universal-modal').classList.add('open');
+        }
+
+        function closeModal() {
+            if ($('universal-modal')) $('universal-modal').classList.remove('open');
+        }
+
+        if ($('modal-close-btn')) $('modal-close-btn').addEventListener('click', closeModal);
+        if ($('universal-modal')) {
+            $('universal-modal').addEventListener('click', function (e) {
+                if (e.target === $('universal-modal')) closeModal();
+            });
+        }
+
+        document.addEventListener('click', function (e) {
+            var jBtn = e.target.closest('.journal-read-btn');
+            if (jBtn) {
+                var entry = JOURNAL_ENTRIES.find(function (x) { return x.id === jBtn.getAttribute('data-jid'); });
+                if (entry) {
+                    openModal('// JOURNAL · ' + entry.tag + ' (' + entry.date + ')', '<h3 style="font-size:19px;font-weight:800;margin-bottom:12px;">' + entry.title + '</h3>' + entry.body);
+                }
+            }
+
+            var rBtn = e.target.closest('.lab-inspect-btn');
+            if (rBtn) {
+                var repo = LAB_REPOS.find(function (x) { return x.id === rBtn.getAttribute('data-rid'); });
+                if (repo) {
+                    openModal('// LAB REPOSITORY · ' + repo.name,
+                        '<h3 style="font-size:18px;font-weight:800;margin-bottom:8px;">' + repo.name + '</h3>' +
+                        '<p class="sub" style="font-size:13px;margin-bottom:10px;">' + repo.summary + '</p>' +
+                        '<div class="mono accent" style="font-size:11.5px;margin-bottom:8px;">Stack: ' + repo.stack + '</div>' +
+                        '<pre class="elevated mono" style="padding:12px;font-size:11.5px;white-space:pre-wrap;line-height:1.6;">' + repo.arch + '</pre>'
+                    );
+                }
+            }
+
+            var cBtn = e.target.closest('.cncf-detail-btn');
+            if (cBtn) {
+                var proj = CNCF_PROJECTS.find(function (x) { return x.id === cBtn.getAttribute('data-pid'); });
+                if (proj) {
+                    openModal('// CNCF AI-NATIVE · ' + proj.layerLabel,
+                        '<h3 style="font-size:18px;font-weight:800;margin-bottom:6px;">' + proj.name + '</h3>' +
+                        '<div class="mono accent" style="font-size:11.5px;margin-bottom:10px;">' + proj.role + '</div>' +
+                        '<p class="sub" style="font-size:13px;margin-bottom:12px;">' + proj.desc + '</p>' +
+                        '<div class="elevated" style="padding:12px;border-left:3px solid var(--accent-primary);font-size:13px;">' +
+                            '<div class="mono dim" style="font-size:10.5px;margin-bottom:4px;">// ENTERPRISE REFERENCE PATTERN</div>' +
+                            '<div>' + proj.pattern + '</div>' +
+                        '</div>'
+                    );
+                }
+            }
+        });
+
+        /* -----------------------------------------------------------------
+           6. 6 INTERACTIVE ARCHITECT MICRO-TOOLS
+        ----------------------------------------------------------------- */
+        function openTool(toolId) {
+            if (toolId === 'tco') {
+                openModal('// TOOL 01 · GATEWAY TCO & SEMANTIC CACHE ESTIMATOR',
+                    '<div style="display:flex;flex-direction:column;gap:12px;">' +
+                        '<label class="mono" style="font-size:12px;">Monthly API / LLM Requests (Millions): <strong id="tco-req-val">25M</strong></label>' +
+                        '<input type="range" id="tco-req" min="1" max="200" value="25">' +
+                        '<label class="mono" style="font-size:12px;">Semantic Cache Hit Rate (%): <strong id="tco-cache-val">35%</strong></label>' +
+                        '<input type="range" id="tco-cache" min="0" max="70" value="35">' +
+                        '<div id="tco-out" class="elevated mono" style="padding:12px;font-size:12.5px;"></div>' +
+                    '</div>'
+                );
+                var calcTco = function () {
+                    var req = parseInt($('tco-req').value, 10);
+                    var cache = parseInt($('tco-cache').value, 10);
+                    $('tco-req-val').textContent = req + 'M';
+                    $('tco-cache-val').textContent = cache + '%';
+                    var rawSpend = req * 420;
+                    var saved = Math.round(rawSpend * (cache / 100));
+                    $('tco-out').innerHTML = 'Baseline Inference &amp; Gateway Spend: <strong>$' + rawSpend.toLocaleString() + '/mo</strong><br>Semantic Cache &amp; Routing Savings: <span class="secondary font-bold">-$' + saved.toLocaleString() + '/mo</span><br>Net Optimised Run Rate: <span class="accent font-bold">$' + (rawSpend - saved).toLocaleString() + '/mo</span>';
+                };
+                $('tco-req').addEventListener('input', calcTco);
+                $('tco-cache').addEventListener('input', calcTco);
+                calcTco();
+            } else if (toolId === 'tokens') {
+                openModal('// TOOL 02 · LLM TOKEN & INFERENCE COST CALCULATOR',
+                    '<div style="display:flex;flex-direction:column;gap:10px;">' +
+                        '<div class="grid-2">' +
+                            '<div><label class="mono dim" style="font-size:11px;">Daily Agent Runs</label><input type="number" id="tk-runs" class="field" value="5000"></div>' +
+                            '<div><label class="mono dim" style="font-size:11px;">Avg Tokens / Run (In + Out)</label><input type="number" id="tk-avg" class="field" value="6500"></div>' +
+                        '</div>' +
+                        '<div id="tk-out" class="elevated mono" style="padding:12px;font-size:12.5px;"></div>' +
+                    '</div>'
+                );
+                var calcTk = function () {
+                    var runs = Math.max(1, parseInt($('tk-runs').value || '0', 10));
+                    var avg = Math.max(100, parseInt($('tk-avg').value || '0', 10));
+                    var monthlyM = (runs * avg * 30) / 1000000;
+                    $('tk-out').innerHTML = 'Monthly Volume: <strong>' + monthlyM.toFixed(1) + 'M tokens</strong><br>• Frontier Model Tier (~$4.50/1M blended): <span class="accent font-bold">$' + (monthlyM * 4.5).toFixed(2) + '/mo</span><br>• Self-Hosted vLLM / Flash Tier (~$0.65/1M): <span class="secondary font-bold">$' + (monthlyM * 0.65).toFixed(2) + '/mo</span>';
+                };
+                $('tk-runs').addEventListener('input', calcTk);
+                $('tk-avg').addEventListener('input', calcTk);
+                calcTk();
+            } else if (toolId === 'adr') {
+                openModal('// TOOL 03 · ADR MARKDOWN BUILDER',
+                    '<div style="display:flex;flex-direction:column;gap:10px;">' +
+                        '<input type="text" id="adr-title" class="field" value="Adopt Envoy AI Gateway for Multi-Model Routing & MCP Governance">' +
+                        '<textarea id="adr-ctx" class="field" rows="2">Need unified rate-limiting, semantic caching, and SPIFFE identity enforcement across AWS Bedrock and self-hosted vLLM.</textarea>' +
+                        '<pre id="adr-preview" class="elevated mono" style="padding:12px;font-size:11.5px;white-space:pre-wrap;"></pre>' +
+                    '</div>'
+                );
+                var updateAdr = function () {
+                    $('adr-preview').textContent = '# ADR-042: ' + $('adr-title').value + '\nStatus: Accepted · Author: Pankaj Kumar Pandey\n\n## Context\n' + $('adr-ctx').value + '\n\n## Guardrails\n- Enforce OpenTelemetry GenAI spans & OPA spend caps.';
+                };
+                $('adr-title').addEventListener('input', updateAdr);
+                $('adr-ctx').addEventListener('input', updateAdr);
+                updateAdr();
+            } else if (toolId === 'qr') {
+                openModal('// TOOL 04 · QR & VCARD GENERATOR',
+                    '<div style="display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;">' +
+                        '<svg width="150" height="150" viewBox="0 0 150 150" style="background:#fff;padding:10px;border-radius:10px;">' +
+                            '<rect x="10" y="10" width="35" height="35" fill="none" stroke="#111" stroke-width="6"/>' +
+                            '<rect x="19" y="19" width="17" height="17" fill="#111"/>' +
+                            '<rect x="105" y="10" width="35" height="35" fill="none" stroke="#111" stroke-width="6"/>' +
+                            '<rect x="114" y="19" width="17" height="17" fill="#111"/>' +
+                            '<rect x="10" y="105" width="35" height="35" fill="none" stroke="#111" stroke-width="6"/>' +
+                            '<rect x="19" y="114" width="17" height="17" fill="#111"/>' +
+                            '<path d="M60 15h15v15H60zm25 15h10v25H85zM55 55h35v35H55zm45 10h25v15h-25zM60 105h20v25H60zm35 10h30v15H95z" fill="#111"/>' +
+                        '</svg>' +
+                        '<div class="mono"><strong>Pankaj Kumar Pandey</strong><br><span class="sub" style="font-size:12px;">Principal Solutions &amp; Agentic AI Architect · London, UK</span></div>' +
+                        '<button type="button" id="modal-vcard-dl" class="btn btn-accent">Download pankaj-pandey.vcf</button>' +
+                    '</div>'
+                );
+                $('modal-vcard-dl').addEventListener('click', downloadVCard);
+            } else if (toolId === 'ics') {
+                openModal('// TOOL 05 · EXECUTIVE BRIEFING .ICS CALENDAR FILE',
+                    '<div style="display:flex;flex-direction:column;gap:10px;">' +
+                        '<input type="text" id="ics-subj" class="field" value="Executive Architecture Briefing — Pankaj Kumar Pandey">' +
+                        '<input type="date" id="ics-date" class="field" value="2026-12-01">' +
+                        '<button type="button" id="ics-dl-btn" class="btn btn-accent">Download .ics Calendar Invite</button>' +
+                    '</div>'
+                );
+                $('ics-dl-btn').addEventListener('click', function () {
+                    var dt = ($('ics-date').value || '2026-12-01').replace(/-/g, '');
+                    var ics = 'BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:' + dt + 'T100000Z\nDTEND:' + dt + 'T104500Z\nSUMMARY:' + $('ics-subj').value + '\nLOCATION:London / Microsoft Teams\nEND:VEVENT\nEND:VCALENDAR';
+                    triggerDownload('architecture-briefing.ics', ics, 'text/calendar');
+                });
+            } else if (toolId === 'cron') {
+                openModal('// TOOL 06 · CRON & SLA ERROR-BUDGET CALCULATOR',
+                    '<div style="display:flex;flex-direction:column;gap:10px;">' +
+                        '<div><label class="mono dim" style="font-size:11px;">Kubernetes CronJob Expression</label><input type="text" id="cron-expr" class="field mono" value="0 */6 * * *"></div>' +
+                        '<div><label class="mono dim" style="font-size:11px;">Target Availability SLA</label>' +
+                        '<select id="sla-tier" class="field">' +
+                            '<option value="99.9">99.9% (Three Nines — Standard Cloud)</option>' +
+                            '<option value="99.95">99.95% (Enterprise API Gateway)</option>' +
+                            '<option value="99.99" selected>99.99% (Four Nines — Regulated Payments)</option>' +
+                            '<option value="99.999">99.999% (Five Nines — Core Ledger)</option>' +
+                        '</select></div>' +
+                        '<div id="sla-out" class="elevated mono" style="padding:12px;font-size:12.5px;"></div>' +
+                    '</div>'
+                );
+                var calcSla = function () {
+                    var pct = parseFloat($('sla-tier').value);
+                    var expr = ($('cron-expr').value || '').trim();
+                    var validCron = expr.split(/\s+/).length === 5;
+                    var downYearMins = ((100 - pct) / 100) * 525600;
+                    var downMonthMins = downYearMins / 12;
+                    $('sla-out').innerHTML = 'Cron Syntax: ' + (validCron ? '<span class="secondary font-bold">Valid 5-field POSIX (' + expr + ')</span>' : '<span style="color:#ef4444;">Expected 5 space-separated fields</span>') + '<br>Target Availability: <strong>' + pct + '%</strong><br>Monthly Error Budget: <span class="accent font-bold">' + downMonthMins.toFixed(2) + ' mins</span><br>Annual Error Budget: <span class="secondary font-bold">' + downYearMins.toFixed(1) + ' mins</span>';
+                };
+                $('sla-tier').addEventListener('change', calcSla);
+                $('cron-expr').addEventListener('input', calcSla);
+                calcSla();
+            }
+        }
+
+        document.querySelectorAll('.tool-launch-btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                openTool(btn.getAttribute('data-tool'));
+            });
+        });
+
+        /* -----------------------------------------------------------------
+           7. INTERACTIVE SHELL CLI + BUILT-IN TERMINAL TOOLS (JSON/B64/WC/UUID/EPOCH)
+        ----------------------------------------------------------------- */
+        var CLI_COMMANDS = [
+            'help', 'whoami', 'hub', 'open ./hub', 'transformation', 'integration', 'boomi', 'mulesoft',
+            'commerce', 'enterprise', 'stack', 'ls stack/', 'tools', 'ls tools/', 'journal', 'ls posts/',
+            'lab', 'ls lab/', 'about', 'cat resume.md', 'contact', 'ping me',
+            'open tco', 'open tokens', 'open adr', 'open qr', 'open ics', 'open cron',
+            'json ', 'base64 ', 'wordcount ', 'uuid', 'epoch',
+            'theme', 'theme claude-code', 'theme cursor', 'theme codex', 'theme google-antigravity', 'theme grok-code', 'theme meta-code',
+            'vcard', 'clear'
+        ];
+        var cliHistory = [];
+        var histPtr = -1;
+
+        function escapeHtml(str) {
+            return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        function appendCli(html) {
+            var out = $('cli-output');
+            if (!out) return;
+            var div = document.createElement('div');
+            div.innerHTML = html;
+            out.appendChild(div);
+            out.scrollTop = out.scrollHeight;
+        }
+
+        function jumpTo(hash) {
+            var el = document.querySelector(hash);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function generateUuid() {
+            if (window.crypto && window.crypto.randomUUID) return window.crypto.randomUUID();
+            return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                var r = Math.random() * 16 | 0;
+                var v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+            });
+        }
+
+        function runCliCommand(raw) {
+            var trimmed = (raw || '').trim();
+            var cmd = trimmed.toLowerCase();
+            if (!cmd) return;
+            cliHistory.unshift(trimmed);
+            histPtr = -1;
+            appendCli('<div><span class="secondary font-bold">pankaj@architect:~$</span> ' + escapeHtml(trimmed) + '</div>');
+
+            if (cmd === 'help' || cmd === ':help') {
+                appendCli('<div class="sub">Explore: <span class="accent">hub</span>, <span class="accent">integration</span>, <span class="accent">commerce</span>, <span class="accent">enterprise</span>, <span class="accent">stack</span>, <span class="accent">journal</span>, <span class="accent">lab</span>, <span class="accent">about</span>, <span class="accent">contact</span><br>Site Tools: <span class="accent">open tco | tokens | adr | qr | ics | cron</span>, <span class="accent">vcard</span><br>Terminal Tools: <span class="accent">json &lt;str&gt;</span>, <span class="accent">base64 &lt;str&gt;</span>, <span class="accent">wordcount &lt;text&gt;</span>, <span class="accent">uuid</span>, <span class="accent">epoch</span>, <span class="accent">theme &lt;name&gt;</span>, <span class="accent">clear</span></div>');
+            } else if (cmd === 'clear') {
+                $('cli-output').innerHTML = '';
+            } else if (cmd === 'whoami') {
+                appendCli('<div class="secondary">Pankaj Kumar Pandey — Principal Solutions &amp; Agentic AI Architect (London, UK) · Helping organisations turn complexity into clear, confident decisions ($290M+ delivered).</div>');
+            } else if (cmd === 'uuid') {
+                appendCli('<div class="secondary">uuid-v4: <strong>' + generateUuid() + '</strong></div>');
+            } else if (cmd === 'epoch') {
+                var now = new Date();
+                appendCli('<div class="secondary">unix_epoch_s: <strong>' + Math.floor(now.getTime() / 1000) + '</strong> · iso8601: <span>' + now.toISOString() + '</span></div>');
+            } else if (cmd === 'json' || cmd.indexOf('json ') === 0) {
+                var payload = trimmed.slice(4).trim() || '{"architect":"Pankaj Kumar Pandey","pillars":["AI","Agentic AI","Multicloud","Enterprise"],"status":"ready"}';
+                try {
+                    var parsed = JSON.parse(payload);
+                    appendCli('<pre class="secondary" style="white-space:pre-wrap;margin-top:2px;">' + escapeHtml(JSON.stringify(parsed, null, 2)) + '</pre>');
+                } catch (err) {
+                    appendCli('<div style="color:#ff5f56;">JSON parse error: ' + escapeHtml(err.message) + '</div>');
+                }
+            } else if (cmd === 'base64' || cmd.indexOf('base64 ') === 0) {
+                var inputStr = trimmed.slice(6).trim() || 'pankaj@architect';
+                var encoded = btoa(unescape(encodeURIComponent(inputStr)));
+                appendCli('<div class="secondary">base64("' + escapeHtml(inputStr) + '") → <strong>' + encoded + '</strong></div>');
+            } else if (cmd === 'wordcount' || cmd.indexOf('wordcount ') === 0) {
+                var textStr = trimmed.slice(9).trim() || 'I help organisations navigate their digital and agentic transformation journeys.';
+                var words = textStr.split(/\s+/).filter(Boolean).length;
+                appendCli('<div class="secondary">words: <strong>' + words + '</strong> · chars: <strong>' + textStr.length + '</strong></div>');
+            } else if (cmd === 'hub' || cmd === 'open ./hub' || cmd === 'transformation') {
+                jumpTo('#transformation-hub');
+                appendCli('<div class="secondary">→ Jumped to #transformation-hub (Unified A·A·M·E Identity &amp; 9-Spoke Transformation Gear)</div>');
+            } else if (cmd === 'integration' || cmd === 'boomi' || cmd === 'mulesoft') {
+                hubIdx = 7;
+                renderHubInspector(7);
+                setHubAuto(false);
+                jumpTo('#transformation-hub');
+                appendCli('<div class="secondary">→ Focused Spoke 08: Enterprise Integration Architecture (Boomi · MuleSoft · Oracle Fusion MW OSB/BPEL)</div>');
+            } else if (cmd === 'commerce') {
+                hubIdx = 5;
+                renderHubInspector(5);
+                setHubAuto(false);
+                jumpTo('#transformation-hub');
+                appendCli('<div class="secondary">→ Focused Spoke 06: Agentic Commerce (UCP · ACP · AP2 · MCP · A2A)</div>');
+            } else if (cmd === 'enterprise') {
+                hubIdx = 6;
+                renderHubInspector(6);
+                setHubAuto(false);
+                jumpTo('#transformation-hub');
+                appendCli('<div class="secondary">→ Focused Spoke 07: Agentic Enterprise (SPIFFE · OPA · Envoy/Kong AI Gateway)</div>');
+            } else if (cmd === 'stack' || cmd === 'ls stack/') {
+                jumpTo('#ai-native-stack');
+                appendCli('<div class="secondary">→ Jumped to #ai-native-stack (CNCF 5-Layer AI-Native Landscape)</div>');
+            } else if (cmd === 'journal' || cmd === 'ls posts/') {
+                jumpTo('#journal');
+                appendCli('<div class="secondary">→ Jumped to #journal (Architectural Notes &amp; Field Monographs)</div>');
+            } else if (cmd === 'lab' || cmd === 'ls lab/') {
+                jumpTo('#lab');
+                appendCli('<div class="secondary">→ Jumped to #lab (Reference Blueprints &amp; Sandbox Repositories)</div>');
+            } else if (cmd === 'tools' || cmd === 'ls tools/') {
+                jumpTo('#tools');
+                appendCli('<div class="secondary">→ Jumped to #tools (6 Interactive Architect &amp; FinOps Micro-Tools)</div>');
+            } else if (cmd === 'about' || cmd === 'cat resume.md') {
+                jumpTo('#about');
+                appendCli('<div class="secondary">→ Jumped to #about (Penthouse Strategy to Engine-Room Execution &amp; Career Ledger)</div>');
+            } else if (cmd === 'contact' || cmd === 'ping me') {
+                jumpTo('#contact');
+                appendCli('<div class="secondary">→ Jumped to #contact (Book a Conversation)</div>');
+            } else if (cmd === 'vcard') {
+                downloadVCard();
+                appendCli('<div class="secondary">↓ Downloaded pankaj-pandey.vcf</div>');
+            } else if (cmd.indexOf('open ') === 0) {
+                var t = cmd.replace('open ', '').trim();
+                if (['tco', 'tokens', 'adr', 'qr', 'ics', 'cron'].indexOf(t) !== -1) {
+                    openTool(t);
+                    appendCli('<div class="secondary">→ Launched tool: ' + t + '</div>');
+                } else {
+                    appendCli('<div style="color:#ff5f56;">Unknown tool. Try: open tco | tokens | adr | qr | ics | cron</div>');
+                }
+            } else if (cmd === 'theme') {
+                var idx = THEMES.findIndex(function (x) { return x.id === currentTheme; });
+                var nextTh = THEMES[(idx + 1) % THEMES.length].id;
+                applyTheme(nextTh);
+                appendCli('<div class="secondary">✓ Cycled active IDE theme to [' + nextTh + ']</div>');
+            } else if (cmd.indexOf('theme ') === 0) {
+                var th = cmd.replace('theme ', '').trim();
+                if (applyTheme(th)) {
+                    appendCli('<div class="secondary">✓ Switched active IDE theme to [' + th + ']</div>');
+                } else {
+                    appendCli('<div style="color:#ff5f56;">Unknown theme. Available: claude-code, cursor, codex, google-antigravity, grok-code, meta-code</div>');
+                }
+            } else {
+                appendCli('<div class="dim">Command not found: "' + escapeHtml(cmd) + '". Type <span class="accent">help</span> for available commands.</div>');
+            }
+        }
+
+        if ($('cli-run-btn')) {
+            $('cli-run-btn').addEventListener('click', function () {
+                runCliCommand($('cli-input').value);
+                $('cli-input').value = '';
+            });
+        }
+
+        if ($('cli-input')) {
+            $('cli-input').addEventListener('keydown', function (e) {
+                if (e.key === 'Enter') {
+                    runCliCommand(this.value);
+                    this.value = '';
+                } else if (e.key === 'Tab') {
+                    e.preventDefault();
+                    var val = this.value.trim().toLowerCase();
+                    if (!val) return;
+                    var match = CLI_COMMANDS.find(function (c) { return c.indexOf(val) === 0; });
+                    if (match) this.value = match;
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (histPtr + 1 < cliHistory.length) {
+                        histPtr++;
+                        this.value = cliHistory[histPtr];
+                    }
+                } else if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (histPtr > 0) {
+                        histPtr--;
+                        this.value = cliHistory[histPtr];
+                    } else {
+                        histPtr = -1;
+                        this.value = '';
+                    }
+                }
+            });
+        }
+
+        document.querySelectorAll('.term-link').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                runCliCommand(btn.getAttribute('data-run'));
+            });
+        });
+
+        /* -----------------------------------------------------------------
+           8. ⌘K COMMAND PALETTE
+        ----------------------------------------------------------------- */
+        var PALETTE_ITEMS = [
+            { label: '(01) CD ~ — Home & macOS Terminal Shell', hint: '#home', action: function () { jumpTo('#home'); } },
+            { label: '(02) OPEN ./HUB — Digital & Agentic Transformation (9-Spoke Gear)', hint: '#transformation-hub', action: function () { jumpTo('#transformation-hub'); } },
+            { label: 'Spoke 06: Agentic Commerce (UCP · ACP · AP2 · MCP · A2A)', hint: 'Focus Spoke', action: function () { hubIdx = 5; renderHubInspector(5); setHubAuto(false); jumpTo('#transformation-hub'); } },
+            { label: 'Spoke 07: Agentic Enterprise (SPIFFE · OPA · AI Gateway)', hint: 'Focus Spoke', action: function () { hubIdx = 6; renderHubInspector(6); setHubAuto(false); jumpTo('#transformation-hub'); } },
+            { label: 'Spoke 08: Enterprise Integration (Boomi · MuleSoft · Oracle MW)', hint: 'Focus Spoke', action: function () { hubIdx = 7; renderHubInspector(7); setHubAuto(false); jumpTo('#transformation-hub'); } },
+            { label: '(03) LS STACK/ — CNCF 5-Layer AI-Native Landscape', hint: '#ai-native-stack', action: function () { jumpTo('#ai-native-stack'); } },
+            { label: '(04) LS POSTS/ — Journal & Field Monographs', hint: '#journal', action: function () { jumpTo('#journal'); } },
+            { label: '(05) LS LAB/ — Architecture Lab Bench', hint: '#lab', action: function () { jumpTo('#lab'); } },
+            { label: '(06) LS TOOLS/ — Interactive Architect Micro-Tools', hint: '#tools', action: function () { jumpTo('#tools'); } },
+            { label: '(07) CAT RESUME.MD — Executive Dossier & Career Ledger', hint: '#about', action: function () { jumpTo('#about'); } },
+            { label: '(08) PING ME — Book a Conversation', hint: '#contact', action: function () { jumpTo('#contact'); } },
+            { label: 'Tool: API & AI Gateway TCO Estimator', hint: 'open tco', action: function () { openTool('tco'); } },
+            { label: 'Tool: LLM Token & Inference Cost Calc', hint: 'open tokens', action: function () { openTool('tokens'); } },
+            { label: 'Tool: ADR Markdown Builder', hint: 'open adr', action: function () { openTool('adr'); } },
+            { label: 'Theme: Claude Code', hint: 'claude-code', action: function () { applyTheme('claude-code'); } },
+            { label: 'Theme: Cursor IDE', hint: 'cursor', action: function () { applyTheme('cursor'); } },
+            { label: 'Theme: OpenAI Codex', hint: 'codex', action: function () { applyTheme('codex'); } },
+            { label: 'Theme: Google Antigravity', hint: 'google-antigravity', action: function () { applyTheme('google-antigravity'); } },
+            { label: 'Theme: Grok Code', hint: 'grok-code', action: function () { applyTheme('grok-code'); } },
+            { label: 'Theme: Meta Code', hint: 'meta-code', action: function () { applyTheme('meta-code'); } }
+        ];
+
+        function renderPalette(q) {
+            var list = $('cmd-list');
+            if (!list) return;
+            var term = (q || '').toLowerCase();
+            var filtered = PALETTE_ITEMS.filter(function (it) {
+                return it.label.toLowerCase().indexOf(term) !== -1 || it.hint.toLowerCase().indexOf(term) !== -1;
+            });
+            list.innerHTML = filtered.map(function (it, i) {
+                return '<button type="button" class="dir-row" data-pal-idx="' + i + '" style="width:100%;cursor:pointer;text-align:left;">' +
+                    '<span>' + it.label + '</span><span class="accent">' + it.hint + '</span>' +
+                '</button>';
+            }).join('');
+            list._filtered = filtered;
+        }
+
+        function openCmdPalette() {
+            if (!$('cmd-modal')) return;
+            $('cmd-modal').classList.add('open');
+            $('cmd-search').value = '';
+            renderPalette('');
+            setTimeout(function () { $('cmd-search').focus(); }, 40);
+        }
+
+        function closeCmdPalette() {
+            if ($('cmd-modal')) $('cmd-modal').classList.remove('open');
+        }
+
+        if ($('cmd-open-btn')) $('cmd-open-btn').addEventListener('click', openCmdPalette);
+        if ($('status-help-btn')) $('status-help-btn').addEventListener('click', openCmdPalette);
+        if ($('cmd-close-btn')) $('cmd-close-btn').addEventListener('click', closeCmdPalette);
+        if ($('cmd-modal')) {
+            $('cmd-modal').addEventListener('click', function (e) {
+                if (e.target === $('cmd-modal')) closeCmdPalette();
+            });
+        }
+        if ($('cmd-search')) {
+            $('cmd-search').addEventListener('input', function () { renderPalette(this.value); });
+        }
+        if ($('cmd-list')) {
+            $('cmd-list').addEventListener('click', function (e) {
+                var btn = e.target.closest('[data-pal-idx]');
+                if (!btn || !this._filtered) return;
+                var item = this._filtered[parseInt(btn.getAttribute('data-pal-idx'), 10)];
+                closeCmdPalette();
+                if (item) item.action();
+            });
+        }
+
+        document.addEventListener('keydown', function (e) {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                if ($('cmd-modal').classList.contains('open')) closeCmdPalette();
+                else openCmdPalette();
+            } else if ((e.metaKey || e.ctrlKey) && e.key === '/') {
+                e.preventDefault();
+                toggleBotDrawer();
+            } else if (e.key === 'Escape') {
+                closeModal();
+                closeCmdPalette();
+                toggleBotDrawer(false);
+            }
+        });
+
+        /* -----------------------------------------------------------------
+           9. FLOATING AI ARCHITECT ASSISTANT BOT ('architect-bot')
+        ----------------------------------------------------------------- */
+        function toggleBotDrawer(forceState) {
+            var drawer = $('bot-drawer');
+            var launcher = $('bot-launcher');
+            if (!drawer || !launcher) return;
+            var nextState = typeof forceState === 'boolean' ? forceState : !drawer.classList.contains('open');
+            drawer.classList.toggle('open', nextState);
+            launcher.setAttribute('aria-expanded', nextState ? 'true' : 'false');
+            if (nextState && $('bot-input')) {
+                setTimeout(function () { $('bot-input').focus(); }, 40);
+            }
+        }
+
+        function appendBotMessage(role, html, actions) {
+            var box = $('bot-messages');
+            if (!box) return;
+            var msg = document.createElement('div');
+            msg.className = 'bot-msg ' + role;
+            msg.innerHTML = html;
+
+            if (actions && actions.length) {
+                var actRow = document.createElement('div');
+                actRow.className = 'bot-action-row mono';
+                actions.forEach(function (act) {
+                    var b = document.createElement('button');
+                    b.type = 'button';
+                    b.className = 'bot-action-btn';
+                    b.textContent = act.label;
+                    b.addEventListener('click', act.run);
+                    actRow.appendChild(b);
+                });
+                msg.appendChild(actRow);
+            }
+
+            box.appendChild(msg);
+            box.scrollTop = box.scrollHeight;
+        }
+
+        function resetBotChat() {
+            var box = $('bot-messages');
+            if (!box) return;
+            box.innerHTML = '';
+            appendBotMessage(
+                'assistant',
+                'Hello! I am <strong>architect-bot</strong>, Pankaj Kumar Pandey\'s interactive assistant. Ask me about his <strong>$290M+ digital &amp; agentic transformation leadership</strong>, the <strong>9-Spoke Transformation Gear</strong>, the <strong>CNCF 5-Layer AI Stack</strong>, or launch an interactive tool.',
+                [
+                    { label: 'OPEN ./HUB →', run: function () { jumpTo('#transformation-hub'); } },
+                    { label: 'Open TCO Tool →', run: function () { openTool('tco'); } }
+                ]
+            );
+        }
+
+        function getBotResponse(query) {
+            var q = query.toLowerCase();
+
+            var matchedTheme = THEMES.find(function (t) { return q.indexOf(t.id) !== -1 || q.indexOf(t.id.replace('-', ' ')) !== -1; });
+            if (matchedTheme && (q.indexOf('theme') !== -1 || q.indexOf('switch') !== -1 || q.indexOf('mode') !== -1 || q.length < 24)) {
+                applyTheme(matchedTheme.id);
+                return {
+                    html: 'Switched the active IDE environment to <strong>' + matchedTheme.label + '</strong> (' + matchedTheme.desc + ').',
+                    actions: []
+                };
+            }
+
+            if (q.indexOf('tco') !== -1 || q.indexOf('gateway calc') !== -1) {
+                return {
+                    html: 'Launching the <strong>API &amp; AI Gateway TCO Estimator</strong> so you can model semantic cache savings across Kong, Envoy AI Gateway, and iPaaS workloads.',
+                    actions: [{ label: 'Open Gateway TCO Calc →', run: function () { openTool('tco'); } }]
+                };
+            }
+            if (q.indexOf('token') !== -1 || q.indexOf('llm cost') !== -1) {
+                return {
+                    html: 'You can compare frontier model spend against self-hosted vLLM GPU clusters using the <strong>LLM Token &amp; Inference Cost Calculator</strong>.',
+                    actions: [{ label: 'Open Token Estimator →', run: function () { openTool('tokens'); } }]
+                };
+            }
+            if (q.indexOf('adr') !== -1) {
+                return {
+                    html: 'The <strong>ADR Markdown Builder</strong> formats context, trade-offs, and AI-DLC guardrails into ready-to-commit documentation.',
+                    actions: [{ label: 'Open ADR Builder →', run: function () { openTool('adr'); } }]
+                };
+            }
+
+            if (q.indexOf('integration') !== -1 || q.indexOf('boomi') !== -1 || q.indexOf('mulesoft') !== -1 || q.indexOf('oracle') !== -1 || q.indexOf('osb') !== -1 || q.indexOf('bpel') !== -1) {
+                return {
+                    html: '<strong>Spoke 08 — Enterprise Integration Architecture:</strong> Pankaj specialises in modernising monolithic <strong>Oracle Fusion Middleware (OSB/BPEL)</strong> into API-led <strong>Dell Boomi</strong> and <strong>MuleSoft Anypoint</strong> fabrics—and wrapping them as policy-governed <strong>MCP Servers</strong> for AI agents.',
+                    actions: [
+                        {
+                            label: 'Focus Spoke 08 on Gear →',
+                            run: function () {
+                                hubIdx = 7;
+                                renderHubInspector(7);
+                                setHubAuto(false);
+                                jumpTo('#transformation-hub');
+                            }
+                        },
+                        { label: 'Launch Gateway TCO →', run: function () { openTool('tco'); } }
+                    ]
+                };
+            }
+
+            if (q.indexOf('hub') !== -1 || q.indexOf('spoke') !== -1 || q.indexOf('gear') !== -1 || q.indexOf('transformation') !== -1) {
+                return {
+                    html: 'The <strong>Digital &amp; Agentic Transformation Gear</strong> unifies nine spokes: <strong>Enterprise Architecture</strong>, <strong>Cloud-Native</strong>, <strong>Wasm</strong>, <strong>AI-Native</strong>, <strong>Gen AI</strong>, <strong>Agentic Commerce</strong>, <strong>Agentic Enterprise</strong>, <strong>Enterprise Integration (Boomi, MuleSoft &amp; Oracle Fusion MW)</strong>, and <strong>Multicloud (AWS, GCP, Azure &amp; OCI)</strong>.',
+                    actions: [
+                        { label: 'Jump to 9-Spoke Gear →', run: function () { jumpTo('#transformation-hub'); } },
+                        { label: 'Inspect Integration Spoke →', run: function () { hubIdx = 7; renderHubInspector(7); setHubAuto(false); jumpTo('#transformation-hub'); } }
+                    ]
+                };
+            }
+
+            if (q.indexOf('commerce') !== -1 || q.indexOf('ucp') !== -1 || q.indexOf('acp') !== -1 || q.indexOf('ap2') !== -1 || q.indexOf('payment') !== -1) {
+                return {
+                    html: '<strong>Agentic Commerce</strong> replaces brittle browser scraping with machine-native protocols: <strong>MCP</strong> merchant catalogues, <strong>UCP</strong> dynamic quote negotiation, <strong>ACP</strong> delegated checkout, <strong>AP2</strong> cryptographic user payment mandates, and <strong>A2A</strong> fulfilment.',
+                    actions: [
+                        { label: 'Focus Agentic Commerce Spoke →', run: function () { hubIdx = 5; renderHubInspector(5); setHubAuto(false); jumpTo('#transformation-hub'); } },
+                        { label: 'Read Commerce Monograph →', run: function () { jumpTo('#journal'); } }
+                    ]
+                };
+            }
+
+            if (q.indexOf('cncf') !== -1 || q.indexOf('stack') !== -1 || q.indexOf('vllm') !== -1 || q.indexOf('kserve') !== -1 || q.indexOf('kubeflow') !== -1 || q.indexOf('qdrant') !== -1) {
+                return {
+                    html: 'The <strong>CNCF AI-Native Landscape</strong> spans 5 layers: <strong>01. AI Agents</strong> (MCP, A2A, ADK, LangGraph), <strong>02. Inference</strong> (vLLM, KServe, llm-d), <strong>03. Training</strong> (Kubeflow, Ray Train), <strong>04. Data</strong> (Qdrant, pgvector, Iceberg), and <strong>05. AI-Native Infra</strong> (Envoy/Kong AI Gateway, Kueue, OTel).',
+                    actions: [{ label: 'Filter CNCF 5-Layer Stack →', run: function () { jumpTo('#ai-native-stack'); } }]
+                };
+            }
+
+            if (q.indexOf('career') !== -1 || q.indexOf('impact') !== -1 || q.indexOf('paysafe') !== -1 || q.indexOf('lseg') !== -1 || q.indexOf('trinity') !== -1 || q.indexOf('book') !== -1 || q.indexOf('ai-dlc') !== -1 || q.indexOf('who') !== -1) {
+                return {
+                    html: '<strong>Pankaj Kumar Pandey</strong> (London, UK) brings 20+ years bridging boardroom strategy and hands-on engineering across <strong>Paysafe</strong>, <strong>LSEG</strong>, <strong>Thomson Reuters</strong>, and <strong>Trinity College London</strong>—delivering <strong>$290M+</strong> transformations, <strong>245+</strong> post-merger platform consolidations, and authoring <em>Head First AI-DLC</em>.',
+                    actions: [
+                        { label: 'CAT RESUME.MD →', run: function () { jumpTo('#about'); } },
+                        { label: 'Download .vcf →', run: downloadVCard }
+                    ]
+                };
+            }
+
+            if (q.indexOf('contact') !== -1 || q.indexOf('hire') !== -1 || q.indexOf('briefing') !== -1 || q.indexOf('email') !== -1 || q.indexOf('ping') !== -1) {
+                return {
+                    html: 'You can initiate an executive architecture briefing directly via <strong>pankajpandey.architect@gmail.com</strong> or book a conversation in Section 08.',
+                    actions: [
+                        { label: 'PING ME →', run: function () { jumpTo('#contact'); } },
+                        { label: 'Create .ics Invite →', run: function () { openTool('ics'); } }
+                    ]
+                };
+            }
+
+            return {
+                html: 'I can help you navigate Pankaj\'s <strong>A · A · M · E</strong> architecture pillars, the <strong>9-Spoke Enterprise Transformation Gear</strong> (including Boomi, MuleSoft &amp; Oracle Fusion MW), the <strong>CNCF 5-Layer AI Stack</strong>, or launch any of the <strong>6 Architect Micro-Tools</strong>.',
+                actions: [
+                    { label: 'OPEN ./HUB →', run: function () { jumpTo('#transformation-hub'); } },
+                    { label: 'LS STACK/ →', run: function () { jumpTo('#ai-native-stack'); } },
+                    { label: 'LS TOOLS/ →', run: function () { jumpTo('#tools'); } }
+                ]
+            };
+        }
+
+        function handleBotQuery(rawText) {
+            var text = (rawText || '').trim();
+            if (!text) return;
+
+            appendBotMessage('user', escapeHtml(text));
+
+            var box = $('bot-messages');
+            var typing = document.createElement('div');
+            typing.className = 'bot-typing';
+            typing.innerHTML = '<span></span><span></span><span></span>';
+            box.appendChild(typing);
+            box.scrollTop = box.scrollHeight;
+
+            setTimeout(function () {
+                if (typing.parentNode) typing.parentNode.removeChild(typing);
+                var reply = getBotResponse(text);
+                appendBotMessage('assistant', reply.html, reply.actions);
+            }, 320);
+        }
+
+        resetBotChat();
+
+        if ($('bot-launcher')) {
+            $('bot-launcher').addEventListener('click', function () {
+                toggleBotDrawer();
+            });
+        }
+
+        if ($('bot-close-btn')) {
+            $('bot-close-btn').addEventListener('click', function () {
+                toggleBotDrawer(false);
+            });
+        }
+
+        if ($('bot-clear-btn')) {
+            $('bot-clear-btn').addEventListener('click', resetBotChat);
+        }
+
+        if ($('bot-form')) {
+            $('bot-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var inp = $('bot-input');
+                if (!inp) return;
+                var val = inp.value;
+                inp.value = '';
+                handleBotQuery(val);
+            });
+        }
+
+        document.querySelectorAll('.bot-chip').forEach(function (chip) {
+            chip.addEventListener('click', function () {
+                handleBotQuery(chip.getAttribute('data-q'));
+            });
+        });
+
+        /* -----------------------------------------------------------------
+           10. VCARD DOWNLOAD, CONTACT FORM, CLOCK, SCROLL-SPY & TIMERS
+        ----------------------------------------------------------------- */
+        function triggerDownload(filename, content, mime) {
+            var blob = new Blob([content], { type: mime });
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadVCard() {
+            var vcf = 'BEGIN:VCARD\nVERSION:3.0\nN:Pandey;Pankaj;Kumar;;\nFN:Pankaj Kumar Pandey\nTITLE:Principal Solutions & Agentic AI Architect\nADR;TYPE=WORK:;;London;;England;;United Kingdom\nEMAIL;TYPE=INTERNET:pankajpandey.architect@gmail.com\nNOTE:AI Architect | Agentic AI | Multicloud | Enterprise Integration (Boomi, MuleSoft, Oracle MW)\nEND:VCARD';
+            triggerDownload('pankaj-pandey.vcf', vcf, 'text/vcard');
+        }
+
+        if ($('download-vcard-btn')) $('download-vcard-btn').addEventListener('click', downloadVCard);
+
+        if ($('copy-email-btn')) {
+            $('copy-email-btn').addEventListener('click', function () {
+                var tmp = document.createElement('textarea');
+                tmp.value = 'pankajpandey.architect@gmail.com';
+                document.body.appendChild(tmp);
+                tmp.select();
+                document.execCommand('copy');
+                document.body.removeChild(tmp);
+                this.textContent = 'Copied ✓';
+                var self = this;
+                setTimeout(function () { self.textContent = 'Copy'; }, 1800);
+            });
+        }
+
+        if ($('contact-form')) {
+            $('contact-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+                $('cf-status').textContent = '✓ Briefing packet logged for Pankaj Kumar Pandey.';
+                this.reset();
+            });
+        }
+
+        if ($('mobile-menu-btn')) {
+            $('mobile-menu-btn').addEventListener('click', function () {
+                $('mobile-drawer').classList.toggle('open');
+            });
+        }
+
+        document.querySelectorAll('#mobile-drawer a').forEach(function (a) {
+            a.addEventListener('click', function () {
+                $('mobile-drawer').classList.remove('open');
+            });
+        });
+
+        function updateClockAndScroll() {
+            try {
+                var now = new Date();
+                var weekday = new Intl.DateTimeFormat('en-GB', {
+                    timeZone: 'Europe/London',
+                    weekday: 'long'
+                }).format(now).toUpperCase();
+                var hms = new Intl.DateTimeFormat('en-GB', {
+                    timeZone: 'Europe/London',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit',
+                    hour12: false
+                }).format(now);
+                var shortTime = new Intl.DateTimeFormat('en-GB', {
+                    timeZone: 'Europe/London',
+                    hour: '2-digit', minute: '2-digit',
+                    hour12: false
+                }).format(now);
+                if ($('subbar-day-clock')) $('subbar-day-clock').textContent = weekday + ' // ' + hms;
+                if ($('status-time')) $('status-time').textContent = shortTime;
+            } catch (err) {
+                if ($('subbar-day-clock')) $('subbar-day-clock').textContent = 'LONDON // GMT';
+            }
+
+            var docH = document.documentElement.scrollHeight - window.innerHeight;
+            var pct = docH > 0 ? Math.min(100, Math.max(0, Math.round((window.scrollY / docH) * 100))) : 0;
+            var line = Math.max(1, Math.round(window.scrollY / 22) + 1);
+            if ($('status-scroll')) $('status-scroll').textContent = 'Ln ' + line + ', Col 1 · ' + pct + '%';
+
+            var sections = document.querySelectorAll('main section[id]');
+            var currentId = 'home';
+            sections.forEach(function (sec) {
+                if (window.scrollY >= sec.offsetTop - 150) currentId = sec.id;
+            });
+            document.querySelectorAll('.cli-nav-links .cli-nav-item').forEach(function (lnk) {
+                lnk.classList.toggle('active', lnk.getAttribute('data-spy') === currentId);
+            });
+        }
+
+        window.addEventListener('scroll', updateClockAndScroll, { passive: true });
+        updateClockAndScroll();
+
+        // Master animation ticker (100ms): Syncs Brand A·A·M·E wave + 9-spoke auto-cycle + London clock
+        var hubTick = 0;
+        var identityTick = 0;
+        var clockTick = 0;
+        setInterval(function () {
+            identityTick += 100;
+            if (identityTick >= 3400) {
+                identityTick = 0;
+                setIdentityPillar(identityIdx + 1, false);
+            }
+
+            if (hubAuto) {
+                hubTick += 100;
+                if (hubTick >= 4200) {
+                    hubTick = 0;
+                    hubIdx = hubIdx < 0 ? 0 : (hubIdx + 1) % HUB_SPOKES.length;
+                    renderHubInspector(hubIdx);
+                }
+            }
+
+            clockTick += 100;
+            if (clockTick >= 1000) {
+                clockTick = 0;
+                updateClockAndScroll();
+            }
+        }, 100);
+    });
+    </script>
+</body>
+</html>
